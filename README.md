@@ -1,6 +1,20 @@
 # misp-training-lea
 
-Practical Information Sharing between Law Enforcement and CSIRT communities using MISP
+Practical Information Sharing between Law Enforcement and CSIRT communities using MISP. The training is composed of theoritical and practical modules. A part of the practical modules include specific topics such as network forensic analysis, system forensic and threat analysis. The focus of the modules is show the complete chain from incident response, analysis up to the modeling and sharing with MISP.
+
+## Modules
+
+- [Isolate Threat Actor(s) from Network Captures - (e.304)](./e.304-isolate-threat-actor-from-network-capture)
+
+## Further readings
+
+- Neolea trainings
+
+# Course codes
+
+- `1xx` - Introductory
+- `2xx` - Intermediate
+- `3xx` - Advanced
 
 # Contributing
 
