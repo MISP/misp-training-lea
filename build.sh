@@ -2,7 +2,7 @@
 
 slidedecks=(
     "e.205-mapping-investigations-and-cases-in-misp"
-    "e.304-isolate-threat-actor-from-network-capture"
+    "e.304-lab3-encoding-information-and-sharing-it-2"
 )
 
 mkdir -p output
