@@ -48,11 +48,11 @@ Now that we have the structures to encode information, we need another structure
 
 ##### MISP Event Graph
 
-> include content for event graph
+> [TODO] include content for event graph
 
 ##### MISP Event Timeline
 
-> include content for event timeline
+> [TODO] include content for event timeline
 
 ##### MISP Event Reports
 
@@ -76,8 +76,8 @@ In MISP, contextualising data is as simple as attaching a label to the relevant 
 - [`collaborative-intelligence`](https://github.com/MISP/misp-taxonomies/blob/main/collaborative-intelligence/machinetag.json): Common language to support analysts to perform their analysis. The objective of this language is to advance collaborative analysis and to share earlier than later.
 - [`estimative-language`](https://github.com/MISP/misp-taxonomies/blob/main/estimative-language/machinetag.json): Estimative language to describe quality and credibility of underlying sources, data, and methodologies
 
-> include tag pictures
-> include more info about tag/taxonomy
+> [TODO] include tag pictures
+> [TODO] include more info about tag/taxonomy
 
 
 #### Galaxy Clusters
@@ -87,8 +87,8 @@ In MISP, contextualising data is as simple as attaching a label to the relevant 
 - `country="Luxembourg"` having information such as country-code, languages, TLD, Capital and so on.
 - `threat-actor="Sofacy"` having information such as suspected-state-sponsor, victims, links-to-documentation, target-category and synonyms.
 
-> include cluster picture
-> include more info about clusters/galaxy
+> [TODO] include cluster picture
+> [TODO] include more info about clusters/galaxy
 
 
 
@@ -99,17 +99,20 @@ In MISP, contextualising data is as simple as attaching a label to the relevant 
 
 ### 1.4 Distribution Levels
 
-> explain all available distribution levels in MISP
+> [TODO] explain all available distribution levels in MISP
+> [TODO] include diagram from the cheatsheet
 
 
 ### 1.5 Synchronisation
 
-> explain the synchronisation + publishing in MISP
+> [TODO] explain the synchronisation + publishing in MISP
+> [TODO] include diagram from the cheatsheet
 
 
 ### 1.6 Correlation
 
-> explain the correlation in MISP
+> [TODO] explain the correlation in MISP
+> [TODO] create new diagram
 
 
 ## How-to
