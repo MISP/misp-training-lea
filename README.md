@@ -4,7 +4,7 @@ Practical Information Sharing between Law Enforcement and CSIRT communities usin
 
 ## Modules
 
-- [Isolate Threat Actor(s) from Network Captures - (e.304)](./e.304-isolate-threat-actor-from-network-capture)
+- [Isolate Threat Actor(s) from Network Captures - (e.304)](./e.304-lab3-encoding-information-and-sharing-it-2)
 
 ## Further readings
 
