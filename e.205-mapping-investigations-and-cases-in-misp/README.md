@@ -17,4 +17,3 @@ MISP Introduction (eLearning materials)
 ## Links and references
 
 ## Glossary
-
