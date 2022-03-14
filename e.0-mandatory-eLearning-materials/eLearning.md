@@ -10,10 +10,15 @@
 
 ### What is MISP
 
+> [TODO] include content
+
 ### Why is MISP relevant
+
+> [TODO] include content
 
 ### What functionalities does MISP offer to fulfil your objectives
 
+> [TODO] include content
 
 ## MISP Basics
 
@@ -90,6 +95,9 @@ In MISP, contextualising data is as simple as attaching a label to the relevant 
 > [TODO] include cluster picture
 > [TODO] include more info about clusters/galaxy
 
+#### MITRE's ATT&CK
+
+> [TODO] include content
 
 
 ### 1.3 Anatomy of a complete Event
