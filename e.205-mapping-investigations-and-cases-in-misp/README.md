@@ -1,9 +1,10 @@
 # e.205: Mapping investigations and cases in MISP
 
 ## Objectives
-- Structure and encode evidences in MISP
-- Attach context to information in MISP
-- Prepare information for sharing
+The objective for this module is for students to learn the following:
+- How to structure and encode evidences in MISP
+- How to attach context to information in MISP
+- How to prepare information for sharing
 
 ## Description
 The purpose of this module is to review the different structures to encode technical data, analysis and report of digital forensic evidences.
