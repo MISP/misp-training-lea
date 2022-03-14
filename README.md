@@ -16,11 +16,25 @@ Practical Information Sharing between Law Enforcement and CSIRT communities usin
 - `2xx` - Intermediate
 - `3xx` - Advanced
 
+# Compiling slides
+```bash
+./build.sh
+```
+The slides and their associated handouts can be found in `output`.
+
 # Contributing
 
 Review the [conventions](conventions.md) for the directory structure and required information, then you can make a pull-request to contribute a new training.
 
 For existing content, a pull-request can be done.
+
+To create a new slide deck:
+1. copy the `blueprint` directory
+2. rename it to match the course name: `e.xxx-my-course`
+3. edit `e.xxx-my-course/slides.tex` to update the course title
+4. edit `e.xxx-my-course/content.tex` to add the course's content
+5. include `e.xxx-my-course` in the list of the slidecks variables
+6. run `build.sh` to compile it
 
 # License
 
