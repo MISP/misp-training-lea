@@ -26,7 +26,7 @@ First and foremost, it’s important to understand how MISP is organised. Simila
 #### MISP Attributes
 *Attributes* are individual block containing the very information to be used or to be shared. Thanks to their characteristic called `type`, *Attributes* can represent concept such as an IP address, a domain name or cryptographic hash. In addition to having a `type` and a `value`, they can express if they are Indicators of Compromise (IoC) or supporting data where for example, the former could be a hash of a malicious binary and the later could be Observed behaviour or links toward documentation. The differentiation between IoC and observable can be done by flipping the *Attribute*'s `to_ids` flag.
 
-> include attributes picture
+![attributes](./pictures/attributes.jpg)
 
 
 #### MISP Objects
@@ -34,13 +34,13 @@ In most of the case, these individual blocks of information can be combined toge
 
 By their very nature, *MISP Objects* organise and facilitate the reading of data in the application. But their efficiency can be improved even more when you add the capability to link them together with relationships to create directed graph allowing to represent stories, processes or behaviours. In MISP, creating such connections is called "create an *Object Reference*". Viewing these relationships as a connected graph can be done by looking at the widget called *Event Graph*.
 
-> include object picture
+![objects](./pictures/objects.jpg)
 
 #### MISP Events
 
 Now that we have the structures to encode information, we need another structure to be able to group them together in order to avoid dealing with a soup of *Attributes* and *MISP Objects*. *MISP Events* or commonly called *Events* are envelopes allowing to assemble *Attributes* and *Objects* contextually linked. Typically, *Events* are used to encode incidents, events or reports.
 
-> include event picture
+![event](./pictures/event.jpg)
 
 
 
@@ -56,7 +56,9 @@ Now that we have the structures to encode information, we need another structure
 
 ##### MISP Event Reports
 
-In addition to encode data into pre-formatted structure, MISP offers a tool to write report. Such report are called *Events reports* and are contained in an *Event* where they use the markdown syntax to write formatted text. They also provide directives specific to MISP allowing writers to reference other entities contained in the *Event*. This extended syntax supports referencing *Attributes*, *Objects*, *Tags* and *Galaxy Clusters*. 
+In addition to encode data into pre-formatted structure, MISP offers a tool to write report. Such report are called *Events reports* and are contained in an *Event* where they use the markdown syntax to write formatted text. They also provide directives specific to MISP allowing writers to reference other entities contained in the *Event*. This extended syntax supports referencing *Attributes*, *Objects*, *Tags* and *Galaxy Clusters*.
+
+![event-report](./pictures/eventreport.jpg)
 
 
 ### 1.2 Context Layer
@@ -92,7 +94,7 @@ In MISP, contextualising data is as simple as attaching a label to the relevant 
 
 ### 1.3 Anatomy of a complete Event
 
-> include anatomy picture
+![event-anatomy](./pictures/event-anatomy.jpg)
 
 
 ### 1.4 Distribution Levels
@@ -113,10 +115,46 @@ In MISP, contextualising data is as simple as attaching a label to the relevant 
 ## How-to
 
 ### Create an Event
+
+
+![](./pictures/guide/event1.jpg)
+![](./pictures/guide/event2.jpg)
+
 ### Create an Attribute
+
+
+![](./pictures/guide/attributes1.jpg)
+![](./pictures/guide/attributes2.jpg)
+
 ### Create an Object
+
+
+![](./pictures/guide/object1.jpg)
+![](./pictures/guide/object2.jpg)
+
 ### Create an Relationship
+
+
+![](./pictures/guide/reference1.jpg)
+![](./pictures/guide/reference2.jpg)
+
 ### Create an Event Report
+
+
+![](./pictures/guide/eventreport1.jpg)
+![](./pictures/guide/eventreport2.jpg)
+
 ### Add Tags
+
+
+![](./pictures/guide/tag1.jpg)
+
 ### Add Galaxy Clusters
+
+
+![](./pictures/guide/cluster1.jpg)
+
 ### Publish
+
+
+![](./pictures/guide/publish1.jpg)
