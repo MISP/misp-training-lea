@@ -17,6 +17,7 @@ Practical Information Sharing between Law Enforcement and CSIRT communities usin
 - `3xx` - Advanced
 
 # Compiling slides
+Simply run the command below to compile the slides
 ```bash
 ./build.sh
 ```
@@ -33,7 +34,7 @@ To create a new slide deck:
 2. rename it to match the course name: `e.xxx-my-course`
 3. edit `e.xxx-my-course/slides.tex` to update the course title
 4. edit `e.xxx-my-course/content.tex` to add the course's content
-5. include `e.xxx-my-course` in the list of the slidecks variables
+5. include `e.xxx-my-course` in the list of the slidecks variables in the build file `build.sh`
 6. run `build.sh` to compile it
 
 # License
