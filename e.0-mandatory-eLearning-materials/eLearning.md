@@ -116,45 +116,85 @@ In MISP, contextualising data is as simple as attaching a label to the relevant 
 
 ### Create an Event
 
+1. On the top-bar, click on `Event Action` then `Add Event`
+2. Choose the correct distribution
+3. Fill the `Event info` field with a concise summary of what this *Event* is about
+4. Fill the remaining optional fields
+5. Click on `Submit`
 
-![](./pictures/guide/event1.jpg)
-![](./pictures/guide/event2.jpg)
+![event-1](./pictures/guide/event1.jpg)
+![event-2](./pictures/guide/event2.jpg)
 
 ### Create an Attribute
 
+1. When viewing an *Event*, click on `Add Attribute`
+2. Fill the required `Category`, `Type` and `Value` field
+3. Check `For Intrusion Detection System` checkbox if you consider this *Attribute* to be an indicator
+4. Fill the remaining optional fields
+5. Click on `Submit`
 
-![](./pictures/guide/attributes1.jpg)
-![](./pictures/guide/attributes2.jpg)
+![attribute-1](./pictures/guide/attributes1.jpg)
+![attribute-2](./pictures/guide/attributes2.jpg)
 
 ### Create an Object
 
+1. When viewing an *Event*, click on `Add Object`
+2. If you know the category of the *Object*, select it, otherwise pick `All Objects`
+3. To add a "File" *Object*, search the entry in the dropdown or start typing `file` then select the entry
+4. Fill out at least the requirements for this Object and additional other *Attributes*
+5. Click on `Submit`
+6. Review the *Object* you are about to create then it `Create new object`
 
-![](./pictures/guide/object1.jpg)
-![](./pictures/guide/object2.jpg)
+
+![object-1](./pictures/guide/object1.jpg)
+![object-2](./pictures/guide/object2.jpg)
 
 ### Create an Relationship
 
+1. To create a relationship or *Reference*, a user can either click on the plus button from the *Object* table or do it directly from the *Event Graph*
+2. On the *Event Graph*, click on `Edit` then drag an arrow from the first *Object* to another entity
+3. On the `Add Object Reference` box, select which verb should be use to describe the relationship in the `Relationship type` input
+    - Note: If you want to use a verb not present in the list, use the `custom` entry
+4. Click on `Submit` 
 
-![](./pictures/guide/reference1.jpg)
-![](./pictures/guide/reference2.jpg)
+
+![object-reference-1](./pictures/guide/reference1.jpg)
+![object-reference-2](./pictures/guide/reference2.jpg)
 
 ### Create an Event Report
 
+1. When viewing an *Event*, click on the toggle button `Event reports` 
+2. Click on `Add Event Report` and enter the name of the report. As its content can be written with more ease in the dedicated editor, leave it empty and click on `Submit` 
+3. Once the list has reloaded, click on the *Event Report* that was created, then on the `Edit report` button 
+4. Write the report in the editor 
+    - Note: The `Help` button contains documentation about the supported markdown syntax and how to reference *Attributes*, *Objects* and context. 
+5. Once you are done, click the `Save` button 
 
-![](./pictures/guide/eventreport1.jpg)
-![](./pictures/guide/eventreport2.jpg)
+![event-report-1](./pictures/guide/eventreport1.jpg)
+![event-report-2](./pictures/guide/eventreport2.jpg)
 
 ### Add Tags
 
+1. *Tags* can be attached to both *Events* and *Attributes* with the following buttons: 
+2. To tag the *Event* or the *Attribute* globally, click on the button with the globe icon 
+3. Select the *Taxonomy* in which the tag is part of or click on `All Tags` 
+4. Pick the tag then click on `Submit` 
 
-![](./pictures/guide/tag1.jpg)
+![tag](./pictures/guide/tag1.jpg)
 
 ### Add Galaxy Clusters
 
+1. Similar to tags, *Galaxy Clusters* can be attached with the button with the globe icon 
+2. To tag the *Event* or the *Attribute* globally, click on the button with the globe icon 
+3. Select the namespace in the *Galaxy* is part of or click on `All namespaces` 
+4. Select the *Galaxy* in which the *Cluster* is part of or click on `All Clusters` 
+5. Pick the *Cluster* then click on `Submit` 
 
-![](./pictures/guide/cluster1.jpg)
+![cluster](./pictures/guide/cluster1.jpg)
 
 ### Publish
 
+1. Whenever an *Event* is to be shared, it has to be be Published 
+2. When viewing an *Event*, click on the `Publish` button located on the sidebar 
 
-![](./pictures/guide/publish1.jpg)
+![publish-event](./pictures/guide/publish1.jpg)
