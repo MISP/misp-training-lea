@@ -8,7 +8,7 @@ Practical Information Sharing between Law Enforcement and CSIRT communities usin
 
 ## Further readings
 
-- Neolea trainings
+- [Neolea trainings](https://github.com/neolea/neolea-training-materials)
 
 # Course codes
 
