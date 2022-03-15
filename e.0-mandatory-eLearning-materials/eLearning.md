@@ -10,15 +10,27 @@
 
 ### What is MISP
 
-> [TODO] include content
+MISP is an open-source threat-intelligence and sharing platform meant to store, correlate, enrich, analyse and share information. It enables the various type of analysts to collaborate on investigations and incidents, perform intelligence as well as helping operators to automatically feed their protective tools.
 
 ### Why is MISP relevant
 
-> [TODO] include content
+Information sharing is becoming more essential than ever to oppose threats. MISP strive to be the enabler and interface for real cross-sectorial sharing and support the organisations facing hybrid threats.
+To achieve these goals, MISP uses a practical information sharing format expressed in JSON which is built from a practical use-cases. It is flexible and can be easily extended by users to model their own data-structure.
 
-### What functionalities does MISP offer to fulfil your objectives
+The MISP core format as well as the common set of vocabularies provided by the various librairies supported by the tool allows users from all around the world to understand each others and rely on normalized data, making MISP a central place to collaborate.
 
-> [TODO] include content
+MISP offers different alternatives to share analysis, case and report enabling users to review data produced by partners or third-parties and propose changes if need be. This happens in a decentralized way where analyst can evaluate correaltion against other existing evidences and perform enrichment on the data. 
+
+These functionnalities provide the means to fulfill the ultimate goal of MISP: Bridging communities together.
+Where organisations from the same sector or country are able to share with their collaborators and going even further to be able to share with other from completely different sectors, such as bridging law enforcement with CSIRTs.
+
+
+### MISP philosophy
+
+everyone is cosumer/producer
+no obligation to contribute
+low barrier access
+
 
 ## MISP Basics
 
