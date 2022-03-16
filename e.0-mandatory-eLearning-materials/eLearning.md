@@ -1,5 +1,8 @@
 # MISP: Introduction, Concepts and Guide
 
+This eLearning module is a prerequisite or refreshing module to read before the actual training sessions. This helps to ensure that all participants are inline with the basic knowledge of MISP.
+In the training modules, the various elements mentioned in this introduction will be completed in details (e.101-104, e.205-e.206 and e.302-e.304).
+
 ## Structure of this document 
 
 1. **MISP Introduction**: The what, why and how about MISP
@@ -14,12 +17,12 @@ MISP is an open-source threat-intelligence and sharing platform meant to store, 
 
 ### Why is MISP relevant
 
-Information sharing is becoming more essential than ever to oppose threats. MISP strive to be the enabler and interface for real cross-sectorial sharing and support the organisations facing hybrid threats.
+Information sharing is becoming more essential than ever to oppose threats. MISP strive to be the enabler and interface for real cross-sectoral sharing and support the organisations facing hybrid threats.
 To achieve these goals, MISP uses a practical information sharing format expressed in JSON which is built from a practical use-cases. It is flexible and can be easily extended by users to model their own data-structure.
 
-The MISP core format as well as the common set of vocabularies provided by the various librairies supported by the tool allows users from all around the world to understand each others and rely on normalized data, making MISP a central place to collaborate.
+The MISP core format as well as the common set of vocabularies provided by the various libraries supported by the tool allows users from all around the world to understand each others and rely on normalized data, making MISP a central place to collaborate.
 
-MISP offers different alternatives to share analysis, case and report enabling users to review data produced by partners or third-parties and propose changes if need be. This happens in a decentralized way where analyst can evaluate correaltion against other existing evidences and perform enrichment on the data. 
+MISP offers different alternatives to share analysis, case and report enabling users to review data produced by partners or third-parties and propose changes if need be. This happens in a decentralized way where analyst can evaluate correlation against other existing evidences and perform enrichment on the data. 
 
 These functionnalities provide the means to fulfill the ultimate goal of MISP: Bridging communities together.
 By fostering communication and sharing accross multiple sectors, people are able to share and collaborate seemlessly making the connection between law enforcement with CSIRTs possible.
