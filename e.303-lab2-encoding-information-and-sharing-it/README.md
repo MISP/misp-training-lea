@@ -2,7 +2,7 @@
 
 ## Objectives
 
-- Extract an executable from network packet capture file (PCAP) and investigate a compromised Linux host
+- Extract files (executables, evidences) from network packet capture file (PCAP) and investigate a compromised Linux host
 - Interpret and encode the information into MISP
 - Share the evidences with other partners
 
