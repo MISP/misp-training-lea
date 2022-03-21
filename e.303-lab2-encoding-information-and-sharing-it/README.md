@@ -30,6 +30,9 @@
 ## Further reading and tools
 
 - [hashlookup-forensic-analyser](https://github.com/hashlookup/hashlookup-forensic-analyser) Analyse a forensic target (such as a directory) to find and report files found and not found from CIRCL hashlookup public service or the Bloom filter from CIRCL hashlookup. This tool can help a digital forensic investigator to know the context, origin of specific files during a digital forensic investigation.
+- [TCPSession is a native Python library](https://github.com/PaloAltoNetworks/tcpsession) that extracts out session data sent over a TCP connection from both sides from a pcap.
+- [Towards an estimation of the accuracy of TCP reassembly in network forensics](http://www.foo.be/papers/wagener-dulaunoy-engel-networkforensicaccuracy.pdf)
+
 
 ## Glossary
 
