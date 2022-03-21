@@ -9,7 +9,7 @@
 
 # Description
 
-A [packet capture](./dataset) from the victim network was performed between the reverse proxy and the back-end systems.
+A [packet capture](./dataset/capture.pcap) from the victim network was performed between the reverse proxy and the back-end systems.
 
 - Analyse the pcap file to discover what happened;
 - Extract evidences and model those evidences into a complete and descriptive MISP event;
@@ -20,9 +20,8 @@ A [packet capture](./dataset) from the victim network was performed between the 
 
 # Links and references
 
-- bpf packet filteriing
-- tcpdump cheatsheet
-- PyMISP
+- https://github.com/NCSC-NL/log4shell
+- https://blogs.juniper.net/en-us/security/in-the-wild-log4j-attack-payloads
 
 ## Further reading
 

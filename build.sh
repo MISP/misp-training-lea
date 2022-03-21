@@ -1,8 +1,10 @@
 #!/bin/bash
 
 slidedecks=(
+    "e.103-managing-information-sharing-communities-cerebrate-introduction"
     "e.205-mapping-investigations-and-cases-in-misp"
     "e.206-from-evidences-to-actionable-information"
+    "e.303-lab2-encoding-information-and-sharing-it"
     "e.304-lab3-encoding-information-and-sharing-it-2"
 )
 
@@ -32,3 +34,10 @@ for slide in ${slidedecks[@]}; do
     fi
     cd ../..
 done
+
+pushd e.0-mandatory-eLearning-materials
+pandoc eLearning.md --pdf-engine=xelatex -V colorlinks=true \
+-V linkcolor=blue \
+-V urlcolor=red \
+-V toccolor=gray -o ../output/0_eLearning.pdf
+popd
