@@ -593,59 +593,125 @@ cat.jpg.exe
 
     \note[item]{It is important to understand what we search for before digging into the data with AIL.}
     \note[item]{Gang may discuss payments, so we are interested in crypto currencies}
-    \note[item]{Gang may discuss IP addresses and infrastructure, so we are interested in IP addresses, etc.}
+    \note[item]{Gang may discuss IP addresses and infrastructure, etc.}
     \note[item]{For the training, we use a dedicated AIL container that contains RAW translated jabber chats.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Ransomware Jabber chats leak in AIL}
+        We use pyail to feed conti ransomware logs into AIL
+        \lstinputlisting[language=Python]{listings/feeder.py}
+
+        \begin{lstlisting}[language=bash]
+        $ cat ~/conti/* | jq . -c | python ./feeder.py
+        \end{lstlisting}
+            
+    \note[item]{A note for the slide handout}
 \end{frame}
 
 \begin{frame}
     \frametitle{Ransomware Jabber chats leak in AIL}
-    Prepare AIL to detect IPv4 addresses by creating a 'tracker':
-    \includegraphics[width=.75\linewidth]{pictures/contileaks-leak-hunter.png}
-    \note[item]{We choose the tag 'IP' to label the relevant items.}
-    \note[item]{We select the 'jabber' source, that is to say that this leak hunter rule will only be applied on items coming from the jabber data source}
-    \note[item]{We select the tracker type "YARA rule" as we plan to use yara for this leak hunter}
-    \note[item]{Finally we write the yara rule containing a regex that matches IPv4 addresses}
-    \note[item]{A "regex" leak hunter could do the same job, so why do we prefer using a yara rule trakcer instead? Because AIL's retro hunt feature uses yara rules only, therefore it's easier to reuse yara trackers that regex ones.}
+    AIL allows to explore the data set
+     \begin{figure}[t]
+        \includegraphics[width=.75\textwidth]{pictures/contileaks-explore.png}
+        \centering
+    \end{figure}
+           
+    \note[item]{For this particulare account, we see inteactions with various accounts,}
+    \note[item]{as well as the exchange of the PGP key.}
 \end{frame}
-
-
-
-\begin{frame}
-    \frametitle{Dig}
-        use MISP to correlate this information from past cases,
-    \begin{itemize}
-        \item TODO
-    \end{itemize}
-    \note[item]{A note for the slide handout}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Dig}
-        ease attribution of these past cases through IoC,
-    \begin{itemize}
-        \item TODO
-    \end{itemize}
-    \note[item]{A note for the slide handout}
-\end{frame}
-
-
-\begin{frame}
-        add context to past cases from the chats logs in order to ease their investigation,
-    \begin{itemize}
-        \item TODO
-    \end{itemize}
-    \note[item]{A note for the slide handout}
-\end{frame}
-
 
 \begin{frame}[fragile]
-    \frametitle{Dig}
-        support colleagues and other CSIRTs with real Intelligence.
+    \frametitle{Correlating with MISP's data}
+    First we quickly extract at most 1000 bitcoin addresses without context:
+
+        \begin{lstlisting}[language=bash]
+            $ . ~/AILENV/bin/activate
+            $ python ~/ail-framework/tools/extract_cryptocurrency.py -t bitcoin -n 1000 | jq .[].nodes[].text | tr -d '"' 
+        \end{lstlisting}
+ 
+    \note[item]{The script extracts the bitcoin addresses from AIL,}
+    \note[item]{we use \path{jq} to select the right bit of data,}
+    \note[item]{we trim the unecessary quotes with \path{tr}.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Correlating with MISP's data}
+    We use MISP's free text import feature to populate a new event:
+
+     \begin{figure}[t]
+        \includegraphics[width=.75\textwidth]{pictures/contileaks-freetext.png}
+        \centering
+    \end{figure}
+ 
+    \note[item]{MISP allows to verify for each field is it detected the right type of attribute.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Correlating with MISP's data}
+    MIPS links  one related event
+
+     \begin{figure}[t]
+        \includegraphics[width=.75\textwidth]{pictures/contileaks-correlation.png}
+        \centering
+    \end{figure}
+ 
+    \note[item]{MISP automaticaly match various attributes between events,}
+    \note[item]{In this case, one bitcoin address was spotted in another event.}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Correlating with MISP's data}
+    To add some contextual information about attackers' social interactions we go back to AIL:
+     \begin{figure}[t]
+        \includegraphics[width=.75\textwidth]{pictures/contileaks-export-bitcoin.png}
+        \centering
+    \end{figure}
+    \note[item]{This bitcoin address appeared in three interactions (AIL items), between two individuals.}
+    \note[item]{We use the "Add to MISP export" button to export this bitcoin address to MISP.}
+    \note[item]{When prompted by AIL we choose to export the address on two levels to reach usernames:}
+    \note[item]{Bitcoin address -> items -> usernames}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Correlating with MISP's data}
+    In MISP's event graph, we can now see objects' relationships:
+     \begin{figure}[t]
+        \includegraphics[width=.70\textwidth]{pictures/contileaks-bitcoin-graph.png}
+        \centering
+    \end{figure}
+    As well as the interactions' timeline
+
+     \begin{figure}[t]
+        \includegraphics[width=.72\textwidth]{pictures/contileaks-bitcoin-timeline.png}
+        \centering
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Social Contextualisation}
+    Here the communications related to this address:
+
     \begin{itemize}
-        \item TODO
+        \item The BTC-wallet for payment: 1LYiEgq9k3xSAddbqMZcsVTayJVoKbTFub
+        \item and if we close the question, the wallet remains the same? The BTC-wallet for payment: 1LYiEgq9k3xSAddbqMZcsVTayJVoKbTFub
+        \item Ok, \$1,150,000. The BTC-wallet for payment: 1LYiEgq9k3xSAddbqMZcsVTayJVoKbTFub We are waiting the payment today.
     \end{itemize}
-    \note[item]{A note for the slide handout}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Writing an Intelligence Report}
+    We gathered new information:
+    \begin{itemize}
+        \item We confirmed that the ransomware gang is indeed Conti,
+        \item we know the amount of money claimed by the attacker.
+    \end{itemize}
+
+    We can therefore build an event report to support other CSIRTS with intel.
+    \note[item]{TODO: create an event report}
+    \note[item]{TODO: check event extension}
 \end{frame}
 
 \begin{frame}
@@ -656,6 +722,7 @@ cat.jpg.exe
         \item It will rise user capabilities and thus \textbf{improve protection}
         \item MISP has a format and tools designed to support contextualised data
     \end{itemize}
+
 \end{frame}
 
 \begin{frame}
