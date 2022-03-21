@@ -39,7 +39,7 @@
 \begin{frame}
     \frametitle{How evidences can be useful for defense}
     \begin{itemize}
-        \item For an analyst/operator, we can only help endpoints protection tools
+        \item We can only help endpoints protection tools
         \item With the proper knowledge and methods, it is possible the maximize their accuracy and performance
     \end{itemize}
 
@@ -60,7 +60,7 @@
     \begin{itemize}
         \item Allow the distinction between information of interest and raw data
         \item provide guidance on how to use this information can be used for for protection
-        \item Filter out noise from information unralated from your use-case / activity
+        \item Filter out noise from information unrelated from the use-case or activity
         \item Enable risk assessment based on attack type, TTP and threat actor
         \item Allow triage in large volume of data
         \item Allow false-positive management
@@ -70,45 +70,49 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{What are the expectations of the recipients}
+    \frametitle{Expectations of the recipients}
+    Most common expectations of recipients when receiving information
+
     \begin{itemize}
-        \item Being able to consume the data
-        \item Find information is relevant for them and their partners
-        \item Being able to undetstand the data and its classification
-        \item Gauge the credibility, likelyhood and origin of the data
+        \item Being able to \textbf{consume} the data
+        \item Find information is \textbf{relevant} for them and their partners
+        \item Being able to \textbf{understand} the data and its classification
+        \item Assess the \textbf{credibility}, likelyhood and origin of the data
     \end{itemize}
 
 \end{frame}
 
 \begin{frame}
     \frametitle{What do recipient hope to do with the data}
+    Most common expectations of recipients for handling the data\\
+
     \begin{itemize}
-        \item Being able to filter data efficiently for different use-cases
-        \item Obtain as much knowledge out of the data as possible
-        \item Know how this data was produce and where it comes from
-        \item Deduce why is the data relevant for them and how critical it is
+        \item Being able to \textbf{filter} data efficiently for different use-cases
+        \item Obtain as much \textbf{knowledge} out of the data as possible
+        \item Know how this data was produced and where its \textbf{origin}
+        \item Deduce why is the data \textbf{relevant} for them and how \textbf{critical} it is
     \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Is context really that important?}
-\begin{lstlisting}
+    
+    \begin{itemize}
+        \item Raw data \textbf{is} useful but useless if you don't know what it is about
+        \item That's why it should carry how and why it's relevant
+    \end{itemize}
+    
+    \begin{lstlisting}
 1.2.3.9
 137.221.106.104
 28c643a1f69f9fca9481a4bc9f3f38f3
-4478328408cf3c38b356eed6e86171a5c879663d79867c2b55ec8a0538d7588d
-5ef9515e8fd92a254dd2dcdd9c4b50afa8007b8f
-81de431987304676134138705fc1c21188ad7f27edf6b77a6551aa693194485e
 904afe59f6438848be96fd26fdeab01267070d25
-b6c12d88eeb910784d75a5e4df954001
 evil.org
 accounting.xlsx.exe
 cat.jpg.exe
-\end{lstlisting}
+    \end{lstlisting}
 
     \begin{itemize}
-        \item Raw data IS useful but useless if you don't know what it is about
-        \item That's why the data should carry how and why it's relevant
         \item In MISP, all data intrinsically have some context
         \begin{itemize}
             \item \textbf{Type}: \texttt{ip-src} / \texttt{sha1} / \texttt{domain}
@@ -116,6 +120,7 @@ cat.jpg.exe
             \item \textbf{to\_ids}: \texttt{yes} / \texttt{no}
         \end{itemize}
     \end{itemize}
+
     
     \note[item]{The `to\_ids` flag is used to differentiate between indicators and supporting data. If the flag is set, it means the attribute is an indicator and is meant for protective tools.}
 \end{frame}
@@ -123,14 +128,14 @@ cat.jpg.exe
 \begin{frame}
     \frametitle{Is context really that important?}
     \begin{itemize}
-        \item It should be noted that sometime, more contextual information is not needed as they inherently convey their context:
+        \item Sometime, more contextual information is not needed as data inherently convey its context:
         \begin{itemize}
             \item Tor exit nodes
             \item Botnet / C2 trackers
             \item Ransomwares' bitcoin addresses
             \item ...
         \end{itemize}
-        \item But most of the time, context is essential
+        \item But most of the time, \textbf{context is essential}
     \end{itemize}
 \end{frame}
 
@@ -139,12 +144,12 @@ cat.jpg.exe
     \begin{itemize}
         \item To what kind of user this data is for
         \item What type of action can be performed with it 
-        \item Data accuracy, reliability and likelyhood
-        \item What are the impacts?
+        \item Estimtaion on accuracy, reliability and likelyhood
+        \item What are the impacts
         \item For threat actors:
         \begin{itemize}
             \item Who is it? What tools were used?
-            \item What are they motivations? Who are their targets?
+            \item What are their motivations? Who are their targets?
         \end{itemize}
         \item How can we prevent/detect/block/remediate the attack
     \end{itemize}
@@ -153,7 +158,7 @@ cat.jpg.exe
 \section{What options do we have in MISP}
 \begin{frame}
     \frametitle{What options do we have in MISP}
-    MISP offers
+    MISP offers mutliples means to contextualise
     \begin{itemize}
         \item Taxonomies
         \item Galaxies and Galaxy Clusters
@@ -161,6 +166,8 @@ cat.jpg.exe
         \item MISP Objects and relationships
         \item Sightings and \texttt{first\_seen} / \texttt{last\_seen}
     \end{itemize}
+
+    Let's have an overview of each of them
 \end{frame}
 
 \begin{frame}
