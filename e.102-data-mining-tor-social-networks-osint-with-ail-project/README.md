@@ -8,5 +8,10 @@
 
 ## Links and references
 
+- [AIL project](https://github.com/ail-project)
+- [AIL framework](https://github.com/ail-project/ail-framework)
+- [Training materials](https://github.com/ail-project/ail-training)
+
+
 ## Glossary
 

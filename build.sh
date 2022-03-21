@@ -1,7 +1,9 @@
 #!/bin/bash
 
 slidedecks=(
+    "e.102-data-mining-tor-social-networks-osint-with-ail-project"
     "e.103-managing-information-sharing-communities-cerebrate-introduction"
+    "e.104-csirts-network-notification-and-sharing-scenarios"
     "e.205-mapping-investigations-and-cases-in-misp"
     "e.206-from-evidences-to-actionable-information"
     "e.303-lab2-encoding-information-and-sharing-it"
