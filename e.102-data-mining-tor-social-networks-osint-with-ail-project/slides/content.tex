@@ -163,5 +163,83 @@ response platforms
         \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Sources of leaks: Paste monitoring}
+    \begin{itemize}
+        \item Example: \url{https://gist.github.com/}
+            \begin{itemize}
+                \item Easily storing and sharing text online
+                \item Used by programmers and legitimate users
+                \item[] $\to$ Source code \& information about configurations
+            \end{itemize}
+        \pause
+        \item Abused by attackers to store:
+            \begin{itemize}
+                \item List of vulnerable/compromised sites
+                \item Software vulnerabilities (e.g. exploits)
+                \item Database dumps
+                \item[] $\to$ User data
+                \item[] $\to$ Credentials
+                \item[] $\to$ Credit card details
+                \item More and more ...
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+        \frametitle{Why so many leaks?}
+        \begin{itemize}
+                \item Economical interests (e.g. Adversaries promoting services)
+                \item Ransom model (e.g. To publicly pressure the victims)
+                \item Political motives (e.g. Adversaries showing off)
+                \item Collaboration (e.g. Criminals need to collaborate)
+                \item Operational infrastructure (e.g. malware exfiltrating information on a pastie website)
+                \item Mistakes and errors
+        \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Are leaks frequent?}
+    \begin{center}
+    \Large{Yes!}\\ and we have to deal with this as a CSIRT.
+    \end{center}
+
+    \begin{itemize}
+            \item {\bf Contacting companies or organisations} who did specific accidental leaks
+            \item {\bf Discussing with media} about specific case of leaks and how to make it more practical/factual for everyone
+            \item Evaluating the economical market for cyber criminals (e.g. DDoS booters\footnote{\url{https://github.com/D4-project/}} or reselling personal information - reality versus media coverage)
+            \item Analysing collateral effects of malware, software vulnerabilities or exfiltration
+    \end{itemize}
+
+    \begin{center}
+    $\rightarrow$ And it's important to detect them automatically.
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Paste monitoring at CIRCL: Statistics}
+    \begin{itemize}
+        \item Monitored paste sites: 27
+            \begin{itemize}
+                \item \textit{gist.github.com}
+                \item \textit{ideone.com}
+                \item \textit{...}
+            \end{itemize}
+    \end{itemize}
+    \begin{table}[h]
+		\centering
+		\begin{tabular}{|lrrr|}
+		    \hline
+		    \rowcolor{lightgray} & 2016 & 2017 & 08.2018\\
+		    Collected pastes & 18,565,124 & 19,145,300 & 11,591,987 \\
+		    Incidents & 244 & 266 & 208\\
+		    \hline
+		\end{tabular}
+		\caption{Pastes collected and incident\footnote{\url{http://www.circl.lu/pub/tr-46}} raised by CIRCL}
+		\label{circlStats}
+	\end{table}
+\end{frame}
+
 
 
