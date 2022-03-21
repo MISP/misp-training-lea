@@ -132,7 +132,7 @@ There are 5 distribution levels controlling who can see and how it should be sha
 - **Connected Community**: Organisations on one MISP instance and those on MISP instances synchronising with this one. Upon receiving data, the distribution will be downgraded to *This community* to avoid further propagation
     ![event-anatomy](./pictures/distribution1.png)
 - **All Community**: Anyone having access. Data will be freely propagated in the network of connected MISP instances
-    ![event-anatomy](./pictures/distribution2.png)
+    ![event-anatomy](./pictures/distribution2.png){ width=250px }
 - **Sharing Groups**: Distribution list that exhaustively keeps track of which organisations can access the data and to which server it should be synchronised
     ![event-anatomy](./pictures/distribution3.png)
 
