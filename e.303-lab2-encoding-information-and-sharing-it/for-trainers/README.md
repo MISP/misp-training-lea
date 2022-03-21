@@ -1,3 +1,8 @@
+# Notes for the trainers (to be used during the session)
+
+- Extracted and original files are [available](./files).
+
+The files are available if you need to speed-up the training or review the interesting files to be extracted from the evidence set.
 
 # Tools and strategies for TCP flow extraction
 
