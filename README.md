@@ -15,7 +15,11 @@ This eLearning module is a prerequisite or refreshing module to read before the 
 
 ## Infrastructure required
 
-At minima, a dedicated MISP instance is available for the student and trainers. A network of MISP instances can be also setup in order to conduct additional sharing exercises between the teams.
+At minimum, a dedicated MISP instance is available for the students and trainers. A network of MISP instances can be also set up in order to conduct additional sharing exercises between the teams.
+
+Each individual participant would connect to the MISP instance(s) from their workstations / laptops, where the requirement would simply be network access (TCP port 80/443 towards the MISP instances) and an Internat browser.
+
+Additionally, students will need to have wireshark installed or at the very least have system permissions to download and run wireshark as well as deploy custom extensions for it.
 
 ## Further readings
 
