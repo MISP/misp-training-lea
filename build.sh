@@ -32,3 +32,7 @@ for slide in ${slidedecks[@]}; do
     fi
     cd ../..
 done
+
+pushd e.0-mandatory-eLearning-materials
+pandoc eLearning.md --pdf-engine=xelatex -o ../output/0_eLearning.pdf
+popd
