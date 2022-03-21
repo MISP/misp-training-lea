@@ -551,7 +551,7 @@ cat.jpg.exe
     \begin{itemize}
         \item bring context to other ransomware cases,
         \item better understand the gang day to day operations,
-        \item get insights on the timeline,
+        \item get insights on events' timeline,
         \item confirm or invalidat previous hypotheses,
         \item select relevant information to share and produce an intelligence report.
     \end{itemize}
@@ -559,49 +559,92 @@ cat.jpg.exe
     \note[item]{A note for the slide handout}
 \end{frame}
 
-\section{Conti analysis}
+\section{Conti ransomware group leak analysis}
+
 \begin{frame}[fragile]
     \frametitle{Ransomware Jabber chats leak}
     Published on Twitter:
     \begin{figure}[t]
-        \includegraphics[width=.8\textwidth]{contileaks-twitter.png}
+        \includegraphics[width=.8\textwidth]{pictures/contileaks-twitter.png}
         \centering
     \end{figure}
 
     Contained XMPP server logs:
     \begin{figure}[t]
-        \includegraphics[width=.6\textwidth]{contileaks-json.png}
+        \includegraphics[width=.6\textwidth]{pictures/contileaks-json.png}
         \centering
     \end{figure}
 \end{frame}
 
-
-\begin{frame}[fragile]
-    \frametitle{Ransomware Jabber chats leak}
-    Our goal is:
-    \begin{itemize}
-        \item Dig into these Jabber chats in search for IoC and operational information
-        \item use MISP to correlate this information from past cases,
-        \item ease attribution of these past cases through IoC,
-        \item add context to past cases from the chats logs in order to ease their investigation,
-        \item support colleagues and other CSIRTs with real Intelligence.
-    \end{itemize}
-\end{frame}
-
 \begin{frame}
-    \frametitle{Ransomware Jabber chats leak}
+    \frametitle{Ransomware Jabber chats leak in AIL}
     We use AIL\footnote{\url{https://ail-project.org/}} to dig into the data:
     \begin{itemize}
         \item AIL processes the data and search for relevant information
         \begin{itemize}
         \item PGP keys,
         \item Bitcoin addresses, maybe others,
-        \item onion hidden services.
+        \item onion hidden services,
+        \item IP addresses.
         \end{itemize}
     \item Once we find relevant information we push it into MISP,
     \item we use MISP correlation engine to find relevant past cases.
     \end{itemize}
-    TODO: checking if the data we have actually allows that
+
+    \note[item]{It is important to understand what we search for before digging into the data with AIL.}
+    \note[item]{Gang may discuss payments, so we are interested in crypto currencies}
+    \note[item]{Gang may discuss IP addresses and infrastructure, so we are interested in IP addresses, etc.}
+    \note[item]{For the training, we use a dedicated AIL container that contains RAW translated jabber chats.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ransomware Jabber chats leak in AIL}
+    Prepare AIL to detect IPv4 addresses by creating a 'tracker':
+    \includegraphics[width=.75\linewidth]{pictures/contileaks-leak-hunter.png}
+    \note[item]{We choose the tag 'IP' to label the relevant items.}
+    \note[item]{We select the 'jabber' source, that is to say that this leak hunter rule will only be applied on items coming from the jabber data source}
+    \note[item]{We select the tracker type "YARA rule" as we plan to use yara for this leak hunter}
+    \note[item]{Finally we write the yara rule containing a regex that matches IPv4 addresses}
+    \note[item]{A "regex" leak hunter could do the same job, so why do we prefer using a yara rule trakcer instead? Because AIL's retro hunt feature uses yara rules only, therefore it's easier to reuse yara trackers that regex ones.}
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{Dig}
+        use MISP to correlate this information from past cases,
+    \begin{itemize}
+        \item TODO
+    \end{itemize}
+    \note[item]{A note for the slide handout}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Dig}
+        ease attribution of these past cases through IoC,
+    \begin{itemize}
+        \item TODO
+    \end{itemize}
+    \note[item]{A note for the slide handout}
+\end{frame}
+
+
+\begin{frame}
+        add context to past cases from the chats logs in order to ease their investigation,
+    \begin{itemize}
+        \item TODO
+    \end{itemize}
+    \note[item]{A note for the slide handout}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Dig}
+        support colleagues and other CSIRTs with real Intelligence.
+    \begin{itemize}
+        \item TODO
+    \end{itemize}
     \note[item]{A note for the slide handout}
 \end{frame}
 

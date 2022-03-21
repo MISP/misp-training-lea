@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  minecraft:
+    image: itzg/minecraft-server:2021.22.0
+    hostname: vuln.minecraft-server.com
+    ports:
+      - 25565:25565
+    environment:
+      EULA: "TRUE"
+      VERSION: "1.17.1"
+      MAX_WORLD_SIZE: 10000
+      MAX_PLAYERS: 10
+      SERVER_NAME: "Log4shell Vulnerable Minecraft Server"
+      ONLINE_MODE: 0
+      JVM_OPTS: "-Dcom.sun.jndi.ldap.object.trustURLCodebase=true"
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    volumes:
+      - ./minecraft/minecraft-data:/data
+    networks:
+      - internet
+
+  attacker:
+    build:
+      context: attacker
+    environment:
+      PAYLOAD_SERVER_PORT: 8000
+      HOSTNAME: "attacker.evil.com"
+      REVERSE_SHELL_PORT: 6666
+      LDAP_PORT: 389
+    hostname: attacker.evil.com
+    networks:
+      - internet
+
+  tcpdump:
+    image: nicolaka/netshoot
+    depends_on:
+      - minecraft
+    command: tcpdump -i eth0 -w /data/capture.pcap
+    network_mode: service:minecraft
+    volumes:
+      - ./tcpdump:/data
+
+networks:
+  internet:
+    external: false

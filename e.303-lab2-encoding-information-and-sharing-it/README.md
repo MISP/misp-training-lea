@@ -6,6 +6,11 @@
 - Interpret the evidence and encode the information into MISP
 - Share the evidences with other partners
 
+Slides: [PDF](https://github.com/MISP/misp-training-lea/blob/main/output/e.303-lab2-encoding-information-and-sharing-it.pdf).
+
+Files and notes for the student: [files](./for-student/)
+Notes for trainers: [notes](./for-trainers/)
+
 ## Description
 
 - Analyse a [network packet capture](https://github.com/MISP/misp-training-lea/raw/main/e.303-lab2-encoding-information-and-sharing-it/for-student/capture-e.303.cap) between a compromised Linux host and a firewall
