@@ -4,6 +4,7 @@ Practical Information Sharing between Law Enforcement and CSIRT communities usin
 
 ## Modules
 
+- [Extract an Executable from PCAP & Investigating an Attack on a Linux Host](./e.303-lab2-encoding-information-and-sharing-it)
 - [Isolate Threat Actor(s) from Network Captures - (e.304)](./e.304-lab3-encoding-information-and-sharing-it-2)
 
 ## Further readings
