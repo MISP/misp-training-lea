@@ -243,3 +243,28 @@ The correlation system is a tool meant for analysts to corroborate findings and 
 2. When viewing an *Event*, click on the `Publish` button located on the sidebar 
 
 ![publish-event](./pictures/guide/publish1.jpg)
+
+# Further document and reading references
+
+The following references are not required to follow the training later. The documents and references below are provided
+for student willing to deep dive into MISP or have specific topic to understand.
+
+- [Neolea trainings](https://github.com/neolea/neolea-training-materials)
+- Virtual machines (VirtualBox and VMWare format) if you want to explore a bit more MISP
+    - [https://vm.misp-project.org/](https://vm.misp-project.org)
+- Slide Deck (source file and compiled)
+    - [https://github.com/MISP/misp-training](https://github.com/MISP/misp-training)
+    - [https://github.com/cerebrate-project/cerebrate-training](https://github.com/cerebrate-project/cerebrate-training)
+- Cheatsheet
+    - [https://www.misp-project.org/misp-training/cheatsheet.pdf](https://www.misp-project.org/misp-training/cheatsheet.pdf)
+- PyMISP
+    - [https://github.com/MISP/PyMISP/](https://github.com/MISP/PyMISP/)
+- OpenAPI documentation
+    - [https://www.misp-project.org/documentation/openapi.html](https://www.misp-project.org/documentation/openapi.html)
+- MISP Book
+    - [User guide for MISP ](https://www.circl.lu/doc/misp/) [PDF](https://www.circl.lu/doc/misp/book.pdf)
+- MISP data models and knowledge base available
+    - [MISP taxonomies](www.misp-project.org/taxonomies.html)
+    - [MISP object templates](https://www.misp-project.org/objects.html)
+    - [MISP galaxy](https://www.misp-project.org/galaxy.html)
+
