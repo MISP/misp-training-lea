@@ -6,10 +6,24 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Slide title}
+    \frametitle{Lab e.303}
     \begin{itemize}
-        \item A bullet point
+        \item A compromised Linux host needs to be analysed and the only evidence is a single {\bf network packet capture file}\footnote{https://github.com/MISP/misp-training-lea/raw/main/e.303-lab2-encoding-information-and-sharing-it/for-student/capture-e.303.cap}.
+        \item No more information or context were given.
+        \item Investigation and {\bf interpreting results must be shared} with colleagues and other CSIRTs.
     \end{itemize}
 
-    \note[item]{A note for the slide handout}
+    \note[item]{The trainer might explain the challenges concerning lack of evidences and context, the partial information often received by LEA or a CSIRT from victims. The goal is to share information as early as possible to discover if othr participants are already working on the case.}
 \end{frame}
+
+\begin{frame}
+   \frametitle{Open general questions and leads}
+    \begin{itemize}
+        \item What could {\bf be deduced from these evidences} by using mainly the {\bf MISP instance} and misp module expansion?
+        \item How can you describe your investigation in a structured way and as a textual report in MISP?
+        \item Can you attach {\bf level of confidence} in your analytical judgment and probability of likelihood?
+        \item Can we would describe {\bf preventive measure(s)} for such case?
+    \end{itemize}
+    \note[item]{The goal is to focus on the maximum of evidences which can be extracted from a single network packet capture. Some assumption can be extracted and will need to be explained and classify with a specific level of confidence. The taxonomy in MISP might be used such as admiralty-scale, or estimative-language. LEA or CSIRTs can share preventive measures from known case. What would be the preventive measures from this evidence?}
+\end{frame}
+

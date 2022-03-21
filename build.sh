@@ -2,6 +2,8 @@
 
 slidedecks=(
     "e.205-mapping-investigations-and-cases-in-misp"
+    "e.206-from-evidences-to-actionable-information"
+    "e.303-lab2-encoding-information-and-sharing-it"
     "e.304-lab3-encoding-information-and-sharing-it-2"
 )
 
@@ -31,3 +33,7 @@ for slide in ${slidedecks[@]}; do
     fi
     cd ../..
 done
+
+pushd e.0-mandatory-eLearning-materials
+pandoc eLearning.md --pdf-engine=xelatex -o ../output/0_eLearning.pdf
+popd

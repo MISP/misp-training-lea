@@ -1,0 +1,6 @@
+wget http://www.foo.be/303/1.bin
+wget http://www.foo.be/303/2.bin
+wget http://www.foo.be/303/3.txt
+wget http://www.foo.be/303/4.bin
+wget http://www.foo.be/303/5.bin
+

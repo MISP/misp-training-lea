@@ -1,5 +1,8 @@
 # MISP: Introduction, Concepts and Guide
 
+This eLearning module is a prerequisite or refreshing module to read before the actual training sessions. This helps to ensure that all participants are inline with the basic knowledge of MISP.
+In the training modules, the various elements mentioned in this introduction will be completed in details (e.101-104, e.205-e.206 and e.302-e.304).
+
 ## Structure of this document 
 
 1. **MISP Introduction**: The what, why and how about MISP
@@ -10,15 +13,23 @@
 
 ### What is MISP
 
-> [TODO] include content
+MISP is an open-source threat-intelligence and sharing platform meant to store, correlate, enrich, analyse and share information. It enables the various type of analysts to collaborate on investigations and incidents, perform intelligence as well as helping operators to automatically feed their protective tools.
 
 ### Why is MISP relevant
 
-> [TODO] include content
+Information sharing is becoming more essential than ever to oppose threats. MISP strive to be the enabler and interface for real cross-sectoral sharing and support the organisations facing hybrid threats.
+To achieve these goals, MISP uses a practical information sharing format expressed in JSON which is built from a practical use-cases. It is flexible and can be easily extended by users to model their own data-structure.
 
-### What functionalities does MISP offer to fulfil your objectives
+The MISP core format as well as the common set of vocabularies provided by the various libraries supported by the tool allows users from all around the world to understand each others and rely on normalized data, making MISP a central place to collaborate.
 
-> [TODO] include content
+MISP offers different alternatives to share analysis, case and report enabling users to review data produced by partners or third-parties and propose changes if need be. This happens in a decentralized way where analyst can evaluate correlation against other existing evidences and perform enrichment on the data. 
+
+These functionnalities provide the means to fulfill the ultimate goal of MISP: Bridging communities together.
+By fostering communication and sharing accross multiple sectors, people are able to share and collaborate seemlessly making the connection between law enforcement with CSIRTs possible.
+
+### MISP philosophy
+Sharing being the principal functionnality, it is essential that everyone is able to send and receive data. As such, everyone is considered to be a producer (also called contributor) and/or a consumer at the same time. There are stricly no obligation to contribute which in turns makes the system to have a low barrier of access for users to get acquainted to the system.
+
 
 ## MISP Basics
 
@@ -53,11 +64,16 @@ Now that we have the structures to encode information, we need another structure
 
 ##### MISP Event Graph
 
-> [TODO] include content for event graph
+The MISP *Event Graph* feature is a widget accessible when viewing an *Event*. It allows analysts to visualise or create relationships between different entities in order to describe in a concise manner complex scenarios such as events performed in parallel or multiple-step attacks.
+
+![event-graph](./pictures/eventgraph.png)
 
 ##### MISP Event Timeline
 
-> [TODO] include content for event timeline
+In some situation, temporality is crucial to understand the order of events, actions or processes. To help analysts visualise and adjust the time component of *Attributes* or *Objects*, a complete timline viewer and editor is available allowing users to describe complex time-based information.
+
+![event-timeline](./pictures/eventtimeline.png)
+
 
 ##### MISP Event Reports
 
@@ -81,23 +97,24 @@ In MISP, contextualising data is as simple as attaching a label to the relevant 
 - [`collaborative-intelligence`](https://github.com/MISP/misp-taxonomies/blob/main/collaborative-intelligence/machinetag.json): Common language to support analysts to perform their analysis. The objective of this language is to advance collaborative analysis and to share earlier than later.
 - [`estimative-language`](https://github.com/MISP/misp-taxonomies/blob/main/estimative-language/machinetag.json): Estimative language to describe quality and credibility of underlying sources, data, and methodologies
 
-> [TODO] include tag pictures
-> [TODO] include more info about tag/taxonomy
+![taxonomy](./pictures/taxonomy.png)
 
 
 #### Galaxy Clusters
 
 *Galaxy Clusters* are knowledge base items having descriptions, links, synonyms and any other meta-information. *Clusters* are regrouped into a higher-level structure called *Galaxy*. *Clusters* enable analysts to assign complex high-level contextual information to data-structures. Example of *Galaxy Clusters*:
 
-- `country="Luxembourg"` having information such as country-code, languages, TLD, Capital and so on.
 - `threat-actor="Sofacy"` having information such as suspected-state-sponsor, victims, links-to-documentation, target-category and synonyms.
+- `country="Luxembourg"` having information such as country-code, languages, TLD, Capital and so on.
 
-> [TODO] include cluster picture
-> [TODO] include more info about clusters/galaxy
+![cluster-country](./pictures/cluster-country.png)
 
-#### MITRE's ATT&CK
 
-> [TODO] include content
+##### MITRE's ATT&CK
+
+Another advantage that *Galaxy Clusters* have compared to simple labels is the fact that the list of *Clusters* belonging to the same *Galaxy* can be arranged as a matrix to have improved readability and aggregation. One of the biggest success of this kind of matrices is definitely the MITRE ATT&CK framework. It describes tacticts, techniques and procedures of adversaries. ATT&CK is very popular and its usage is highly recommanded as it offers very precise classification and is globally understood and supported by other tools.
+
+![cluster-country](./pictures/attack.png)
 
 
 ### 1.3 Anatomy of a complete Event
@@ -107,21 +124,38 @@ In MISP, contextualising data is as simple as attaching a label to the relevant 
 
 ### 1.4 Distribution Levels
 
-> [TODO] explain all available distribution levels in MISP
-> [TODO] include diagram from the cheatsheet
+Distribution level is the term used in MISP to determine who can read which data and how it should be shared. The distribution can be set on entities such as *Event* or *Attributes*, where the most restrictive priority will always take priority.
+
+There are 5 distribution levels controlling who can see and how it should be shared:
+- **Organisation only**: Only members of your organisation
+- **This Community**: Organisations on one MISP instance
+- **Connected Community**: Organisations on one MISP instance and those on MISP instances synchronising with this one. Upon receiving data, the distribution will be downgraded to *This community* to avoid further propagation
+    ![event-anatomy](./pictures/distribution1.png)
+- **All Community**: Anyone having access. Data will be freely propagated in the network of connected MISP instances
+    ![event-anatomy](./pictures/distribution2.png){ width=250px }
+- **Sharing Groups**: Distribution list that exhaustively keeps track of which organisations can access the data and to which server it should be synchronised
+    ![event-anatomy](./pictures/distribution3.png)
 
 
 ### 1.5 Synchronisation
 
-> [TODO] explain the synchronisation + publishing in MISP
-> [TODO] include diagram from the cheatsheet
+In MISP, a synchronisation is the act of sharing data from one MISP to another. It can be done with two mechanisms, namely *push* and *pull*. The fact of an instance sending data to another is called *pushing*. If one instance retrieve data from another, it is called *pulling*.
+
+The diagram below shows a one-way synchronisation link between two MISP instances. The Organisation 
+$\alpha$ created a *sync_user* (denoted with a $+$) on MISP 2. A synchronisation link can be created on MISP 1 using the API Key and the orgasation of the *sync_user*. At that point, MISP 1 can *pull* data from MISP 2 and can *push* data to MISP 2.
+
+![synchronisation](./pictures/synchronisation1.png)
+
+Once a synchronisation link exists *Events* can flow through that connection if and only if the distribution level of the *Event* allows it and if the *Event* is published.
 
 
 ### 1.6 Correlation
 
-> [TODO] explain the correlation in MISP
-> [TODO] create new diagram
+A *correlation* is a link between two *Attributes* that are created automatically. They allow interconnection between *Events* based on the correlation *Attribute*'s value. The sytem responsible to create these links is called the correlation engine and support not only strict string comparison but also more clever data type such as CIDR blocks and Fuzzy hashing like SSDEEP.
 
+The correlation system is a tool meant for analysts to corroborate findings and gauge the trustiness of the data. It allows to confirm certain aspect of a report or to find new or unknown threats.
+
+![correlation](./pictures/correlation.jpg)
 
 ## How-to
 
@@ -144,8 +178,8 @@ In MISP, contextualising data is as simple as attaching a label to the relevant 
 4. Fill the remaining optional fields
 5. Click on `Submit`
 
-![attribute-1](./pictures/guide/attributes1.jpg)
-![attribute-2](./pictures/guide/attributes2.jpg)
+![attribute-1](./pictures/guide/attribute1.jpg)
+![attribute-2](./pictures/guide/attribute2.jpg)
 
 ### Create an Object
 
