@@ -35,5 +35,8 @@ for slide in ${slidedecks[@]}; do
 done
 
 pushd e.0-mandatory-eLearning-materials
-pandoc eLearning.md --pdf-engine=xelatex -o ../output/0_eLearning.pdf
+pandoc eLearning.md --pdf-engine=xelatex -V colorlinks=true \
+-V linkcolor=blue \
+-V urlcolor=red \
+-V toccolor=gray -o ../output/0_eLearning.pdf
 popd
