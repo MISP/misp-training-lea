@@ -13,6 +13,10 @@ This eLearning module is a prerequisite or refreshing module to read before the 
 - [Extract an Executable from PCAP & Investigating an Attack on a Linux Host (e.303)](./e.303-lab2-encoding-information-and-sharing-it)
 - [Isolate Threat Actor(s) from Network Captures - (e.304)](./e.304-lab3-encoding-information-and-sharing-it-2)
 
+## Infrastructure required
+
+At minima, a dedicated MISP instance is available for the student and trainers. A network of MISP instances can be also setup in order to conduct additional sharing exercises between the teams.
+
 ## Further readings
 
 - [Neolea trainings](https://github.com/neolea/neolea-training-materials)
