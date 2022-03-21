@@ -12,7 +12,7 @@ Then, the difference type of context and how it can be used to classify informat
 Finally, the different sharing levels will be reviewd to distribute the created data. 
 
 ## Prerequisites
-MISP Introduction (eLearning materials)
+- MISP Introduction (eLearning materials)
 
 ## Links and references
 
