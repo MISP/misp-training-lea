@@ -21,6 +21,8 @@ Each individual participant would connect to the MISP instance(s) from their wor
 
 Additionally, students will need to have wireshark installed or at the very least have system permissions to download and run wireshark as well as deploy custom extensions for it.
 
+tcpflow and tshark are also to be used during the lab exercises, as such a \*nix operating system is highly recommended.
+
 ## Further readings
 
 - [Neolea trainings](https://github.com/neolea/neolea-training-materials)
