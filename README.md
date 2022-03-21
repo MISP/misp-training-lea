@@ -23,9 +23,26 @@ Additionally, students will need to have wireshark installed or at the very leas
 
 tcpflow and tshark are also to be used during the lab exercises, as such a \*nix operating system is highly recommended.
 
-## Further readings
+## Further readings and documentation
 
 - [Neolea trainings](https://github.com/neolea/neolea-training-materials)
+- Virtual machines (VirtualBox and VMWare format) if you want to explore a bit more MISP
+    - [https://vm.misp-project.org/](https://vm.misp-project.org)
+- Slide Deck (source file and compiled)
+    - [https://github.com/MISP/misp-training](https://github.com/MISP/misp-training)
+    - [https://github.com/cerebrate-project/cerebrate-training](https://github.com/cerebrate-project/cerebrate-training)
+- Cheatsheet
+    - [https://www.misp-project.org/misp-training/cheatsheet.pdf](https://www.misp-project.org/misp-training/cheatsheet.pdf)
+- PyMISP
+    - [https://github.com/MISP/PyMISP/](https://github.com/MISP/PyMISP/)
+- OpenAPI documentation
+    - [https://www.misp-project.org/documentation/openapi.html](https://www.misp-project.org/documentation/openapi.html)
+- MISP Book
+    - [User guide for MISP ](https://www.circl.lu/doc/misp/) [PDF](https://www.circl.lu/doc/misp/book.pdf)
+- MISP data models and knowledge base available
+    - [MISP taxonomies](www.misp-project.org/taxonomies.html)
+    - [MISP object templates](https://www.misp-project.org/objects.html)
+    - [MISP galaxy](https://www.misp-project.org/galaxy.html)
 
 # Course codes
 
