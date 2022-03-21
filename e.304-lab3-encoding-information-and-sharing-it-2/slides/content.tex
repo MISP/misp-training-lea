@@ -7,8 +7,10 @@
 
 \begin{frame}
     \frametitle{Log4J exploitation lab}
-    The goal of this lab is to analyze a network capture evidence file, encode, and share the information following successful exploitation by an attacker.
-	\linebreak[3]
+    The goal of this lab is to analyze a network capture evidence file, encode, and share the information following a successful exploitation by an attacker.
+	\linebreak
+	\linebreak
+	\linebreak
     Resources:
     \begin{itemize}
         \item \href{https://github.com/MISP/misp-training-lea/tree/main/e.304-lab3-encoding-information-and-sharing-it-2/dataset/capture.pcap}{\underline{capture.pcap}}
@@ -26,7 +28,8 @@
 \begin{frame}
     \frametitle{Actors}
     \href{https://github.com/MISP/misp-training-lea/tree/main/e.304-lab3-encoding-information-and-sharing-it-2/dataset/capture.pcap}{\underline{capture.pcap}} is a network capture on the eth0 interface on our Minecraft Server.
-    \linebreak[2]
+    \linebreak
+    \linebreak
     {\color{blue}{\bf Minecraft Server}}
     \begin{itemize}
     	\item External IP: 44.202.61.172
@@ -124,6 +127,7 @@ File -> Export Objects -> HTTP...
     \end{itemize}
     \begin{center}Exercise duration: 15 minutes\end{center}
     \note[item]{The payload is a reverse UDP shell connecting to remote port 6666 on the attackers machine.}
+    \note[item]{The payload can be easily decompiled with Jadx}
     \note[item]{filter reverse shell interaction: ip.src==18.212.74.161 \&\& udp}
     \note[item]{The attacker runs the following commands:}
     \note[item]{packet 5202: ls}
@@ -173,29 +177,98 @@ public class ExecTemplateJDK8 {
     \note[item]{packet 4468: attacker leaks java locale (ldap)}
     \note[item]{packet 4729: attacker leaks HW (ldap)}
     \note[item]{tcp.stream eq 33: attacker delivers UDP reverse shell payload (ldap \& http}
-    \note[item]{attacker runs a few cmds via reverse shell and exits}
+    \note[item]{udp.stream eq 12: attacker runs a few cmds via reverse shell and exits}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Describing the timeline}
-    Describe and encode the exfiltration process, data and target in MISP
-    \note[item]{}
+    \frametitle{MISP Encoding: Event}
+    \begin{itemize}
+    	\item Describing actors and their interactions in MISP
+    \end{itemize}
+    \begin{center}\includegraphics[scale=0.30]{../pictures/misp-event-graph.png}\end{center}
+    \note[item]{Create a new Event in MISP}
+    \note[item]{Create a network/domain-ip object for our Minecraft Server}
+    \note[item]{Create a network/domain-ip object for the Player}
+    \note[item]{Create a network/domain-ip object for the Attacker}
+    \note[item]{Fill each object first/last seen properties}
+    \note[item]{Fill each object with all the ports identified}
+    \note[item]{Create references between the objects}
+    \note[item]{Player->[connects-to]->Minecraft Server}
+    \note[item]{Attacker->[uses-for-recon]->*.interact.sh}
+    \note[item]{Attacker->[compromised]->Minecraft Server}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{MISP encoding 2/2}
-    Play with distribution and correctly set it for each data point
-    \note[item]{}
+    \frametitle{MISP Encoding: Timeline}
+    \begin{itemize}
+    	\item Adding fine-grained information
+    \end{itemize}
+    \begin{center}\includegraphics[scale=0.25]{../pictures/misp-event-timeline.png}\end{center}
+    \note[item]{Add a network/domain-ip objects with first/last seen for each DNS exfiltration}
+    \note[item]{Add a network/domain-ip objects with first/last seen for each LDAP exfiltration}
+    \note[item]{Add a file/malware sample for the Java payload}
+    \note[item]{Add an attribute describing each command the attacker run with its timestamp}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{PyMISP and Scapy}
-    MISP automation with PyMISP and Scapy
-    \note[item]{}
+    \frametitle{MISP Encoding: Context}
+    \begin{itemize}
+    	\item Adding contextual information such as tags and galaxy clusters
+    \end{itemize}
+    \begin{center}\includegraphics[scale=0.35]{../pictures/misp-event-tags-galaxy.png}\end{center}
+    \note[item]{Explain the importance of adding tags}
+    \note[item]{Explain why use event, object, or attribute level tags}
+    \note[item]{Showcase usage of MITRE ATT\&CK galaxy}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{MISP Automation: PyMISP and Scapy}
+    Push all failed DNS requests as attributes to a MISP event
+    \begin{lstlisting}[basicstyle=\tiny\color{black},language=Python]
+#!/var/www/MISP/venv python3.8
+# -*- coding: utf-8 -*-
+
+from pymisp import PyMISP, MISPAttribute
+from scapy.all import *
+import sys
+
+api = PyMISP(
+    "https://YOUR_MISP_HOST/",
+    "YOUR_API_KEY"
+)
+
+if len(sys.argv) < 2:
+    print("usage: python populate_event.py [capture.pcap] [event_id]")
+    sys.exit()
+pcap = rdpcap(sys.argv[1])
+event_id = sys.argv[2]
+
+for pkt in pcap:
+    dns_pkt = pkt.getlayer('DNS')
+    if dns_pkt and pkt.opcode == 0 and dns_pkt.rcode != 0:
+        attr = MISPAttribute()
+        attr.type = 'domain'
+        attr.to_ids = True
+        attr.comment = 'dns exfiltration / c2 beaconing'
+        attr.value = dns_pkt.qd.qname.decode("utf-8").rstrip(".")
+        api.add_attribute(event_id, attr, pythonify=True)
+	\end{lstlisting}
+    \note[item]{The following snippet parses a pcap file and pushes all failed DNS requests as attributes to a MISP event}
+    \note{PyMISP makes interacting with MISP API very easy}
+    \note{Scapy is a packet manipulation tool that can be paired easily with PyMISP}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Bonus: misp-wireshark}
-    Show how misp-wireshark can be use to export pcap data to MISP format.
-    \note[item]{}
+    \begin{itemize}
+    	\item \href{https://github.com/MISP/misp-wireshark}{\underline{misp-wireshark}} can be used to export information from a pcap file to MISP format
+    \end{itemize}
+    \begin{center}\includegraphics[scale=0.35]{../pictures/misp-wireshark-dialog.png}\end{center}
+	\begin{center}\includegraphics[scale=0.35]{../pictures/misp-wireshark-event-graph.png}\end{center}
+    \note[item]{Explain how to add the plugin to Wireshark}
+    \note[item]{Go to "Wireshark" -> "Tools" -> "MISP: Export to MISP format"
+    use the following filter: "tcp.stream eq 34" and hit OK}
+    \note[item]{Copy the json contents from the pop-up window}
+    \note[item]{In your MISP instance, open the exercise event and on the menu on the left select: "Populate from..." -> "Populate using a JSON file containing MISP event content data"}
+    \note[item]{Paste the copied json from Wireshark and click on Submit.}
 \end{frame}
