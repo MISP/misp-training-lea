@@ -2,6 +2,7 @@
 
 slidedecks=(
     "e.205-mapping-investigations-and-cases-in-misp"
+    "e.206-from-evidences-to-actionable-information"
     "e.304-lab3-encoding-information-and-sharing-it-2"
 )
 

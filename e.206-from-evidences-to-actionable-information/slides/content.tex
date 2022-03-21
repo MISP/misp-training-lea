@@ -12,7 +12,11 @@
         \item Why is contextualisation important
         \item What options do we have in MISP
         \item Best practises to encode and contextualise
-        \item How can it be leveraged
+        \item How can context be leveraged
+        \item How to structure non-technical information
+        \begin{itemize}
+            \item Practical case: Conti analysis
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -323,5 +327,103 @@ cat.jpg.exe
         \item If a tag applies to the whole content of the event, it should be attached on the event instead
         \item If the tag offers no real utility or hinder your ability to analyse the whole dataset, it should probably be ignored
     \end{itemize}
+\end{frame}
+
+\section{How can context be leveraged}
+\begin{frame}
+    \frametitle{Leveraging context to make use of the data}
+    \begin{itemize}
+        \item foo
+    \end{itemize}
+\end{frame}
+
+
+\section{How to structure non-technical information}
+\begin{frame}
+    \frametitle{Objectives}
+    \begin{itemize}
+        \item Identify non-technical data that can be useful for an investigation,
+        \item Illustrate how non-technical and technical data can interact to produce meaninful insights,
+        \item Model these interactions,
+        \item Outline what Socio-Technical intercations are useful to share.
+    \end{itemize}
+
+    \note[item]{A note for the slide handout}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{We live in Socio-Technical Systems}
+    Computer and their security is linked to human activities:
+
+    \begin{itemize}
+        \item Technical traces show human activities,
+        \item Technical traces can convey human intent,
+        \item Human interactions can explain and give context to Technical traces,
+        \item CyberCrime requires infrastructures and logistics that are discussed between humans,
+        \item TTPS are discussed and exchanged,
+        \item Human interaction can help attributing an attack,
+        \item Human interaction can help deciphering intent and motives, and discriminate human error from sabotage.
+    \end{itemize}
+    \note[item]{A note for the slide handout}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Plan}
+    \begin{itemize}
+        \item Modeling a specific ransomware case,
+        \item Using OSINT and data leaks to bring context to other ransomware cases.
+    \end{itemize}
+
+    \note[item]{A note for the slide handout}
+\end{frame}
+
+\section{Conti analysis}
+
+
+\begin{frame}[fragile]
+    \frametitle{Ransomware Jabber chats leak}
+    Published on Twitter:
+    \begin{figure}[t]
+        \includegraphics[width=.8\textwidth]{contileaks-twitter.png}
+        \centering
+    \end{figure}
+
+    Contained XMPP server logs:
+    \begin{figure}[t]
+        \includegraphics[width=.6\textwidth]{contileaks-json.png}
+        \centering
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Ransomware Jabber chats leak}
+    Our goal is:
+    \begin{itemize}
+        \item Dig into these Jabber chats in search for IoC and operational information
+        \item use MISP to correlate this information from past cases,
+        \item ease attribution of these past cases through IoC,
+        \item add context to past cases from the chats logs in order to ease their investigation,
+        \item support colleagues and other CSIRTs with real Intelligence.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ransomware Jabber chats leak}
+    We use AIL\footnote{\url{https://ail-project.org/}} to dig into the data:
+    \begin{itemize}
+        \item AIL processes the data and search for relevant information
+        \begin{itemize}
+        \item PGP keys,
+        \item Bitcoin addresses, maybe others,
+        \item onion hidden services.
+        \end{itemize}
+    \item Once we find relevant information we push it into MISP,
+    \item we use MISP correlation engine to find relevant past cases.
+    \end{itemize}
+    TODO: checking if the data we have actually allows that
+    \note[item]{A note for the slide handout}
 \end{frame}
 
