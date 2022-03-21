@@ -8,14 +8,14 @@
 \begin{frame}
     \frametitle{Objectives of this module}
     \begin{itemize}
-        \item Joining an information sharing communities
-        \item Tips for being a good member of a sharing community
+        \item Tips for joining information sharing communities
+        \item Tips for being a good member in a sharing community
         \item Tips for building your own sharing community
-        \item Managing sub-sharing communities
+        \item Tool for managing a sharing community
         \begin{itemize}
             \item Managing organisations and contacts
             \item Maintaining distribution lists (aka sharing groups)
-            \item Manage large cluster of MISPs
+            \item Managing a large cluster of MISPs
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -23,7 +23,7 @@
 \section{Being part of an information sharing community}
 \begin{frame}
     \frametitle{Joining an information sharing communities}
-    Wide range of MISP communities:
+    There is a wide range of MISP communities type:
     \begin{itemize}
         \item Private sector communities
         \begin{itemize}
@@ -62,12 +62,12 @@
     \begin{itemize}
         \item As explained extensively in course \textit{e.206}, Context is king:
         \begin{itemize}
-            \item Taxonomies \& Galaxies
-            \item MITRE ATT\&CK
-            \item MISP Objects and relationships
-            \item Sightings and \texttt{first\_seen} / \texttt{last\_seen}
+            \item You should try to contextualise as best as you can using:
+            \item Normalized vocab: Taxonomies, Galaxies \& MITRE ATT\&CK
+            \item Connected graph using MISP Objects and relationships
+            \item Add timeliness with Sightings and \texttt{first\_seen} / \texttt{last\_seen}
         \end{itemize}
-        \item Sharing results or reports
+        \item Sharing results and reports
         \item Sharing enhancements or proposals to existing data
         \item Validating data (sightings) or flagging false positives
         \item Asking for support from the community
@@ -77,7 +77,7 @@
 \begin{frame}
     \frametitle{Tips for building your own sharing community}
     \begin{itemize}
-        \item Different models for constituents
+        \item Different models for your constituents
         \begin{itemize}
             \item {\bf Having an account} on a MISP instance
             \item {\bf Hosting} their own instance and connecting to a peer
@@ -119,11 +119,11 @@
         \begin{itemize}
             \item Help them increase their capabilities
             \item Lead by example
-            \item Give credit where credit is due
+            \item \textbf{Give credit where credit is due}
             \begin{itemize}
                 \item Never steal the contribution of your community
             \end{itemize}
-            \item Offers the possiblity to take over their data via delegation
+            \item Offers the possiblity to take over their data via \textbf{delegation}
             \begin{itemize}
                 \item Anonymity of organisations might help them building confidence at the beginning
             \end{itemize}
@@ -134,12 +134,12 @@
 \begin{frame}
     \frametitle{Tips for building your own sharing community}
     \begin{itemize}
-        \item Encourage sharing of supporting materials, scripts or guidance
-        \item Raise awareness about the benefits of a well modelled, graph based information sharing
-        \item Again, context is king! If possible, make contextualisation a requirement
+        \item Encourage sharing of supporting materials, scripts or guidance for protection
+        \item Raise awareness about the benefits of a well modelled, graph-based information
+        \item Again, \textbf{context is king}! If possible, make contextualisation a requirement
         \begin{itemize}
             \item Users can then filter based on their needs
-            \item Classification help your peers to understand why it the data is important
+            \item Classification help your peers to understand why the data is important
             \item And also, why this data can be useful to them
         \end{itemize}
     \end{itemize}
@@ -170,14 +170,16 @@
 \begin{frame}
     \frametitle{Managing sub-sharing communities}
     \begin{itemize}
-        \item Often within a community, smaller bubbles of information sharing will form
+        \item Often within a community, \textbf{smaller bubbles} of information sharing will form
         \begin{itemize}
-            \item Within a national private sector community, a dedicated community for financial institutions
+            \item e.g: Within a national private sector community, a dedicated community for financial institutions
             \item If an incident involves multiple organisations
         \end{itemize}
         \item MISP's sharing group serve this purpose mainly
         \item If you are building your own community, consider bootstraping these specific sharing community
-        \item Organisations can self-organise, but you are probably the ones with the know-how to get them started
+        \begin{itemize}
+            \item Organisations can self-organise, but you are probably the ones with the know-how to get them started
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -185,16 +187,21 @@
 \begin{frame}
     \frametitle{Additional challenges of community management}
     \begin{itemize}
-        \item MISP is just one part of the puzzle in any sharing community
+        \item MISP is just one part of the puzzle
         \item Information sharing presumes knowledge of contacts
         \item Creating reusable community-specific distribution list need to be maintained
         \item Fleet management for larger organisations needs additional work
-        \item \textbf{Cerebrate} is the new open-source tool meant to address these challenges
     \end{itemize}
+    \begin{center}
+        \textbf{Cerebrate} is an open-source tool meant to address these challenges
+    \end{center}
 \end{frame}
 
 \begin{frame}
     \frametitle{What is Cerebrate?}
+    \begin{center}
+        \includegraphics[scale=0.10]{pictures/cerebrate-logo.png}
+    \end{center}
     \begin{itemize}
         \item Open source {\bf community management and orchestration} tool
         \item Central tool for the Melicertes 2 project (Co-funded by the EU as a CEF project)
@@ -202,14 +209,13 @@
             \item Project for the CSIRT network building a common set of tools and services for the national CSIRTs
             \item Flexible to support a wide range of communities
         \end{itemize}
-        \item Tight integration with various open-source tools
+        \item Tight \textbf{integration} with various open-source tools
         \item Planned as the primary MISP management tool
     \end{itemize}
-    \includegraphics[scale=0.3]{pictures/cerebrate-logo.png}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Motivations from a MISP perspective}
+    \frametitle{Why do we need Cerebrate from a MISP perspective}
     \begin{itemize}
         \item {\bf Deficiencies} in our current tool chain
         \begin{itemize}
@@ -223,7 +229,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{What issues is it trying to tackle?}
+    \frametitle{What issues is Cerebrate trying to tackle?}
     \begin{itemize}
         \item Community management
         \begin{itemize}
@@ -268,48 +274,76 @@
     \frametitle{Cerebrate: Contact database}
     Flexible meta-data model to include community specific data point
     \includegraphics[width=0.99\linewidth]{pictures/cerebrate1.png}
+    \note[item]{Cerebrate includes a system to support meta-data that can be attached to existing enties}
+    \note[item]{This system is composed of meta-template which defines additional data-point}
+    \note[item]{It can be used to create new structure unknown to a default Cerebrate installation}
 \end{frame}
 
 \begin{frame}
     \frametitle{Cerebrate: Contact database}
     Content aware search functionalities: CIDR block search
     \includegraphics[width=0.99\linewidth]{pictures/cerebrate2.png}
+    \note[item]{The meta-template system also support different data type}
+    \note[item]{In this screenshot, we can a search for an IP address and the matching CIDR block is returned}
 \end{frame}
 
 \begin{frame}
     \frametitle{Cerebrate: Contact database}
     Global searches on a large variety of data point
     \includegraphics[width=0.99\linewidth]{pictures/cerebrate3.png}
+    \note[item]{The tool allows users to search in a multiple of scope at the same time}
 \end{frame}
 
 \begin{frame}
     \frametitle{Cerebrate: Sharing Group management}
-    Allow to defined sharing groups composed of organisation that can be download from another Cerebrate or from MISP
-    \includegraphics[width=0.66\linewidth]{pictures/cerebrate-sg.png}
-    Sharing group blueprints to define reusable blueprints for generating sharing groups based on filters
-    \includegraphics[width=0.33\linewidth]{pictures/misp-sg-blueprint.png}
+    Allow to define sharing groups composed of organisations that can be download from another Cerebrate or from MISP
+    \begin{center}
+        \includegraphics[width=1.00\linewidth]{pictures/cerebrate-sg.png}
+    \end{center}
+    \note[item]{In this screenshot, we can see a sharing group composed of two organisations: CIRCL and cert.be}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cerebrate: Sharing Group management}
+    Sharing groups can also be generated based on filters via the reusable blueprints
+    \begin{center}
+        \includegraphics[width=0.88\linewidth]{pictures/misp-sg-blueprint.png}
+    \end{center}
+    \note[item]{In this screenshot, we can see a sharing group blueprint definition where}
+    \note[item]{Organisation of the RU nationality are exluded}
+    \note[item]{Organisation from the "Financial" sector are included}
+    \note[item]{All organisation contained in the sharing group 127 are included}
 \end{frame}
 
 \begin{frame}
     \frametitle{Cerebrate: cerebrate-cerebrate synchronisation}
-    Mechanism to exchange contact data
+    Mechanism to exchange contact data via synchronisation
     \includegraphics[width=1.0\linewidth]{pictures/cerebrate-brood.png}
+    \note[item]{Similar to MISP, cerebrate suport data exchange to and from other Cerebrate instances}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cerebrate: Local tool orchestration}
+    Manage and configure local tools (such as MISP) via Cerebrate
+    \includegraphics[width=1.0\linewidth]{pictures/cerebrate-lt.png}
+    \note[item]{The screenshot shows that Cerebrate has a MISP connector}
+    \note[item]{This connector is used to control 3 MISP instances where we can see their connection status}
 \end{frame}
 
 \begin{frame}
     \frametitle{Cerebrate: Local tool orchestration}
     Inter-connect local tools (such as a MISP instance) to another through Cerebrate
-    \includegraphics[width=1.0\linewidth]{pictures/cerebrate-lt.png}
     \includegraphics[width=1.0\linewidth]{pictures/cerebrate-inbox.png}
+    \note[item]{The screenshot shows a message received from another Cerebrate instance}
+    \note[item]{This message request the inter-connection of the local MISP instance with the MISP instance of the remote Cerebrate}
+    \note[item]{To have the connection between the two MISP finalized, the user must accept the request, then the initiator must finalize it}
 \end{frame}
 
-
 \begin{frame}
-    \frametitle{Use case specific to LE}
+    \frametitle{Use case specific to law enforcement}
     \begin{itemize}
         \item Budapest convention allowed us to have a public inventory of contact infomartion
         \item Once this data is ingested in Cerebrate, we can make use of the search functionalities to quickly get the infomartion we need
     \end{itemize}
-    \includegraphics[width=1.0\linewidth]{pictures/cerebrate-logo.png}
+    TODO: Include picture of data stored in Cerebrate
 \end{frame}
-
