@@ -6,10 +6,157 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Slide title}
+    \frametitle{CSIRT network information exchange}
     \begin{itemize}
-        \item A bullet point
+        \item Well {\bf established methodologies and rule-sets}
+        \item Reliance on a {\bf common understanding of information releasability}
+        \item Network wide exchange - {\bf tooling and practices}
     \end{itemize}
 
-    \note[item]{A note for the slide handout}
+    \note[item]{Here we just quickly give an over and explanation of the main factors that enable the sharing for the CSIRT network.}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Main objectives of information sharing from a CSIRT perspective}
+    \begin{itemize}
+        \item {\bf Incident response}
+        \item {\bf Proactive information sharing} for detection and prevention
+        \item {\bf Takedown notifications}
+    \end{itemize}
+
+    \note[item]{Information sharing happens for different reasons and at different layers. Before diving into each objective, here we list them as an overview}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The incident response use-cases}
+    \begin{itemize}
+        \item Collaboration during {\bf incident repsonse}
+        \begin{itemize}
+            \item {\bf Multiple CSIRTs} involved in the {\bf IR} of a single victim
+            \item Ongoing campaigns against multiple victims in {\bf different constituencies}
+        \end{itemize}
+        \item Building {\bf baseline rulesets} for hunting / IR
+    \end{itemize}
+
+    \note[item]{During incident response, there are multiple scenarios where information sharing becomes crucial. It is quite frequent that victims span organisations of multiple countries or sectors, in which case collaboration saves time and effort. Besides individual IR cases, having a well maintained and relevant indicator repository is vital for bootstrapping the IR / hunting workflows.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Proactive information sharing}
+    \begin{itemize}
+        \item One of the objectives of CSIRTs is often informing and preparing their constituencies against ongoing campaigns
+        \begin{itemize}
+            \item Sharing of {\bf indicators and TTPs}
+            \item Categorising and publishing {\bf metrics} on the ongoing threat actor activities
+            \item Sharing of {\bf preventative measures, remediation playbooks and supporting tools}
+        \end{itemize}
+        \item These can be used for:
+        \begin{itemize}
+            \item Building protective measures (IDS, firewall, SIEM, EDR rules, etc)
+            \item Gap analysis for the deployed counter-measures' relevance
+            \item Decisions on staff recruitment and trainings based on the required expertise
+        \end{itemize}
+    \end{itemize}
+
+    \note[item]{CSIRTs often act as central hubs for the national / sectorial information flow for ongoing attacker trends. In contrast to commercial feed providers, the main importance attributed to the data shared by the CSIRTs is that their focus is on attacks targeting their constituency, making it additionally relevant for them. What is important to explain here is the type of information that is relevant here (Indicators, TTPs, preventative measures and playbooks) and what effect they can have on an organisation.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Takedown notifications}
+    \begin{itemize}
+        \item {\bf Abuse handling} often delegated to the CSIRTs who
+        \begin{itemize}
+            \item The contact providers to issue takedown requests
+            \item Potentially liaise with law enforcement on more drastic measures
+        \end{itemize}
+        \item Takedown requests can be {\bf difficult due attacks originating in another country}
+        \item A {\bf working relationship with operators and hosting providers} can speed up the process
+        \item {\bf Contacts to local law enforcement} also help
+        \item Involving the responsible CSIRT therefore is customary
+    \end{itemize}
+
+    \note[item]{The focus of this slide should be on the difficulty of successful takedown requests when dealing with providers / hosts abroad and how contacting the local CSIRTs can help the process along. Also explain how the CSIRT getting the request forwarded would potentially involve law enforcement. }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Sharing in practice}
+    \begin{itemize}
+        \item The actual sharing happens over different layers (from most to least stricly formalised)
+        \begin{itemize}
+            \item {\bf Automated information sharing} for {\bf structured intelligence} (via for example MISP)
+            \item {\bf Recurring report} on trends based on {\bf surveys} conducted in the network (for example ENISA Cyber Weather)
+            \item {\bf Takedown notifications} assistance requests to the responsible CSIRTs
+            \item {\bf Conference calls} for certain {\bf high priority campaigns} (via for example BBB, Jitsi, webex, etc)
+            \item {\bf Ad-hoc discussions} and information requests (via mailing lists, chat applications such as mattermost)
+        \end{itemize}
+    \end{itemize}
+
+    \note[item]{The actual exchanges use a variety of tools and mechanisms for the exchange, ranging from ad-hoc discussions to well modeled, automated intel sharing. }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Adhering to releasability}
+    \begin{itemize}
+        \item Simple to understand sharing models
+        \begin{itemize}
+            \item {\bf TLP} is understood to be authoritative in the network
+            \item {\bf PAP} used less frequently, it is an additional way to mark the accepted actions to be carried out on the information
+        \end{itemize}
+        \item Besides data, meetings and individual discussion channels all can have an indicated baseline TLP level
+        \item Networks such as this are built on trust that needs to be fostered
+    \end{itemize}
+
+    \note[item]{A quick explanation of TLP and PAP is required at this point, especially in regards to their differences (Who can I share it with? What sort of actions are permitted with regards to the information?}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Automated information sharing}
+    \begin{itemize}
+        \item {\bf Indicators, context, enrichments, sightings}
+        \item The objectives of the data are {\bf automation} as well as building {\bf knowledge-bases} for future use
+        \item Strong {\bf validation and contextualisation} is crucial
+        \item {\bf Parts} of the data will end up in the {\bf proactive sharing} with the constituency
+        \item Information about the Victim is excluded
+        \item Information about the attacker beyond the attacker modus operandi are also excluded
+        \item The objective is protection / remediation rather than dealing with the attacker
+    \end{itemize}
+
+    \note[item]{It is important to note here that CSIRTs in general don't focus at all on attribution beyond being able to differentiate and anticipate potential attacker actions to help with the incident response and detection. Attributing attacks to individuals, groups, nationalities are not in scope beyond this. As for the sanitisation process, it should also be mentioned that data is shared with different releasability levels depending on sensitivity. The sharing is often broader and less filtered with the network than it is with the constituencies.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Takedown requests}
+    \begin{itemize}
+        \item {\bf Malicious infrastructure} IPs, IP ranges, domains
+        \item {\bf Timeline} of the malicious activities
+        \item {\bf Network logs} for verification and evidence towards the provider
+    \end{itemize}
+
+    \note[item]{Whilst not standardised globally, takedown request notifications are kept similar in scope, with information backing up the claim of malicious activity being provided from the get go to speed up the process. Besides the target of the takedown request, timestamps and logs are crucial.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ad-hoc communications}
+    \begin{itemize}
+        \item E-mails, chats, video conferences
+        \item Network wide vs ad-hoc exchanges
+        \item Inter-personal trust relationships go a long way 
+        \item {\bf Request for information} (has anyone else also seen... ?)
+        \item Updates on {\bf conclusions drawn} during incidents (we are seeing a rise in a specific type of attacks abusing a given vulnerability)
+    \end{itemize}
+
+    \note[item]{Besides the network wide communication, familiarity and trust in individual other members is often a starting point in ad-hoc discussions, especially for requests for information and assistance. It's important to emphasise here that timeliness is of the essence for incident response, leading to these networks being often active around the clock.}
+\end{frame}
+
+\begin{frame}
+    \frametitle{CSIRT exchanges with law enforcement}
+    \begin{itemize}
+        \item Sharing information during the rendering of {\bf assistance to law enforcement during an ongoing forensics case}
+        \item Creating data-sets to {\bf bootstrap the forensics investigations} of law enforcement
+        \item {\bf Attacker trends} being shared both ways
+        \item Assistance in the {\bf takedown} process
+    \end{itemize}
+
+    \note[item]{There are numerous reasons why exchanges between LEAs and CSIRTs would take place, be it an off-loading of certain tasks where the other can offer expertise, or simply }
+\end{frame}
+
