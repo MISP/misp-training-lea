@@ -15,7 +15,7 @@ This eLearning module is a prerequisite or refreshing module to read before the 
 
 ## Infrastructure required
 
-At minimum, a dedicated MISP instance is available for the students and trainers. A network of MISP instances can be also set up in order to conduct additional sharing exercises between the teams.
+At minimum, a dedicated MISP instance is to be made available for the students and trainers. A network of MISP instances can be also set up in order to conduct additional sharing exercises between the teams.
 
 Each individual participant would connect to the MISP instance(s) from their workstations / laptops, where the requirement would simply be network access (TCP port 80/443 towards the MISP instances) and an Internat browser.
 
