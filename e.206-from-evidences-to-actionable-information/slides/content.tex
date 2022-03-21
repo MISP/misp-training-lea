@@ -90,7 +90,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Is context really that important?}
 \begin{lstlisting}
 1.2.3.9
@@ -211,11 +211,11 @@ cat.jpg.exe
         \item MISP Fully support ATT\&CK and embraced it's matrix structure
         \item Multiples matrix for other concerns are available:
         \begin{itemize}
-            \item \texttt{Badhra} Similar to ATT&CK but for telecom operators
+            \item \texttt{Badhra} Similar to ATT\&CK but for telecom operators
             \item \texttt{attck4fraud} Regrouped clusters related to fraud actions
         \end{itemize}
     \end{itemize}
-    \includegraphics[scale=1.0]{pictures/attacks.png}
+    \includegraphics[scale=1.0]{pictures/attack.png}
 \end{frame}
 
 \begin{frame}
@@ -318,7 +318,7 @@ cat.jpg.exe
         \item Is it related to compromision? Does it tell us anything about the adversary infrastructure
         \item Was it used to exfiltrate data? Did it acted as a C2?
         \item Did it perform subsequent actions?
-        \item ATT&CK can procure even more knowledge
+        \item ATT\&CK can procure even more knowledge
     \end{itemize}
 
     However, think twice before tagging:
@@ -397,11 +397,12 @@ cat.jpg.exe
 
 
 \section{How can context be leveraged}
-\begin{frame}
+\begin{frame}[fragile]
     \frametitle{Advanced ways of querying data}
     Let's make use of this well-structured, context-rich data
     \begin{itemize}
         \item Incorporate all contextualisation options into API filters
+    \end{itemize}
 \begin{lstlisting}
 {
     "AND": [
@@ -414,6 +415,8 @@ cat.jpg.exe
     ]
 }
 \end{lstlisting}
+
+    \begin{itemize}
         \item On-demande potential false positive exclusion
         \begin{itemize}
             \item Warninglist system helps to exclude known false-positives reducing alert-fatigue
