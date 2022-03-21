@@ -11,6 +11,12 @@ tcpflow is available in standard Linux distribution (maybe older version), lates
 
 Student might have issue with payload containing headers from other protocol. Additional explanation can be shown during the session about the handling of the extract flow (e.g. counting header size).
 
+### An example on how to extract the payload without HTTP headers
+
+![](https://raw.githubusercontent.com/MISP/misp-training-lea/4196850caaaa6187fea41dc3a99d17aad747b35a/e.303-lab2-encoding-information-and-sharing-it/for-trainers/tcp-flow-http-payload.png)
+
+How to extract the payload using `dd`. There are many ways to do it but this is an example for student having issues.
+
 ## Manual approach with wirehark
 
 Student might use wireshark UI to extract the flow manually.
