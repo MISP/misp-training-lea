@@ -17,11 +17,11 @@ This eLearning module is a prerequisite or refreshing module to read before the 
 
 At minimum, a dedicated MISP instance is to be made available for the students and trainers. A network of MISP instances can be also set up in order to conduct additional sharing exercises between the teams.
 
-Each individual participant would connect to the MISP instance(s) from their workstations / laptops, where the requirement would simply be network access (TCP port 80/443 towards the MISP instances) and an Internat browser.
+Each individual participant would connect to the MISP instance(s) from their workstations / laptops, where the requirement would simply be network access (TCP port 80/443 towards the MISP instances) and an Internet browser.
 
 Additionally, students will need to have wireshark installed or at the very least have system permissions to download and run wireshark as well as deploy custom extensions for it.
 
-tcpflow and tshark are also to be used during the lab exercises, as such a \*nix operating system is highly recommended.
+tcpflow and tshark (and some additional Unix tools) are also to be used during the lab exercises, as such a \*nix operating system is highly recommended.
 
 ## Further readings and documentation
 
