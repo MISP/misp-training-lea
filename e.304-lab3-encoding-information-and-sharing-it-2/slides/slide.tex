@@ -7,6 +7,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{tikz}
 \usepackage{listings}
+\usepackage[font=small,labelfont=bf]{caption}
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes,arrows}
 
@@ -17,6 +18,11 @@
 \date{\today}
 \titlegraphic{\includegraphics[scale=0.85]{misplogo.pdf}}
 \institute{MISP Project \\ \url{https://www.misp-project.org/}}
+
+\captionsetup[figure]{font=tiny,labelfont=tiny}
+\lstset{
+	basicstyle=\small\color{black}
+}
 
 \begin{document}
 \include{content}
