@@ -15,6 +15,18 @@ Student might have issue with payload containing headers from other protocol. Ad
 
 Student might use wireshark UI to extract the flow manually.
 
+## tshark
+
+Extracting flows from a pcap and generating new unique pcap per stream.
+
+~~~~
+for stream in `tshark -r capture-e.303.cap -T fields -e tcp.stream | sort -n | uniq`
+do
+    echo $stream
+    tshark -r capture-e.303.cap -w stream-$stream.cap -Y "tcp.stream==$stream"
+done
+~~~~
+
 ## Additional reading for trainers and student
 
 - [TCPSession is a native Python library](https://github.com/PaloAltoNetworks/tcpsession) that extracts out session data sent over a TCP connection from both sides from a pcap.
