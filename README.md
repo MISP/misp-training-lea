@@ -81,5 +81,7 @@ All the materials are dual-licensed under GNU Affero General Public License vers
 # Contributors in alphabetical order
 
 - Alexandre Dulaunoy
+- Jean-Louis Huynen
 - Andras Iklody
 - Sami Mokaddem
+- Luciano Righetti
