@@ -15,8 +15,9 @@ This eLearning module is a prerequisite or refreshing module to read before the 
 - [Managing information sharing communities - Cerebrate introduction (e.103)](./e.103-managing-information-sharing-communities-cerebrate-introduction)
 - [CSIRTs network, notification and sharing scenarios (e.104)](./e.104-csirts-network-notification-and-sharing-scenarios)
 - [From evidences to actionable information (e.206)](./e.206-from-evidences-to-actionable-information/)
-- [Extract an Executable from PCAP & Investigating an Attack on a Linux Host (e.303)](./e.303-lab2-encoding-information-and-sharing-it)
-- [Isolate Threat Actor(s) from Network Captures - (e.304)](./e.304-lab3-encoding-information-and-sharing-it-2)
+- [Labs - Modeling, Interpreting and Sharing “Hacking Evidence” (e.302)](./e.302-lab1-modeling-interpreting-and-sharing-hacking-evidence)
+- [Labs - Extract an Executable from PCAP & Investigating an Attack on a Linux Host (e.303)](./e.303-lab2-encoding-information-and-sharing-it)
+- [Labs - Isolate Threat Actor(s) from Network Captures - (e.304)](./e.304-lab3-encoding-information-and-sharing-it-2)
 
 ## Infrastructure required
 
