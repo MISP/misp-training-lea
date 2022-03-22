@@ -42,7 +42,7 @@ First and foremost, it’s important to understand how MISP is organised. Simila
 #### MISP Attributes
 *Attributes* are individual block containing the very information to be used or to be shared. Thanks to their characteristic called `type`, *Attributes* can represent concept such as an IP address, a domain name or cryptographic hash. In addition to having a `type` and a `value`, they can express if they are Indicators of Compromise (IoC) or supporting data where for example, the former could be a hash of a malicious binary and the later could be Observed behaviour or links toward documentation. The differentiation between IoC and observable can be done by flipping the *Attribute*'s `to_ids` flag.
 
-![attributes](./pictures/attributes.jpg)
+![attributes](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/attributes.jpg)
 
 
 #### MISP Objects
@@ -50,13 +50,13 @@ In most of the case, these individual blocks of information can be combined toge
 
 By their very nature, *MISP Objects* organise and facilitate the reading of data in the application. But their efficiency can be improved even more when you add the capability to link them together with relationships to create directed graph allowing to represent stories, processes or behaviours. In MISP, creating such connections is called "create an *Object Reference*". Viewing these relationships as a connected graph can be done by looking at the widget called *Event Graph*.
 
-![objects](./pictures/objects.jpg)
+![objects](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/objects.jpg)
 
 #### MISP Events
 
 Now that we have the structures to encode information, we need another structure to be able to group them together in order to avoid dealing with a soup of *Attributes* and *MISP Objects*. *MISP Events* or commonly called *Events* are envelopes allowing to assemble *Attributes* and *Objects* contextually linked. Typically, *Events* are used to encode incidents, events or reports.
 
-![event](./pictures/event.jpg)
+![event](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/event.jpg)
 
 
 
@@ -66,20 +66,20 @@ Now that we have the structures to encode information, we need another structure
 
 The MISP *Event Graph* feature is a widget accessible when viewing an *Event*. It allows analysts to visualise or create relationships between different entities in order to describe in a concise manner complex scenarios such as events performed in parallel or multiple-step attacks.
 
-![event-graph](./pictures/eventgraph.png)
+![event-graph](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/eventgraph.png)
 
 ##### MISP Event Timeline
 
 In some situation, temporality is crucial to understand the order of events, actions or processes. To help analysts visualise and adjust the time component of *Attributes* or *Objects*, a complete timline viewer and editor is available allowing users to describe complex time-based information.
 
-![event-timeline](./pictures/eventtimeline.png)
+![event-timeline](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/eventtimeline.png)
 
 
 ##### MISP Event Reports
 
 In addition to encode data into pre-formatted structure, MISP offers a tool to write report. Such report are called *Events reports* and are contained in an *Event* where they use the markdown syntax to write formatted text. They also provide directives specific to MISP allowing writers to reference other entities contained in the *Event*. This extended syntax supports referencing *Attributes*, *Objects*, *Tags* and *Galaxy Clusters*.
 
-![event-report](./pictures/eventreport.jpg)
+![event-report](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/eventreport.jpg)
 
 
 ### 1.2 Context Layer
@@ -92,12 +92,12 @@ In MISP, contextualising data is as simple as attaching a label to the relevant 
 #### Tags
 
 *Tags* are simple labels coming from a curated list of vocabulary (Also called [*Taxonomy*](https://github.com/MISP/misp-taxonomies)). They are mainly used to classify data in order to ease data consumption and automation. For example, the following *Tags* can be used to quickly classify information:
-- [`tlp`](https://github.com/MISP/misp-taxonomies/blob/main/tlp/machinetag.json): Allow a favorable classification scheme for sharing sensitive information while keeping the control over its distribution at the same time.
-- [`adversary`](https://github.com/MISP/misp-taxonomies/blob/main/adversary/machinetag.json): An overview and description of the adversary infrastructure and allowed actions
-- [`collaborative-intelligence`](https://github.com/MISP/misp-taxonomies/blob/main/collaborative-intelligence/machinetag.json): Common language to support analysts to perform their analysis. The objective of this language is to advance collaborative analysis and to share earlier than later.
-- [`estimative-language`](https://github.com/MISP/misp-taxonomies/blob/main/estimative-language/machinetag.json): Estimative language to describe quality and credibility of underlying sources, data, and methodologies
+- [`tlp`](https://github.com/MISP/misp-taxonomies/raw/main/tlp/machinetag.json): Allow a favorable classification scheme for sharing sensitive information while keeping the control over its distribution at the same time.
+- [`adversary`](https://github.com/MISP/misp-taxonomies/raw/main/adversary/machinetag.json): An overview and description of the adversary infrastructure and allowed actions
+- [`collaborative-intelligence`](https://github.com/MISP/misp-taxonomies/raw/main/collaborative-intelligence/machinetag.json): Common language to support analysts to perform their analysis. The objective of this language is to advance collaborative analysis and to share earlier than later.
+- [`estimative-language`](https://github.com/MISP/misp-taxonomies/raw/main/estimative-language/machinetag.json): Estimative language to describe quality and credibility of underlying sources, data, and methodologies
 
-![taxonomy](./pictures/taxonomy.png)
+![taxonomy](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/taxonomy.png)
 
 
 #### Galaxy Clusters
@@ -107,19 +107,19 @@ In MISP, contextualising data is as simple as attaching a label to the relevant 
 - `threat-actor="Sofacy"` having information such as suspected-state-sponsor, victims, links-to-documentation, target-category and synonyms.
 - `country="Luxembourg"` having information such as country-code, languages, TLD, Capital and so on.
 
-![cluster-country](./pictures/cluster-country.png)
+![cluster-country](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/cluster-country.png)
 
 
 ##### MITRE's ATT&CK
 
 Another advantage that *Galaxy Clusters* have compared to simple labels is the fact that the list of *Clusters* belonging to the same *Galaxy* can be arranged as a matrix to have improved readability and aggregation. One of the biggest success of this kind of matrices is definitely the MITRE ATT&CK framework. It describes tacticts, techniques and procedures of adversaries. ATT&CK is very popular and its usage is highly recommanded as it offers very precise classification and is globally understood and supported by other tools.
 
-![cluster-country](./pictures/attack.png)
+![cluster-country](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/attack.png)
 
 
 ### 1.3 Anatomy of a complete Event
 
-![event-anatomy](./pictures/event-anatomy.jpg)
+![event-anatomy](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/event-anatomy.jpg)
 
 
 ### 1.4 Distribution Levels
@@ -130,11 +130,11 @@ There are 5 distribution levels controlling who can see and how it should be sha
 - **Organisation only**: Only members of your organisation
 - **This Community**: Organisations on one MISP instance
 - **Connected Community**: Organisations on one MISP instance and those on MISP instances synchronising with this one. Upon receiving data, the distribution will be downgraded to *This community* to avoid further propagation
-    ![event-anatomy](./pictures/distribution1.png)
+    ![event-anatomy](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/distribution1.png)
 - **All Community**: Anyone having access. Data will be freely propagated in the network of connected MISP instances
-    ![event-anatomy](./pictures/distribution2.png){ width=250px }
+    ![event-anatomy](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/distribution2.png){ width=250px }
 - **Sharing Groups**: Distribution list that exhaustively keeps track of which organisations can access the data and to which server it should be synchronised
-    ![event-anatomy](./pictures/distribution3.png)
+    ![event-anatomy](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/distribution3.png)
 
 
 ### 1.5 Synchronisation
@@ -144,7 +144,7 @@ In MISP, a synchronisation is the act of sharing data from one MISP to another. 
 The diagram below shows a one-way synchronisation link between two MISP instances. The Organisation 
 $\alpha$ created a *sync_user* (denoted with a $+$) on MISP 2. A synchronisation link can be created on MISP 1 using the API Key and the orgasation of the *sync_user*. At that point, MISP 1 can *pull* data from MISP 2 and can *push* data to MISP 2.
 
-![synchronisation](./pictures/synchronisation1.png)
+![synchronisation](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/synchronisation1.png)
 
 Once a synchronisation link exists *Events* can flow through that connection if and only if the distribution level of the *Event* allows it and if the *Event* is published.
 
@@ -155,7 +155,7 @@ A *correlation* is a link between two *Attributes* that are created automaticall
 
 The correlation system is a tool meant for analysts to corroborate findings and gauge the trustiness of the data. It allows to confirm certain aspect of a report or to find new or unknown threats.
 
-![correlation](./pictures/correlation.jpg)
+![correlation](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/correlation.jpg)
 
 ## How-to
 
@@ -167,8 +167,8 @@ The correlation system is a tool meant for analysts to corroborate findings and 
 4. Fill the remaining optional fields
 5. Click on `Submit`
 
-![event-1](./pictures/guide/event1.jpg)
-![event-2](./pictures/guide/event2.jpg)
+![event-1](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/event1.jpg)
+![event-2](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/event2.jpg)
 
 ### Create an Attribute
 
@@ -178,8 +178,8 @@ The correlation system is a tool meant for analysts to corroborate findings and 
 4. Fill the remaining optional fields
 5. Click on `Submit`
 
-![attribute-1](./pictures/guide/attribute1.jpg)
-![attribute-2](./pictures/guide/attribute2.jpg)
+![attribute-1](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/attribute1.jpg)
+![attribute-2](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/attribute2.jpg)
 
 ### Create an Object
 
@@ -191,8 +191,8 @@ The correlation system is a tool meant for analysts to corroborate findings and 
 6. Review the *Object* you are about to create then it `Create new object`
 
 
-![object-1](./pictures/guide/object1.jpg)
-![object-2](./pictures/guide/object2.jpg)
+![object-1](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/object1.jpg)
+![object-2](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/object2.jpg)
 
 ### Create an Relationship
 
@@ -203,8 +203,8 @@ The correlation system is a tool meant for analysts to corroborate findings and 
 4. Click on `Submit` 
 
 
-![object-reference-1](./pictures/guide/reference1.jpg)
-![object-reference-2](./pictures/guide/reference2.jpg)
+![object-reference-1](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/reference1.jpg)
+![object-reference-2](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/reference2.jpg)
 
 ### Create an Event Report
 
@@ -215,8 +215,8 @@ The correlation system is a tool meant for analysts to corroborate findings and 
     - Note: The `Help` button contains documentation about the supported markdown syntax and how to reference *Attributes*, *Objects* and context. 
 5. Once you are done, click the `Save` button 
 
-![event-report-1](./pictures/guide/eventreport1.jpg)
-![event-report-2](./pictures/guide/eventreport2.jpg)
+![event-report-1](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/eventreport1.jpg)
+![event-report-2](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/eventreport2.jpg)
 
 ### Add Tags
 
@@ -225,7 +225,7 @@ The correlation system is a tool meant for analysts to corroborate findings and 
 3. Select the *Taxonomy* in which the tag is part of or click on `All Tags` 
 4. Pick the tag then click on `Submit` 
 
-![tag](./pictures/guide/tag1.jpg)
+![tag](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/tag1.jpg)
 
 ### Add Galaxy Clusters
 
@@ -235,14 +235,14 @@ The correlation system is a tool meant for analysts to corroborate findings and 
 4. Select the *Galaxy* in which the *Cluster* is part of or click on `All Clusters` 
 5. Pick the *Cluster* then click on `Submit` 
 
-![cluster](./pictures/guide/cluster1.jpg)
+![cluster](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/cluster1.jpg)
 
 ### Publish
 
 1. Whenever an *Event* is to be shared, it has to be be Published 
 2. When viewing an *Event*, click on the `Publish` button located on the sidebar 
 
-![publish-event](./pictures/guide/publish1.jpg)
+![publish-event](https://github.com/MISP/misp-training-lea/raw/main/e.0-mandatory-eLearning-materials/pictures/guide/publish1.jpg)
 
 # Further document and reading references
 
