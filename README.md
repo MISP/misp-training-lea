@@ -10,6 +10,7 @@ This eLearning module is a prerequisite or refreshing module to read before the 
 
 ## Modules
 
+- [Data mining Tor, social networks, OSINT with AIL Project (e.102)](./e.102-data-mining-tor-social-networks-osint-with-ail-project)
 - [CSIRTs network, notification and sharing scenarios (e.104)](./e.104-csirts-network-notification-and-sharing-scenarios)
 - [From evidences to actionable information (e.206)](./e.206-from-evidences-to-actionable-information/)
 - [Extract an Executable from PCAP & Investigating an Attack on a Linux Host (e.303)](./e.303-lab2-encoding-information-and-sharing-it)
