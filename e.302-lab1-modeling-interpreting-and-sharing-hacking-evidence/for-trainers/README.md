@@ -43,3 +43,47 @@ bc1qrkusavjestgd6lud0rjpr47x4vs2udpqesjsn8
 bc1qtdyul6azg4lfecpkyaq3gdvpypxgz2ap8cgd5f
 1LYiEgq9k3xSAddbqMZcsVTayJVoKbTFub
 ```
+# Exporting specific conversations 
+- Go to `Objects`>`Cryptocurrency`,
+- Select the right date range, and tick `Show cryptocurrency`,
+![AIL-objects](../pictures/API-objects-crypto.png)
+- Use the Search box to filter results,
+- Click on the address `1LYiEgq9k3xSAddbqMZcsVTayJVoKbTFub`
+- Select `Add to MISP export`
+- Select 2 levels, export to MISP instance.
+![AIL-objects2](../pictures/API-objects-crypto2.png)
+
+# Extending Previous MISP event
+- In order to extend the oldest event `Ransomware Attack against a French organization`, copy its `uuid`, and edit the newest event to past the `uuid` in the `Extends Event` field:
+
+![MISP-extending](../pictures/MISP-extending.png)
+
+- Switch between atomic and extended view of the cycling arrows, see below:
+
+![MISP-extending-atomic](../pictures/MISP-event-extending-atomic.png)
+
+# Writing an event report
+- extend the newest event `event report` tab and click on `Add Event Report` to create a new event report.
+
+![MISP-event-report](../pictures/MISP-event-report.png)
+
+- make sure to write the report in the extending event,
+- you may need to go back to the extended event to copy the `uuid` of the object you wish to reference in your report,
+- beware that extending event's reports appear in the extended event view when in extended view only.
+- `uuid` from this example text will vary from yours.
+
+```
+# Background
+
+On Feb. 27th 2022, information popped up on the Internet that a disgruntled UA operator from Conti ransomware gang was about to leak information about their operations in the coming hours on his twitter account @[attribute](2fffcbad-c126-474a-8df6-606254a829df).
+External analysis brings more details into this investigation @[attribute](845ae122-4628-47fd-8bb6-94c7f7ba3922)
+
+# Cryptocurrencies wallet used for moving money
+
+When the french orgenization got ransomed, Conti asked for an undisclosed amount of money to be transefered on @[attribute](cf48238c-28e3-44d2-90b4-9c404f0fb889).
+The leak brought new information in the form of jabber chats between Contri ransomware opeartors @[object](84ed683d-e46b-43de-9c81-1ee80118e0c7) and the french org, we know now that Conti asked for $1,150,000.
+
+# Analysis
+
+The analysis has been done using AIL.
+```
