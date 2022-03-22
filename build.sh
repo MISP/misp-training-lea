@@ -1,6 +1,7 @@
 #!/bin/bash
 
 slidedecks=(
+    "e.101-practical-information-sharing-between-law-enforcement-and-csirt-communities-using-misp"
     "e.102-data-mining-tor-social-networks-osint-with-ail-project"
     "e.103-managing-information-sharing-communities-cerebrate-introduction"
     "e.104-csirts-network-notification-and-sharing-scenarios"
