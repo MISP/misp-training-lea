@@ -14,6 +14,8 @@ A [packet capture](./dataset/capture.pcap) from the victim network was performed
 - Analyse the pcap file to discover what happened;
 - Extract evidences and model those evidences into a complete and descriptive MISP event;
 
+Slides [PDF](https://github.com/MISP/misp-training-lea/blob/main/output/e.304-lab3-encoding-information-and-sharing-it-2.pdf)
+
 # Prerequisites
 
 - MISP introduction (from eLearning materials)
