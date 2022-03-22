@@ -10,6 +10,9 @@ This eLearning module is a prerequisite or refreshing module to read before the 
 
 ## Modules
 
+- [Practical Information Sharing between Law Enforcement and CSIRT communities using MISP (e.101](./e.101-practical-information-sharing-between-law-enforcement-and-csirt-communities-using-misp)
+- [Data mining Tor, social networks, OSINT with AIL Project (e.102)](./e.102-data-mining-tor-social-networks-osint-with-ail-project)
+- [Managing information sharing communities - Cerebrate introduction (e.103)](./e.103-managing-information-sharing-communities-cerebrate-introduction)
 - [CSIRTs network, notification and sharing scenarios (e.104)](./e.104-csirts-network-notification-and-sharing-scenarios)
 - [From evidences to actionable information (e.206)](./e.206-from-evidences-to-actionable-information/)
 - [Extract an Executable from PCAP & Investigating an Attack on a Linux Host (e.303)](./e.303-lab2-encoding-information-and-sharing-it)
@@ -80,5 +83,7 @@ All the materials are dual-licensed under GNU Affero General Public License vers
 # Contributors in alphabetical order
 
 - Alexandre Dulaunoy
+- Jean-Louis Huynen
 - Andras Iklody
 - Sami Mokaddem
+- Luciano Righetti

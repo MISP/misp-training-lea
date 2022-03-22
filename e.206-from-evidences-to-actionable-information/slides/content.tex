@@ -698,7 +698,6 @@ cat.jpg.exe
         \item and if we close the question, the wallet remains the same? The BTC-wallet for payment: 1LYiEgq9k3xSAddbqMZcsVTayJVoKbTFub
         \item Ok, \$1,150,000. The BTC-wallet for payment: 1LYiEgq9k3xSAddbqMZcsVTayJVoKbTFub We are waiting the payment today.
     \end{itemize}
-
 \end{frame}
 
 \begin{frame}[fragile]
@@ -709,10 +708,85 @@ cat.jpg.exe
         \item we know the amount of money claimed by the attacker.
     \end{itemize}
 
-    We can therefore build an event report to support other CSIRTS with intel.
-    \note[item]{TODO: create an event report}
-    \note[item]{TODO: check event extension}
+    We will pack this information in a digestible package:
+    \begin{itemize}
+        \item We extend the exisintg event with the event created from AIL,
+        \item we create an Event Report that explains the context and the new intelligence produced from the additional facts we gathered with AIL.
+    \end{itemize}
+
 \end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Producing Intelligence}
+    We gathered new information:
+    \begin{itemize}
+        \item We confirmed that the ransomware gang is indeed Conti,
+        \item we know the amount of money claimed by the attacker.
+    \end{itemize}
+
+    We will pack this information in a digestible package:
+    \begin{itemize}
+        \item We extend the exisintg event with the event created from AIL,
+        \item we create an Event Report that explains the context and the new intelligence produced from the additional facts we gathered with AIL.
+    \end{itemize}
+
+    \note[item]{Exenting an event will allow us to reference information from one event to the other as if they were the same event.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Producing Intelligence}
+     \begin{figure}[t]
+        \includegraphics[width=.8\textwidth]{pictures/contileaks-extending-event.png}
+        \centering
+    \end{figure}
+
+    \note[item]{We extend the event that contains the ransomware case with the one we created in AIL by adding the first event's uuid in the latter "Extends Event" property.}
+    \note[item]{Once the event is exented by another, one can switch between the "atomic view" and the "extended view" by clicking the arrows in the "Extended By" event property box.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Producing Intelligence}
+    We create an event report in the extending event to:
+    \begin{itemize}
+        \item explain the context around the leak,
+        \item explain how the leak was exploited,
+        \item describe the analyses that was done, 
+        \item show how the data from the leak shines a new light on the first event,
+        \item explain to humans.
+    \end{itemize}
+     \begin{figure}[t]
+        \includegraphics[width=.6\textwidth]{pictures/contileaks-event-report.png}
+        \centering
+    \end{figure}
+
+    \note[item]{ }
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Producing Intelligence}
+    Writing the story around the event fosters to addition of more contextual information:
+
+     \begin{figure}[t]
+        \includegraphics[width=.8\textwidth]{pictures/contileaks-event-report-links.png}
+        \centering
+    \end{figure}
+
+    \note[item]{Here we only added a twitter account, but numerous information could be added to the event to create a meaninful report.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Producing Intelligence}
+    Event reports are supported by the data contained into the event, and as such allows for getting more information on clicking on the object from the report:
+
+     \begin{figure}[t]
+        \includegraphics[width=.72\textwidth]{pictures/contileaks-event-report-links2.png}
+        \centering
+    \end{figure}
+
+    \note[item]{In this view we click on a person object to get more details about it.}
+\end{frame}
+
+
 
 \begin{frame}
     \frametitle{To sum it all up}
