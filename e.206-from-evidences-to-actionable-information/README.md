@@ -14,8 +14,7 @@ Slides: [PDF](https://github.com/MISP/misp-training-lea/blob/main/output/e.206-f
 
 ## Description
 
-During investigation, many data points and evidences are collected and analysed. Improving contectualisation can leverage the use of the evidences. Those evidences can turn
-into meaninful and actionable for LEAs but also CSIRTs and SOCs. This module will show all the aspects of contextualisation with a practical example using the recent Conti (ransomware group) leak.
+During investigation, many data points and evidences are collected and analysed. Improving contextualisation can leverage the use of the evidences. Those evidences can turn into meaningful and actionable for LEAs but also CSIRTs and SOCs. This module will show all the aspects of contextualisation with a practical example using the recent Conti (ransomware group) leak.
 
 ## Prerequisites
 
