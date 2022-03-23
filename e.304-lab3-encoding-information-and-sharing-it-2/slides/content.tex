@@ -206,6 +206,7 @@ public class ExecTemplateJDK8 {
     \begin{center}\includegraphics[scale=0.25]{../pictures/misp-event-timeline.png}\end{center}
     \note[item]{Add a network/domain-ip objects with first/last seen for each DNS exfiltration}
     \note[item]{Add a network/domain-ip objects with first/last seen for each LDAP exfiltration}
+    \note[item]{Objects are prefered as they can have references between each other.}
     \note[item]{Add a file/malware sample for the Java payload}
     \note[item]{Add an attribute describing each command the attacker run with its timestamp}
 \end{frame}
@@ -222,24 +223,21 @@ public class ExecTemplateJDK8 {
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{MISP Automation: PyMISP and Scapy}
+    \frametitle{MISP Automation: PyMISP and Scapy 1/2}
     Push all failed DNS requests as attributes to a MISP event
     \begin{lstlisting}[basicstyle=\tiny\color{black},language=Python]
 #!/var/www/MISP/venv python3.8
 # -*- coding: utf-8 -*-
 
-from pymisp import PyMISP, MISPAttribute
+from pymisp import PyMISP, MISPAttribute, MISPSighting
 from scapy.all import *
 import sys
 
-api = PyMISP(
-    "https://YOUR_MISP_HOST/",
-    "YOUR_API_KEY"
-)
+api = PyMISP("https://YOUR_MISP_HOST/", "YOUR_API_KEY")
 
 if len(sys.argv) < 2:
-    print("usage: python populate_event.py [capture.pcap] [event_id]")
-    sys.exit()
+    exit("usage: python populate_event.py [capture.pcap] [event_id]")
+    
 pcap = rdpcap(sys.argv[1])
 event_id = sys.argv[2]
 
@@ -249,9 +247,41 @@ for pkt in pcap:
         attr = MISPAttribute()
         attr.type = 'domain'
         attr.to_ids = True
-        attr.comment = 'dns exfiltration / c2 beaconing'
+        attr.comment = 'dns exfiltration'
+        attr.first_seen = float(pkt.time)
         attr.value = dns_pkt.qd.qname.decode("utf-8").rstrip(".")
-        api.add_attribute(event_id, attr, pythonify=True)
+        res = api.add_attribute(event_id, attr, pythonify=True)
+	\end{lstlisting}
+    \note[item]{The following snippet parses a pcap file and pushes all failed DNS requests as attributes to a MISP event}
+    \note{PyMISP makes interacting with MISP API very easy}
+    \note{Scapy is a packet manipulation tool that can be paired easily with PyMISP}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{MISP Automation: PyMISP and Scapy 2/2}    
+    {\small Extending the previous script with {\bf sightings}, if we detect a duplicate of an attribute, we instead add a sighting of the value.}
+    \linebreak
+    \begin{lstlisting}[basicstyle=\tiny\color{black},language=Python]
+dup_error_msg = "A similar attribute already exists for this event."
+	\end{lstlisting}
+	\begin{lstlisting}[basicstyle=\tiny\color{gray},language=Python]
+for pkt in pcap:
+    dns_pkt = pkt.getlayer('DNS')
+    if dns_pkt and pkt.opcode == 0 and dns_pkt.rcode != 0:
+        attr = MISPAttribute()
+        attr.type = 'domain'
+        attr.to_ids = True
+        attr.comment = 'dns exfiltration'
+        attr.first_seen = float(pkt.time)
+        attr.value = dns_pkt.qd.qname.decode("utf-8").rstrip(".")
+        res = api.add_attribute(event_id, attr, pythonify=True)
+	\end{lstlisting}
+	\begin{lstlisting}[basicstyle=\tiny\color{black},language=Python]
+        if res['errors'] and dup_error_msg in res['errors'][1]['errors']['value']:
+            sighting = MISPSighting()
+            sighting.value = attr.value
+            sighting.timestamp = float(pkt.time)
+            api.add_sighting(sighting)
 	\end{lstlisting}
     \note[item]{The following snippet parses a pcap file and pushes all failed DNS requests as attributes to a MISP event}
     \note{PyMISP makes interacting with MISP API very easy}
