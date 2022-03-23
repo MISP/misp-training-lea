@@ -6,10 +6,28 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Slide title}
+    \frametitle{Objectives of this module}
     \begin{itemize}
-        \item A bullet point
+        \item Quick recap on MISP data model and the distribution levels
+        \item Overview of the case to be structured and encoded
+        \item Encoding technical data in MISP
+        \begin{itemize}
+            \item Network indicators: \texttt{ip},\texttt{domain}, \texttt{url}, ...
+            \item Files and binaries: non-malicious / malicious \textit{payload}
+            \item Emails: \texttt{content}, \texttt{header}, \texttt{attachment}, ...
+            \item Web: \texttt{URL}, \texttt{cookies}, \texttt{x509}
+            \item Cryptographic materials: public / private \texttt{key}, \texttt{certificate}
+            \item Infrastructure and devices
+            \item Financial fraud: \texttt{bank-account}, \texttt{phone-number}, \texttt{btc}
+            \item Person: \texttt{name}, \texttt{online accounts}, \texttt{passport}, \texttt{visa}
+            \item Support tools and scripts: \texttt{yara}, detection/remediation scripts
+            \item Vulnerabilities: \texttt{cve}
+            \item External analysis: Reports, blogpost
+            \item -> (infection vector, ransome notes, )
+        \end{itemize}
+        \item Adding relationships
+        \item Adding timeliness
+        \item Enrichments via module and correlation
+        \item Preparing data for sharing with other LE partners, CSIRT, SOC
     \end{itemize}
-
-    \note[item]{A note for the slide handout}
 \end{frame}
