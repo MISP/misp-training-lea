@@ -1,6 +1,8 @@
 # Additional files for the trainers (to take shortcuts if needed)
 
-- Final MISP event is [available](./files).
+Final MISP events are available:
+- [the oldest event](./misp.event.64.json).
+- [the extending event from AIL](./misp.event.72.json).
 
 # Exporting raw bitcoin addresses 
 - the correct `jq` selector is the following: `.[].nodes[0].text`
