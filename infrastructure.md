@@ -11,12 +11,12 @@ Additionally, students will need to have wireshark installed, or at the very lea
 
 MISP and AIL instances are available as [LXC containers](https://linuxcontainers.org/). The host system must be able to run LXC/LXD with the following minimum requirements:
 
-- 64-bit x86 CPU with at least 4 cores (depending of the number of containers, additional cores can provide better performance).
+- 64-bit x86 CPU with at least 12 cores (depending of the number of containers, additional cores can provide better performance).
 - HVM support must be available (Intel-VT or AMD-V enabled)
-- 32GB of memory minimum
-- 100 Mbit/s Internet connectivity
+- 128GB of memory minimum
+- 1Gb/s physical interface - (100 Mbit/s symmetric Internet commitment at minimum) 
 - One public IPv4 and IPv6 address
-- A minimum of 100GB of available disk space on an SSD
+- A minimum of 300GB of available disk space on an SSD
 
 A standard Ubuntu distribution (20.04+) is required.
 
