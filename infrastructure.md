@@ -16,6 +16,7 @@ MISP and AIL instances are available as [LXC containers](https://linuxcontainers
 - 32GB of memory minimum
 - 100 Mbit/s Internet connectivity
 - One public IPv4 and IPv6 address
+- A minimum of 100GB of available disk space on an SSD
 
 A standard Ubuntu distribution (20.04+) is required.
 
