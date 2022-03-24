@@ -15,7 +15,7 @@ MISP and AIL instances are available as [LXC container](https://linuxcontainers.
 - HVM support must be included (Intel-VT or AMD-V enabled)
 - 32GB of memory minimum
 - 100 Mbit/s Internet connectivity
-- One public IPv4 address
+- One public IPv4 address and IPv6 address
 
 A standard Ubuntu distribution (20.04+) is required.
 
