@@ -20,6 +20,7 @@ for slide in ${slidedecks[@]}; do
     if test -f "${slide}/slides/slide.tex"; then
         echo "---- Building     ${slide}"
         cd ${slide}/slides
+        cp ../../themes/misplogo.pdf .
         pdflatex slide.tex
         pdflatex slide.tex
         rm *.aux *.toc *.snm *.log *.out *.nav *.vrb *.log 2> /dev/null
@@ -40,6 +41,7 @@ done
 
 pushd e.0-mandatory-eLearning-materials
 pandoc eLearning.md --pdf-engine=xelatex -V colorlinks=true \
+-V geometry="top=1cm, bottom=1cm, left=1cm, right=1cm" \
 -V linkcolor=blue \
 -V urlcolor=red \
 -V toccolor=gray -o ../output/0_eLearning.pdf
