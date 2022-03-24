@@ -13,7 +13,7 @@
 	\linebreak
     Resources:
     \begin{itemize}
-        \item \href{https://github.com/MISP/misp-training-lea/tree/main/e.304-lab3-encoding-information-and-sharing-it-2/dataset/capture.pcap}{\underline{capture.pcap}}
+        \item \href{https://github.com/MISP/misp-training-lea/tree/main/e.304-lab3-encoding-information-and-sharing-it-2/for-students/capture-e.304.pcap}{\underline{capture-e.304.pcap}}
     \end{itemize}
     Tools:
     \begin{itemize}
@@ -27,7 +27,7 @@
 
 \begin{frame}
     \frametitle{Actors}
-    \href{https://github.com/MISP/misp-training-lea/tree/main/e.304-lab3-encoding-information-and-sharing-it-2/dataset/capture.pcap}{\underline{capture.pcap}} is a network capture on the eth0 interface on our Minecraft Server.
+    \href{https://github.com/MISP/misp-training-lea/tree/main/e.304-lab3-encoding-information-and-sharing-it-2/for-students/capture-e.304.pcap}{\underline{capture-e.304.pcap}} is a network capture on the eth0 interface on our Minecraft Server.
     \linebreak
     \linebreak
     {\color{blue}{\bf Minecraft Server}}
@@ -190,11 +190,13 @@ public class ExecTemplateJDK8 {
     \note[item]{Create a network/domain-ip object for our Minecraft Server}
     \note[item]{Create a network/domain-ip object for the Player}
     \note[item]{Create a network/domain-ip object for the Attacker}
+    \note[item]{Create a network/domain-ip object for the *.interact.sh domain}
     \note[item]{Fill each object first/last seen properties}
     \note[item]{Fill each object with all the ports identified}
     \note[item]{Create references between the objects}
     \note[item]{Player->[connects-to]->Minecraft Server}
     \note[item]{Attacker->[uses-for-recon]->*.interact.sh}
+    \note[item]{Minecraft Server->[connects-to]->*.interact.sh}
     \note[item]{Attacker->[compromised]->Minecraft Server}
 \end{frame}
 
