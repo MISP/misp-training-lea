@@ -7,6 +7,7 @@ slidedecks=(
     "e.104-csirts-network-notification-and-sharing-scenarios"
     "e.205-mapping-investigations-and-cases-in-misp"
     "e.206-from-evidences-to-actionable-information"
+    "e.302-lab1-modeling-interpreting-and-sharing-hacking-evidence"
     "e.303-lab2-encoding-information-and-sharing-it"
     "e.304-lab3-encoding-information-and-sharing-it-2"
 )
