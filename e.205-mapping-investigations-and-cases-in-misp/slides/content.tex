@@ -8,26 +8,548 @@
 \begin{frame}
     \frametitle{Objectives of this module}
     \begin{itemize}
-        \item Quick recap on MISP data model and the distribution levels
-        \item Overview of the case to be structured and encoded
-        \item Encoding technical data in MISP
+        \item Recap on MISP data model and distribution levels
+        \item Data from cases to be structured and encoded:
         \begin{itemize}
-            \item Network indicators: \texttt{ip},\texttt{domain}, \texttt{url}, ...
-            \item Files and binaries: non-malicious / malicious \textit{payload}
-            \item Emails: \texttt{content}, \texttt{header}, \texttt{attachment}, ...
-            \item Web: \texttt{URL}, \texttt{cookies}, \texttt{x509}
-            \item Cryptographic materials: public / private \texttt{key}, \texttt{certificate}
-            \item Infrastructure and devices
-            \item Financial fraud: \texttt{bank-account}, \texttt{phone-number}, \texttt{btc}
-            \item Person: \texttt{name}, \texttt{online accounts}, \texttt{passport}, \texttt{visa}
-            \item Support tools and scripts: \texttt{yara}, detection/remediation scripts
-            \item Vulnerabilities: \texttt{cve}
-            \item External analysis: Reports, blogpost
-            \item -> (infection vector, ransome notes, )
+            \item \textbf{Network indicators}: \texttt{ip}, \texttt{domain}, \texttt{url}, ...
+            \item \textbf{Files and binaries}: non-malicious / malicious \texttt{payload}
+            \item \textbf{Emails}: \texttt{content}, \texttt{header}, \texttt{attachment}, ...
+            \item \textbf{Web}: \texttt{URL}, \texttt{cookies}, \texttt{x509}
+            \item \textbf{Cryptographic materials}: public / private \texttt{key}, \texttt{certificate}
+            \item \textbf{Infrastructure and devices}
+            \item \textbf{Financial fraud}: \texttt{bank-account}, \texttt{phone-number}, \texttt{btc}
+            \item \textbf{Person}: \texttt{name}, \texttt{online accounts}, \texttt{passport}, \texttt{visa}
+            \item \textbf{Support tools}: \texttt{yara}, detection/remediation scripts
+            \item \textbf{Vulnerabilities}: \texttt{cve}
+            \item \textbf{External analysis}: Reports, blogpost, ransome notes
         \end{itemize}
-        \item Adding relationships
-        \item Adding timeliness
+        \item Relationships and timeliness
         \item Enrichments via module and correlation
         \item Preparing data for sharing with other LE partners, CSIRT, SOC
+    \end{itemize}
+\end{frame}
+
+\section{MISP Data model and distribution levels}
+\begin{frame}
+    \frametitle{MISP Event}
+
+    \cheatbox[\faicon{envelope}]
+        [Group datapoints and context together. Acting as an envelop, it allows setting distribution and sharing rules for itself and its children.]
+        [Encode incidents/events/reports/…]
+        [\taggable \distributable \synchronisable]
+        [Encapsulations for contextually linked information.]
+        {Event}
+        {
+            $\blacktriangleright$ events can contain other elements such as attributes, objects and eventreports.\\
+            $\blacktriangleright$ The distribution level and any context added on an event (such as taxonomies) are propagated to its underlying data.
+        }
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP Attribute}
+
+    \cheatbox[\faicon{cube}]
+        [Individual data point. Can be an indicator or supporting data.]
+        [Domain, IP, link, sha1, attachment, …]
+        [\taggable \distributable \synchronisable]
+        [Basic building block to share information.]
+        {Attribute}
+        {
+            $\blacktriangleright$ attributes cannot be duplicated inside the same event and can have sightings.\\
+            $\blacktriangleright$ The difference between an indicator or supporting data is usualy indicated by the state of the attribute's \texttt{to\_ids} flag.
+        }
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP Object}
+
+    \cheatbox[\faicon{cubes}]
+        [Groups attributes that are intrinsically linked together.]
+        [File, person, credit-card, x509, device, \dots]
+        [\distributable \synchronisable]
+        [Advanced building block providing attribute compositions via templates.]
+        {MISP Object}
+        {
+            $\blacktriangleright$ objects have their attribute compositions described in their respective template. They are instanciated with attributes and can reference other attributes or objects.\\
+            $\blacktriangleright$ MISP is not required to know the template to save and display the object. However, \textit{edits} will not be possible as the template to validate against is unknown.
+        }
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP Relationships (aka object reference)}
+
+    \cheatbox[$\nearrow$]
+        [Allows to create relationships between entities, thus creating a graph where they are the edges and entities are the nodes.]
+        [Represent behaviours, similarities, affiliation, \dots]
+        [\synchronisable]
+        [Relationships between individual building blocks.]
+        {Object Reference}
+        {
+            $\blacktriangleright$ references can have a textual relationship which can come from MISP or be set freely.
+        }
+\end{frame}
+
+\begin{frame}
+    \frametitle{MISP Event report}
+
+    \cheatbox[\faicon{file-text}]
+        [Supporting data point to describe events or processes.]
+        [Encode reports, provide more information about the event, \dots]
+        [\distributable \synchronisable]
+        [Advanced building block containing formated text.]
+        {Event Report}
+        {
+            $\blacktriangleright$ Event reports are markdown-aware and include a special syntax to reference data points or context.
+        }
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{General rule of thumb}
+
+    Which structure should be used when encoding data?
+    \begin{itemize}
+        \item \textbf{Attribute} vs \textbf{Object}
+        \begin{itemize}
+            \item If the value is contextually linked to another element or is a subpart of a higher concept, an \textbf{object} should be used
+            \item If the value is part of a large list of atomic data, an \textbf{attribute} should be used
+        \end{itemize}
+        \item \textbf{\texttt{Annotation} Object} vs \textbf{Event Report}
+        \begin{itemize}
+            \item If it is possible to encode the text (raw text or markdown), an \textbf{event report} is prefered
+            \item If the text is written in a specific format (e.g pdf, docx), an \textbf{\texttt{annotation} object} should be used
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{Case study 1: Scam call}
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    % event uuid: 53d2f469-9f7f-4e40-8dc1-a721f1b223fb
+    \begin{itemize}
+        \item[] \textbf{Case}: A victim was asked to transfer money to a novice scammer
+        \item[] \textbf{Chronology - 2022-03-24}
+        \begin{itemize}
+            \item[] \textbf{\small 11:42:43 UTC+0}: Scammer called the victim pretending to be a microsoft employee
+            \item[] \textbf{\small 11:47:27 UTC+0}: Scammer convinced the victim to be helped via remote desktop assistance
+            \item[] \textbf{\small 12:06:32 UTC+0}: Scammer downloaded the binary on the victim's computer
+            \item[] \textbf{\small 12:08:18 UTC+0}: Scammer installed the binary on the victim's computer
+            \item[] \textbf{\small 12:17:51 UTC+0}: Scammer asked the victim to transfer money on a bank account for the help he provided
+            \item[] \textbf{\small 12:25:04 UTC+0}: Victim executed the money transfer
+            \item[] \textbf{\small 2022-03-25 08:39:21 UTC+0}: Victim contacted police
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item[] \textbf{Collected evidences}
+        \begin{itemize}
+            \item RDP Log file
+            \item installed binary
+            \item victim's browser history
+            \item bank account statement
+            \item victim's phone call log
+        \end{itemize}
+    \end{itemize}
+    \begin{itemize}
+        \item[] \textbf{Data extracted from evidences}
+        \begin{itemize}
+            \item Scammer's \textbf{ip address}
+            \item Potentially \textbf{malicious binary}
+            \item \textbf{URL} (and \textbf{domain}) from which the binary was downloaded
+            \item Scammer's \textbf{bank account} and \textbf{phone number}
+            \item Scammer's full name and nationality
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item[] \textbf{Extracted values}
+        \begin{itemize}
+            \item \texttt{194.78.89.250}
+            \begin{itemize}
+                \item ip-address from log file
+            \end{itemize}
+            \item \texttt{bin.exe}
+            \begin{itemize}
+                \item downloaded binary
+            \end{itemize}
+            \item \texttt{https://zdgyot.ugic0k.ru/assets/bin.exe}
+            \begin{itemize}
+                \item download URL
+            \end{itemize}
+            \item \texttt{GB 29 NWBK 601613 31926819 }
+            \begin{itemize}
+                \item IBAN number
+                \item Swift: \texttt{NWBK}, Account number: \texttt{31926819}, Currency: \texttt{GBP}
+            \end{itemize}
+            \item \texttt{+12243359185}
+            \begin{itemize}
+                \item phone number
+            \end{itemize}
+            \item \texttt{Wallace Breen} is from \texttt{GB}
+            \begin{itemize}
+                \item name and nationality
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+
+    \note[item]{We are dealing with fake values}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item[] \textbf{Tasks}
+        \begin{itemize}
+            \item Create an new \textit{event} to be shared with \textbf{all}
+            \item Encode \texttt{binary} to be shared with \textbf{CSIRT}
+            \item Encode \texttt{ip address} to be shared with both \textbf{ISP} and \textbf{CSIRT}
+            \item Encode \texttt{domain} and \texttt{url} to be shared with both \textbf{ISP} and \textbf{CSIRT}
+            \item Encode \texttt{bank account} to be shared with \textbf{Financial sector}
+            \item Encode \texttt{phone number} to be shared with \textbf{Telecomunication sector}
+            \item Encode \texttt{full name} and \texttt{nationality} to be shared with \textbf{LEA only}
+            \item Add relationships to recreate the events
+            \item Add time component to recreate the chronology
+            \item Perform enrichments on the binary, and domain
+            \item Add contextualization
+            \item Create a small write-up as an \textit{event report}
+            \item Review the distribution level and publish
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item Creating the \textit{event} in MISP
+    \end{itemize}
+    \includegraphics[width=1.0\linewidth]{pictures/event.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item Adding the binary as attachment
+        \item Pick the \texttt{Payload Delivery} category
+        \item Check \textit{Is a malware sample}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.80\linewidth]{pictures/attribute-bin.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item Encode the IP address of the scammer with an \textit{attribute}
+        \item Pick the \texttt{Payload Installation} category and \texttt{ip-src}  \texttt{type}
+        \item Check the \texttt{For Intrusion Detection System}
+        \item Add a contextual comment such as: \texttt{IP address of the scammer collected from the RDP log file}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.70\linewidth]{pictures/attribute-ip.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item Encode the domain and the URL from which the binary was downloaded
+        \item As these two attributes are contextually linked between each others, we should use an \texttt{URL} \textit{object}
+        \item Add a contextual comment such as: \texttt{URL used by the scammer to download the binary}
+        \item Include at least: \texttt{url}, \texttt{domain} and \texttt{ressource\_path}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{center}
+        \includegraphics[width=1.0\linewidth]{pictures/object-url.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item Encode the bank account
+        \item As these 4 attributes are contextually linked between each others, we should use an \texttt{bank-account} \textit{object}
+        \item Add a contextual comment such as: \texttt{Bank account that received the money. Supposed to belong to the scammer}
+        \item Include at least: \texttt{iban}, \texttt{swift}, \texttt{account} and \texttt{currency\_code}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{center}
+        \includegraphics[width=1.0\linewidth]{pictures/object-bankaccount.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item Encode the phone number
+        \item Pick the \texttt{Financial Fraud} category and \texttt{phone-number} \texttt{type}
+        \item Add a contextual comment such as: \texttt{Phone number used by the scammer to call the victim}
+        \item Check \textit{For Intrusion Detection System}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.70\linewidth]{pictures/attribute-phone.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item Encode the full name and nationality
+        \item As these attributes are contextually linked between each others, we should use a \texttt{person} \textit{object}
+        \item Add a contextual comment such as: \texttt{Name of the scammer given to the victim}
+        \item Include at least: \texttt{full-name}, \texttt{nationality} and \texttt{role}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{center}
+        \includegraphics[width=1.0\linewidth]{pictures/object-person.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    Add relationships to recreate the story
+
+    \begin{center}
+        \begin{tikzpicture}[
+            entity/.style={rectangle, draw=black, scale=1.0},
+            simplebox/.style={
+                rectangle, rounded corners, thick,
+                draw=blue!30,
+                minimum width=10pt,
+                minimum height=10pt,
+                inner sep=5pt, inner ysep=5pt
+            },
+        ]
+
+            \node [simplebox] (person1)                     {person};
+            \node [simplebox] (phone-number) [ right= 7cm of person1 ] {phone-number};
+            \draw[->,thick] (person1) -- (phone-number) node [above,midway] {\texttt{owner-of}};
+
+            \node [simplebox] (person2) [ below= 0.5cm of person1]       {person};
+            \node [simplebox] (bank-account) [ right= 7cm of person2 ] {bank-account};
+            \draw[->,thick] (person2) -- (bank-account) node [above,midway] {\texttt{owner-of}};
+
+            \node [simplebox] (binary) [ below= 0.5cm of person2 ] {binary};
+            \node [simplebox] (url)    [ right= 7cm of binary ] {URL};
+            \draw[->,thick] (binary) -- (url) node [above,midway] {\texttt{downloaded-from}};
+
+            \node [simplebox] (person3) [ below= 0.5cm of binary ] {person};
+            \node [simplebox] (binary)  [ right= 7cm of person3 ] {binary};
+            \draw[->,thick] (person3) -- (binary) node [above,midway] {\texttt{downloaded}};
+
+            \node [simplebox] (person4) [ below= 0.5cm of person3 ] {person};
+            \node [simplebox] (binary)  [ right= 7cm of person4 ]  {binary};
+            \draw[->,thick] (person4) -- (binary) node [above,midway] {\texttt{installed}};
+
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    Add relationships to recreate the story
+    \includegraphics[width=1.0\linewidth]{pictures/event-graph.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    Add time component to recreate the chronology
+    \begin{itemize}
+        \item Main focus is the Cyber Threat Intelligence (CTI) aspect
+    \end{itemize}
+    \includegraphics[width=1.0\linewidth]{pictures/timeline.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    Perform enrichments
+    \begin{itemize}
+        \item Scammer IP address to get its location
+        \item Binary to check if it's an existing (and malicious) application
+    \end{itemize}
+    \includegraphics[width=1.0\linewidth]{pictures/enrichment.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item Contextualizing the data
+        \item Different country / sectors might use different nomemclature
+        \item Suggestions for tagging:
+        \begin{itemize}
+            \item \texttt{circl:incident-classification="scam"}
+            \item \texttt{\tiny social-engineering-attack-vectors:non-technical="technical-expert"}
+            \item \texttt{veris:action:hacking:vector="Desktop sharing"}
+            \item \texttt{veris:action:malware:vector="Direct install"}
+            \item \texttt{veris:action:social:variety="Scam"}
+            \item \texttt{veris:action:social:vector="Phone"}
+            \item \texttt{veris:actor:external:motive="Financial"}
+            \item \texttt{veris:impact:loss:rating="Minor"}
+            \item \texttt{veris:impact:loss:variety="Asset and fraud"}
+            \item \texttt{workflow:state="complete"}
+            \item \texttt{tlp:green}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \includegraphics[width=1.0\linewidth]{pictures/event-tags.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    Create a small write-up as an \textit{event report}
+    \begin{itemize}
+        \item Create the \textit{event report} with a concise name
+        \item Example: Executive summary of the case
+        \begin{itemize}
+            \item Leave its content empty as it can be edited with more ease in the editor afterward
+        \end{itemize}
+        \item Write a summary with
+        \begin{itemize}
+            \item Quick chronology
+            \item Written explanation of the steps tooks by the scammer
+            \item Reference to existing \textit{attributes} or \textit{objects} whenever possible
+            \begin{itemize}
+                \item The special syntax is: \texttt{@[scope]\{uuid\}}
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    Create a small write-up as an \textit{event report}
+    \begin{center}
+        \includegraphics[width=0.65\linewidth]{pictures/event-report.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    Review the distribution level and publish
+    \begin{itemize}
+        \item In our case, we consider the following MISP network topology
+        \item The current instance is owned and managed by a LEA
+        \item The current instance is connected to a central MISP instance acting as a "hub"
+        \item The "hub" is connected to various other MISP instances such as other LEAs, CSIRTs, Financial and telecom institutions
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    Review the distribution level and publish
+    \begin{itemize}
+        \item \texttt{binary file}: \textbf{All communities}
+        \item \texttt{person}: \textbf{LEA Sharing group}
+        \item \texttt{geolocation}: \textbf{LEA Sharing group}
+        \item \texttt{ip}: \textbf{LEA Sharing group}
+        \begin{itemize}
+            \item The IP might be reassigned
+        \end{itemize}
+        \item \texttt{phone}
+        \begin{itemize}
+            \item If part of a telco sharing group \textbf{Telco Sharing group}
+            \item \textbf{Connected communities} otherwise
+        \end{itemize}
+        \item \texttt{bank account}
+        \begin{itemize}
+            \item If part of a financial sharing group \textbf{Financial Sharing group}
+            \item \textbf{Connected communities} otherwise
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \textbf{$\rightarrow$ Publish the event!}
+    \end{center}
+\end{frame}
+
+
+%
+%
+% CASE 2
+%
+%
+
+\section{Case study 2: Ransomware}
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item[] \textbf{Case}: xxxx
+        \item[] \textbf{Chronology - 2022-03-24}
+        \begin{itemize}
+            \item[] \textbf{\small 11:42:43 UTC+0}: 
+            \item[] \textbf{\small 11:47:27 UTC+0}: 
+            \item[] \textbf{\small 12:06:32 UTC+0}: 
+            \item[] \textbf{\small 12:08:18 UTC+0}: 
+            \item[] \textbf{\small 12:17:51 UTC+0}: 
+            \item[] \textbf{\small 12:25:04 UTC+0}: 
+            \item[] \textbf{\small 2022-03-25 08:39:21 UTC+0}: 
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item[] \textbf{Collected evidences}
+        \begin{itemize}
+            \item x
+        \end{itemize}
+    \end{itemize}
+    \begin{itemize}
+        \item[] \textbf{Data extracted from evidences}
+        \begin{itemize}
+            \item x
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item[] \textbf{Extracted values}
+        \begin{itemize}
+            \item \texttt{x}
+            \begin{itemize}
+                \item x
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+
+    \note[item]{We are dealing with fake values}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item[] \textbf{Tasks}
+        \begin{itemize}
+            \item Create an new \textit{event} to be shared with \textbf{all}
+            \item Encode data to be shared
+            \item Add relationships to recreate the events
+            \item Add time component to recreate the chronology
+            \item Perform enrichments on the binary, and domain
+            \item Add contextualization
+            \item Create a small write-up as an \textit{event report}
+            \item Review the distribution level and publish
+        \end{itemize}
     \end{itemize}
 \end{frame}

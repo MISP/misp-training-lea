@@ -7,14 +7,92 @@
 \usepackage[utf8]{inputenc}
 \usepackage{tikz}
 \usepackage{listings}
-\usetikzlibrary{positioning}
+\usetikzlibrary{positioning,fit,calc,backgrounds}
 \usetikzlibrary{shapes,arrows}
+
+\usepackage{xparse}
+\usepackage{fontawesome}
+\usepackage{xifthen}
+\newcommand{\taggable}{\faicon{tags}\hspace*{0.3em}}
+\newcommand{\distributable}{\faicon{eye-slash}\hspace*{0.3em}}
+\newcommand{\synchronisable}{\faicon{exchange}\hspace*{0.3em}}
+
+%
+% Layout
+%
+\tikzstyle{mybox} = [
+    draw=black,
+    fill=white,
+    very thick,
+    rectangle, rounded corners,
+    inner sep=10pt
+]
+\tikzstyle{boxtitle} = [
+    % fill=black,
+    % text=white,
+    % fill=gray!30,
+    % text=black,
+    % font=\bfseries,
+    % right=10pt
+    draw=black,
+    line width=1pt,
+    text=white,
+    fill=black!80,
+    font=\bfseries,
+    rectangle, rounded corners=2pt,
+    inner sep=4pt,
+    right=10pt
+]
+\tikzset{actionbox/.style={
+    text=white,
+    yshift=-1pt,xshift=-1pt,
+    append after command={
+    \pgfextra
+            \draw[sharp corners, fill=black]% 
+        (\tikzlastnode.west)% 
+        [rounded corners=0pt] |- (\tikzlastnode.north)% 
+        [rounded corners] -| (\tikzlastnode.east)% 
+        [rounded corners=0pt] |- (\tikzlastnode.south)% 
+        [rounded corners] -| (\tikzlastnode.west);
+    \endpgfextra
+    }
+}}
+
+% Creates a box with a label taking 1/3 of the available width
+% arg1[optional] = icon
+% arg2[optional] = purpose
+% arg3[optional] = usecase
+% arg4[optional] = actions
+% arg5[optional] = description
+% arg6 = title
+% arg7 = content
+\NewDocumentCommand{\cheatbox}{ O{} O{} O{} O{} O{} m m}{
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.95\linewidth}
+            \ifthenelse{\isempty{#4}}{}{\vspace{1em}}
+            \textit{#5}
+            \vspace*{0.3em}
+            \ifthenelse{\isempty{#2}}{}{ \par{\textbf{Purpose}: #2}}
+            \ifthenelse{\isempty{#3}}{}{ \par{\textbf{Usecase}: #3\ifthenelse{\isempty{#7}}{}{\\}}}
+            #7
+            \end{minipage}
+        };
+        \node[boxtitle] at (box.north west) {#1 #6};
+        \ifthenelse{\isempty{#4}}{}{
+            \path node [actionbox, anchor=north east] at (box.north east) (actionLabel) {#4};
+        }
+    \end{tikzpicture}
+
+    \vspace*{2pt}
+}
+
 
 
 \title{Mapping investigations and cases in MISP}
 \subtitle{e.205}
 \author{\small{CIRCL Computer Incident Response Center Luxembourg}}
-\date{\today}
+\date{\today - \input{../../version.tex}}
 \titlegraphic{\includegraphics[scale=0.85]{misplogo.pdf}}
 \institute{MISP Project \\ \url{https://www.misp-project.org/}}
 
