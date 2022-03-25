@@ -1,0 +1,69 @@
+config:
+  user.user-data: |
+    #cloud-config
+    write_files:
+    - content: |
+        #!/usr/bin/env python3
+        # -*-coding:UTF-8 -*
+        import os
+        import sys
+        import redis
+        sys.path.append(os.path.join(os.environ['AIL_BIN'], 'lib/'))
+        import ConfigLoader
+        sys.path.append(os.path.join(os.environ['AIL_FLASK'], 'modules'))
+        from Role_Manager import create_user_db, edit_user_db, get_default_admin_token, gen_password
+        config_loader = ConfigLoader.ConfigLoader()
+        r_serv = config_loader.get_redis_conn("ARDB_DB")
+        config_loader = None
+        if len(sys.argv) > 1:
+            len = int(sys.argv[1])
+        else:
+            len = 5
+        if __name__ == "__main__":
+            # Create the trainer account
+            username = 'trainer@ecteg.eu'
+            password = 'leTRAINERduECTEG2022'
+            if r_serv.exists('user_metadata:trainer@ecteg.eu'):
+                edit_user_db(username, password=password, role='admin')
+            else:
+                create_user_db(username, password, role='admin', default=True)
+                token = get_default_admin_token()
+                print('new trainer created: {}'.format(username))
+                print('password: {}'.format(password))
+                print('token: {}'.format(token))
+            # Create trainees' accounts
+            for i in range(len):
+                user = "user-{}@ecteg.eu".format(i)
+                password = "leECTEG2022"
+                if r_serv.exists('user_metadata:{}'.format(user)):
+                    edit_user_db(user, password=password, role='analyst')
+                else:
+                    create_user_db(user, password, role='analyst', default=True)
+                    print('new user created: {}'.format(user))
+                    print('password: {}'.format(password))
+
+      owner: ail:ail
+      path: /home/ail/ail-framework/var/www/create_users.py
+      permissions: '0644'
+
+    runcmd:
+      - [sudo, -u, ail, /home/ail/ail-framework/bin/LAUNCH.sh, -l]
+      - [. , /home/ail/ail-framework/AILENV/bin/activate]
+      # default to five users
+      # - [python, /home/ail/ail-framework/var/www/create_users.py]
+      - [python, /home/ail/ail-framework/var/www/create_users.py, 15]
+      - [deactivate]
+    final_message: "AIL is finally up, after $UPTIME seconds"
+
+description: AIL image with users creation profile
+devices:
+  eth0:
+    name: eth0
+    network: lxdbr0
+    type: nic
+  root:
+    path: /
+    pool: zfs_lxd
+    type: disk
+name: ail-new-users
+used_by: []
