@@ -3,7 +3,7 @@
 - Import the provided AIL lxc container:
 
 ``` lxc image import 083f03722e491b44659dd50f83a37a0e57de80e20feb8c7f68364e97079ef515.tar.gz --alias conti-full```
-Create a new LXC profile `full-conti`:
+- Create a new LXC profile `full-conti`:
 - Download the [conti-cloud-init](./conti-cloud-init) file,
 - create a new `lxc` profile:
 ```
@@ -13,15 +13,15 @@ lcx profile create ail-new-users
 ```
 cat conti-cloud-init | lxc profile edit ail-new-users
 ```
-- edit the profile to fit your needs, for instance:
+- to edit the profile to fit your needs use:
 ```
 lxc profile edit ail-new-users
 ```
-  - increase the number of participants to 15: 
+  - then to increase the number of participants to 15 for instance: 
 ```yaml
  - [python, /home/ail/ail-framework/var/www/create_users.py, 15]
 ```
-  - change the storage pool from `zfs` to loopback `zfs`: 
+  - then to change the storage pool from `zfs` to loopback `zfs` for instance: 
 ```yaml
   root:
     path: /
@@ -29,26 +29,26 @@ lxc profile edit ail-new-users
     type: disk
 ```
 
-Once the setting is correct, set up the instance with:
+Once the settings are correct, set up the instance with:
 
 ```
 lxc launch conti-full ail01 -p ail-new-users
 ```
-- You can check the newly created container, along with its IP address with:
+- you can check the newly created container, along with its IP address with:
 `lxc list`
-- The container will be readily available, open a terminal in the newly created container with:
+- the container will be readily available, open a terminal in the newly created container with:
 ```
 lxc exec ail01 -- su --login ail # for ail user
 lxc exec ail01 -- bash  # for root
 ```
-- `cloud-init` can take a while to create users, enter `watch cloud-init status` within the container to know when its done.
-- the setup is complete, launch AIL as `ail` user:
+- `cloud-init` can take a while to create users, enter `watch cloud-init status` as `root` within the container to know when its done.
+- when the setup is complete, launch AIL as `ail` user:
 ```bash
 $ cd ail-framework/bin
 $ ./LAUNCH -l
 ```
-- Access AIL with a web browser: `https://thecontaineripaddress:7000`
-- Credentials are `trainer@ecteg.eu:leTRAINERduECTEG2022`
+- access AIL with a web browser: `https://thecontaineripaddress:7000`
+- credentials are `trainer@ecteg.eu:leTRAINERduECTEG2022`
 
 # Exporting specific conversations 
 - Go to `Objects`>`Cryptocurrency`,
