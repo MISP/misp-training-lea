@@ -13,9 +13,10 @@ slidedecks=(
 
 mkdir -p output-ecteg
 mkdir -p output-ecteg/handout
+VERSION=`git describe --tags --abbrev=0`
 
+echo VERSION > version.tex
 export TEXINPUTS=::`pwd`/themes/ecteg
-export TAG=`git describe --tags --abbrev=0`
 
 for slide in ${slidedecks[@]}; do
     if test -f "${slide}/slides/slide.tex"; then

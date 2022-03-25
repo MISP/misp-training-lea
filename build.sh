@@ -13,7 +13,9 @@ slidedecks=(
 
 mkdir -p output
 mkdir -p output/handout
+VERSION=`git describe --tags --abbrev=0`
 
+echo VERSION > version.tex
 export TEXINPUTS=::`pwd`/themes/
 
 for slide in ${slidedecks[@]}; do
