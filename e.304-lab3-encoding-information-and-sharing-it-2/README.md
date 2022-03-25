@@ -9,7 +9,7 @@
 
 # Description
 
-A [packet capture](./dataset/capture.pcap) from the victim network was performed between the reverse proxy and the back-end systems.
+A [packet capture](./dataset/capture-e.304.pcap) from the victim network was performed between the reverse proxy and the back-end systems.
 
 - Analyse the pcap file to discover what happened;
 - Extract evidences and model those evidences into a complete and descriptive MISP event;
@@ -31,5 +31,9 @@ Slides [PDF](https://github.com/MISP/misp-training-lea/blob/main/output/e.304-la
 ## Further reading and tools
 
 - https://blogs.juniper.net/en-us/security/in-the-wild-log4j-attack-payloads
+- https://www.lunasec.io/docs/blog/log4j-zero-day/
 - https://github.com/NCSC-NL/log4shell
+- https://www.govcert.ch/blog/zero-day-exploit-targeting-popular-java-library-log4j/
 - https://github.com/pimps/JNDI-Exploit-Kit
+- https://www.veracode.com/blog/research/exploiting-jndi-injections-java
+- https://www.blackhat.com/docs/us-16/materials/us-16-Munoz-A-Journey-From-JNDI-LDAP-Manipulation-To-RCE.pdf
