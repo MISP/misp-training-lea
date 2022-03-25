@@ -15,7 +15,7 @@ mkdir -p output-ecteg
 mkdir -p output-ecteg/handout
 VERSION=`git describe --tags --abbrev=0`
 
-echo VERSION > version.tex
+echo $VERSION > version.tex
 export TEXINPUTS=::`pwd`/themes/ecteg
 
 for slide in ${slidedecks[@]}; do
