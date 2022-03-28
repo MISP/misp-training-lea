@@ -338,7 +338,7 @@
 
 \begin{frame}
     \frametitle{Case study 1: Scam call}
-    Add relationships to recreate the story
+    Add (at least) these relationships to recreate the story
 
     \begin{center}
         \begin{tikzpicture}[
@@ -405,7 +405,9 @@
     \frametitle{Case study 1: Scam call}
     \begin{itemize}
         \item Contextualizing the data
-        \item Different country / sectors might use different nomemclature
+        \begin{itemize}
+            \item Different country / sectors might use different nomemclature
+        \end{itemize}
         \item Suggestions for tagging:
         \begin{itemize}
             \item \texttt{circl:incident-classification="scam"}
@@ -801,3 +803,115 @@ D5UfPkv337plrEiUuwIDAQAB
     \end{center}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item Encode the XOR key
+        \item Pick the \texttt{Artifacts dropeed} category and \texttt{hex}  \texttt{type}
+        \item Check the \texttt{For Intrusion Detection System}
+        \item Add a contextual comment such as
+        \begin{itemize}
+            \item \texttt{XOR key used to encode the malware's configuration in the registry}
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.47\linewidth]{pictures/case2/attribute-key.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    Add (at least) these relationships to recreate the story
+
+    \begin{center}
+        \begin{tikzpicture}[
+            entity/.style={rectangle, draw=black, scale=0.7},
+            simplebox/.style={
+                rectangle, rounded corners, thick,
+                draw=blue!30,
+                minimum width=10pt,
+                minimum height=10pt,
+                inner sep=5pt, inner ysep=5pt
+            },
+        ]
+
+            \node [simplebox] (person1)                     {person};
+            \node [simplebox] (mail1) [ right= 5cm of person1 ] {email};
+            \draw[->,thick] (person1) -- (mail1) node [above,midway] {\texttt{sends}};
+
+            \node [simplebox] (mail2) [ below= 0.25cm of person1]       {email};
+            \node [simplebox] (file1) [ right= 5cm of mail2 ] {malware};
+            \draw[->,thick] (mail2) -- (file1) node [above,midway] {\texttt{contains}};
+
+            \node [simplebox] (file2) [ below= 0.25cm of mail2 ] {malware};
+            \node [simplebox] (registry-persistence)    [ right= 5cm of file2 ] {registry-persistence};
+            \draw[->,thick] (file2) -- (registry-persistence) node [above,midway] {\texttt{write}};
+
+            \node [simplebox] (file5) [ below= 0.25cm of file2 ] {malware};
+            \node [simplebox] (ip)    [ right= 5cm of file5 ] {c2 ip};
+            \draw[->,thick] (file5) -- (ip) node [above,midway] {\texttt{connects-to}};
+
+            \node [simplebox] (file3) [ below= 0.25cm of file5 ] {malware};
+            \node [simplebox] (registry-pb)    [ right= 5cm of file3 ] {registry-pb};
+            \draw[->,thick] (file3) -- (registry-pb) node [above,midway] {\texttt{write}};
+
+            \node [simplebox] (file4) [ below= 0.25cm of file3 ] {malware};
+            \node [simplebox] (registry-config)    [ right= 5cm of file4 ] {registry-config};
+            \draw[->,thick] (file4) -- (registry-config) node [above,midway] {\texttt{write}};
+
+            \node [simplebox] (registry-config2) [ below= 0.25cm of file4 ] {registry-config};
+            \node [simplebox] (xor-key)    [ right= 5cm of registry-config2 ] {XOR key};
+            \draw[->,thick] (registry-config2) -- (xor-key) node [above,midway] {\texttt{uses}};
+
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    Add relationships to recreate the story
+    \includegraphics[width=1.0\linewidth]{pictures/case2/event-graph.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    Add time component to recreate the chronology
+    \begin{itemize}
+        \item Main focus is the Cyber Threat Intelligence (CTI) aspect
+    \end{itemize}
+    \includegraphics[width=1.0\linewidth]{pictures/case2/timeline.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    Perform enrichments
+    \begin{itemize}
+        \item IP address to get its location
+    \end{itemize}
+    \includegraphics[width=1.0\linewidth]{pictures/case2/enrichment1.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    Perform enrichments
+    \begin{itemize}
+        \item Bitcoin wallet to view the transactions
+    \end{itemize}
+    \includegraphics[width=1.0\linewidth]{pictures/case2/enrichment2.png}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 1: Scam call}
+    \begin{itemize}
+        \item Contextualizing the data
+        \begin{itemize}
+            \item Different country / sectors might use different nomemclature
+        \end{itemize}
+        \item Suggestions for tagging:
+        \begin{itemize}
+            \item 
+            \item \texttt{workflow:state="complete"}
+            \item \texttt{tlp:green}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
