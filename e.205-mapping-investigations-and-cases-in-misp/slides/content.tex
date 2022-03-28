@@ -250,10 +250,13 @@
         \item Encode the IP address of the scammer with an \textit{attribute}
         \item Pick the \texttt{Payload Installation} category and \texttt{ip-src}  \texttt{type}
         \item Check the \texttt{For Intrusion Detection System}
-        \item Add a contextual comment such as: \texttt{IP address of the scammer collected from the RDP log file}
+        \item Add a contextual comment such as
+        \begin{itemize}
+            \item \texttt{IP address of the scammer collected from the RDP log file}
+        \end{itemize}
     \end{itemize}
     \begin{center}
-        \includegraphics[width=0.70\linewidth]{pictures/case1/attribute-ip.png}
+        \includegraphics[width=0.63\linewidth]{pictures/case1/attribute-ip.png}
     \end{center}
 \end{frame}
 
@@ -262,7 +265,10 @@
     \begin{itemize}
         \item Encode the domain and the URL from which the binary was downloaded
         \item As these two attributes are contextually linked between each others, we should use an \texttt{URL} \textit{object}
-        \item Add a contextual comment such as: \texttt{URL used by the scammer to download the binary}
+        \item Add a contextual comment such as
+        \begin{itemize}
+            \item \texttt{URL used by the scammer to download the binary}
+        \end{itemize}
         \item Include at least: \texttt{url}, \texttt{domain} and \texttt{ressource\_path}
     \end{itemize}
 \end{frame}
@@ -279,7 +285,10 @@
     \begin{itemize}
         \item Encode the bank account
         \item As these 4 attributes are contextually linked between each others, we should use an \texttt{bank-account} \textit{object}
-        \item Add a contextual comment such as: \texttt{Bank account that received the money. Supposed to belong to the scammer}
+        \item Add a contextual comment such as
+        \begin{itemize}
+            \item \texttt{Bank account that received the money. Supposed to belong to the scammer}
+        \end{itemize}
         \item Include at least: \texttt{iban}, \texttt{swift}, \texttt{account} and \texttt{currency\_code}
     \end{itemize}
 \end{frame}
@@ -296,7 +305,10 @@
     \begin{itemize}
         \item Encode the phone number
         \item Pick the \texttt{Financial Fraud} category and \texttt{phone-number} \texttt{type}
-        \item Add a contextual comment such as: \texttt{Phone number used by the scammer to call the victim}
+        \item Add a contextual comment such as
+        \begin{itemize}
+            \item \texttt{Phone number used by the scammer to call the victim}
+        \end{itemize}
         \item Check \textit{For Intrusion Detection System}
     \end{itemize}
     \begin{center}
@@ -309,7 +321,10 @@
     \begin{itemize}
         \item Encode the full name and nationality
         \item As these attributes are contextually linked between each others, we should use a \texttt{person} \textit{object}
-        \item Add a contextual comment such as: \texttt{Name of the scammer given to the victim}
+        \item Add a contextual comment such as
+        \begin{itemize}
+            \item \texttt{Name of the scammer given to the victim}
+        \end{itemize}
         \item Include at least: \texttt{full-name}, \texttt{nationality} and \texttt{role}
     \end{itemize}
 \end{frame}
@@ -492,7 +507,7 @@
 \begin{frame}
     \frametitle{Case study 2: Ransomware}
     \begin{itemize}
-        \item[] \textbf{Case}: Ransomware infection through e-mail
+        \item[] \textbf{Case}: Ransomware infection via e-mail
         \item[] \textbf{Chronology - 2022-03-24}
         \begin{itemize}
             \item[] \textbf{\small 11:42:43 UTC+0}: Email containing the ransomware from supposedly Andrew Ryan
@@ -582,7 +597,7 @@ This communication contains information that is intended only for the recipient 
             \begin{itemize}
                 \item ip-address of a C2 server used to generate the SK
             \end{itemize}
-            \item \lstinline|HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run "CryptoLocker":CL.exe|
+            \item \lstinline|HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run "CryptoLocker"|
             \begin{itemize}
                 \item The registry key used for persistence
             \end{itemize}
@@ -624,11 +639,8 @@ D5UfPkv337plrEiUuwIDAQAB
         \end{itemize}
         \item \texttt{\color{black} Andrew Ryan}, \texttt{\color{black} Andrew\_Ryan@rindustries.rp}
         \begin{itemize}
-            \item Person, and his e-mail, occupation and role
-        \end{itemize}
-        \item \texttt{\color{black} Accountant}, \texttt{\color{black} Suspect \& Victim \& Originator}
-        \begin{itemize}
-            \item Person occupation and role
+            \item \texttt{\color{black} Accountant}, \texttt{\color{black} Suspect \& Victim \& Originator}
+            \item Person, e-mail, occupation and role
         \end{itemize}
     \end{itemize}
 
@@ -657,5 +669,135 @@ D5UfPkv337plrEiUuwIDAQAB
     \begin{itemize}
         \item Creating the \textit{event} in MISP
     \end{itemize}
-    % \includegraphics[width=1.0\linewidth]{pictures/case2/event.png}
+    \includegraphics[width=1.0\linewidth]{pictures/case2/event.png}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item Add the original e-mail
+        \item As the email contains multiple contextually linked data points, we should use an \texttt{Email} \textit{object}
+        \item Add contextual comment such as:
+        \begin{itemize}
+            \item \texttt{Email received by the victim containing the ransomware}
+        \end{itemize}
+        \item Include at least: \texttt{from}, \texttt{subject} and \texttt{body}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{center}
+        \includegraphics[width=0.9\linewidth]{pictures/case2/object-mail.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item Add the ransomware binary as attachment
+        \item Pick the \texttt{Payload Delivery} category
+        \item Add contextual comment such as:
+        \begin{itemize}
+            \item \texttt{CryptoLocker ransomware delivered by email}
+        \end{itemize}
+        \item Check \textit{Is a malware sample}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.70\linewidth]{pictures/case2/attribute-bin.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item Encode the IP address of the C2 server with an \textit{attribute}
+        \item Pick the \texttt{Payload Installation} category and \texttt{ip-src}  \texttt{type}
+        \item Check the \texttt{For Intrusion Detection System}
+        \item Add a contextual comment such as
+        \begin{itemize}
+            \item \texttt{IP address of the scammer collected from the RDP log file}
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.42\linewidth]{pictures/case2/attribute-ip.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item Encode the registry keys used for persistence by the ransomware
+        \item As the registry keys contains multiple contextually linked data points, we should use an \texttt{registry-key} \textit{object}
+        \item Add a contextual comment such as
+        \begin{itemize}
+            \item \texttt{The registry key used for persistence, making sure it gets run again after an OS reboot}
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.61\linewidth]{pictures/case2/object-registry-persistence.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item Encode the registry keys used for storing the ransomware's configuration
+        \item As the registry keys contains multiple contextually linked data points, we should use an \texttt{registry-key} \textit{object}
+        \item Add a contextual comment such as
+        \begin{itemize}
+            \item \texttt{Containing configuration data (C2 address, malware version and installation timestamp)}
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.55\linewidth]{pictures/case2/object-registry-config.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item Encode the registry keys used for ransomare PK
+        \item As the registry keys contains multiple contextually linked data points, we should use an \texttt{registry-key} \textit{object}
+        \item Add a contextual comment such as
+        \begin{itemize}
+            \item \texttt{Contains the RSA public key received from the C2 used for encryption}
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.55\linewidth]{pictures/case2/object-registry-pb.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item Encode the bitcoin address used to reveive the ransom
+        \item Pick the \texttt{Financial Fraud} category and \texttt{btc}  \texttt{type}
+        \item Check the \texttt{For Intrusion Detection System}
+        \item Add a contextual comment such as
+        \begin{itemize}
+            \item \texttt{Hardcoded address on which the ransom is asked to be transfered}
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.47\linewidth]{pictures/case2/attribute-btc.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item Encode the name and roles of the person
+        \item As these attributes are contextually linked between each others, we should use a \texttt{person} \textit{object}
+        \item Add a contextual comment such as
+        \begin{itemize}
+            \item \texttt{Person from which the mail seems to originate}
+        \end{itemize}
+        \item Include at least: \texttt{full-name}, \texttt{e-mail} and \texttt{roles}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.42\linewidth]{pictures/case2/object-person.png}
+    \end{center}
+\end{frame}
+
