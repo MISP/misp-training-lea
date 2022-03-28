@@ -19,7 +19,7 @@ and change the password as required
 - Import the provided AIL lxc container:
 
 ``` lxc image import .9f7f3b1504c12ef6d3ddf6748f735ba1c2b9f16d5d2c7b1d7ea7b5b4c9ee5b0d.tar.gz --alias conti-ail```
-``` lxc launch fresh-misp ail01```
+``` lxc launch conti-ail ail01```
 - You can check the newly created container, along with its IP address with:
 `lxc list`
 - Open a terminal in the newly created container with:
