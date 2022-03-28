@@ -148,10 +148,10 @@
         \item[] \textbf{Collected evidences}
         \begin{itemize}
             \item RDP Log file
-            \item installed binary
-            \item victim's browser history
-            \item bank account statement
-            \item victim's phone call log
+            \item Installed binary
+            \item Victim's browser history
+            \item Bank account statement
+            \item Victim's phone call log
         \end{itemize}
     \end{itemize}
     \begin{itemize}
@@ -171,28 +171,28 @@
     \begin{itemize}
         \item[] \textbf{Extracted values}
         \begin{itemize}
-            \item \texttt{194.78.89.250}
+            \item \texttt{\color{black} 194.78.89.250}
             \begin{itemize}
                 \item ip-address from log file
             \end{itemize}
-            \item \texttt{bin.exe}
+            \item \texttt{\color{black} bin.exe}
             \begin{itemize}
                 \item downloaded binary
             \end{itemize}
-            \item \texttt{https://zdgyot.ugic0k.ru/assets/bin.exe}
+            \item \texttt{\color{black} https://zdgyot.ugic0k.ru/assets/bin.exe}
             \begin{itemize}
                 \item download URL
             \end{itemize}
-            \item \texttt{GB 29 NWBK 601613 31926819 }
+            \item \texttt{\color{black} GB 29 NWBK 601613 31926819 }
             \begin{itemize}
                 \item IBAN number
-                \item Swift: \texttt{NWBK}, Account number: \texttt{31926819}, Currency: \texttt{GBP}
+                \item Swift: \texttt{\color{black} NWBK}, Account number: \texttt{\color{black} 31926819}, Currency: \texttt{\color{black} GBP}
             \end{itemize}
-            \item \texttt{+12243359185}
+            \item \texttt{\color{black} +12243359185}
             \begin{itemize}
                 \item phone number
             \end{itemize}
-            \item \texttt{Wallace Breen} is from \texttt{GB}
+            \item \texttt{\color{black} Wallace Breen} is from \texttt{\color{black} GB}
             \begin{itemize}
                 \item name and nationality
             \end{itemize}
@@ -216,7 +216,7 @@
             \item Encode \texttt{full name} and \texttt{nationality} to be shared with \textbf{LEA only}
             \item Add relationships to recreate the events
             \item Add time component to recreate the chronology
-            \item Perform enrichments on the binary, and domain
+            \item Perform enrichments on the binary, and other attribute
             \item Add contextualization
             \item Create a small write-up as an \textit{event report}
             \item Review the distribution level and publish
@@ -492,18 +492,26 @@
 \begin{frame}
     \frametitle{Case study 2: Ransomware}
     \begin{itemize}
-        \item[] \textbf{Case}: xxxx
+        \item[] \textbf{Case}: Ransomware infection through e-mail
         \item[] \textbf{Chronology - 2022-03-24}
         \begin{itemize}
-            \item[] \textbf{\small 11:42:43 UTC+0}: 
-            \item[] \textbf{\small 11:47:27 UTC+0}: 
-            \item[] \textbf{\small 12:06:32 UTC+0}: 
-            \item[] \textbf{\small 12:08:18 UTC+0}: 
-            \item[] \textbf{\small 12:17:51 UTC+0}: 
-            \item[] \textbf{\small 12:25:04 UTC+0}: 
-            \item[] \textbf{\small 2022-03-25 08:39:21 UTC+0}: 
+            \item[] \textbf{\small 11:42:43 UTC+0}: Email containing the ransomware from supposedly Andrew Ryan
+            \item[] \textbf{\small 11:47:27 UTC+0}: Email was read and its attachment opened and executed
+            \item[] \textbf{\small 11:47:28 UTC+0}: Malware add persistence
+            \item[] \textbf{\small 12:08:18 UTC+0}: Malware successfully contacted the C2 to get the PK 
+            \item[] \textbf{\small 12:08:19 UTC+0}: Malware saved the PK in the registry
+            \item[] \textbf{\small 12:25:04 UTC+0}: Malware began the encryption process
+            \item[] \textbf{\small 2022-03-25 08:39:21 UTC+0}: Victim contacted the police
         \end{itemize}
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    Splash message from the Ransomware
+    \begin{center}
+        \includegraphics[width=0.8\linewidth]{./pictures/ransom-btc.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -511,26 +519,116 @@
     \begin{itemize}
         \item[] \textbf{Collected evidences}
         \begin{itemize}
-            \item x
+            \item E-mail received by the victim
+            \item E-mail attachment of the ransomare as an .exe payload
+            \item Windows registry
+            \item Ransomware's public key (PK)
+            \item Captured network traffic
+            \item Message displayed by the ransomware
         \end{itemize}
     \end{itemize}
     \begin{itemize}
         \item[] \textbf{Data extracted from evidences}
         \begin{itemize}
-            \item x
+            \item Original \textbf{e-mail}
+            \item The actual ransomware \textbf{binary}
+            \item \textbf{Registry Keys} for persistence and configuration
+            \item \textbf{Public Key} used for encryption
+            \item C\&C server \textbf{ip address} used to generate the Private Key (SK)
+            \item The \textbf{bitcoin address} on which the ransom should be paid
+            \item The \textbf{person}, impersonated or fake that sent the email
         \end{itemize}
     \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Case study 1: Scam call}
+\begin{frame}[fragile]
+    \frametitle{Case study 2: Ransomware}
+\begin{lstlisting}[basicstyle=\tiny\color{black}]
+Subject: 4829-2375
+From: "Andrew_Ryan" <Andrew_Ryan@rindustries.rp>
+
+Please see the attached Iolta report for 4829-2375.
+
+We received a check request in the amount of $19,637.28 for the above referenced file. However, the attached report refects a $0 balance. At your earliest convenience, please advise how this request is to be funded.
+
+Thanks.
+
+Andrew_Ryan *
+Accounts Payable
+
+Ryan Industries
+42, Central Control Hephaestus - Rapture
+www.rindustries.rp
+
+*Not licensed to practise law.
+
+This communication contains information that is intended only for the recipient named and may be privileged, confidential, subject to the attorney-client privilege, and/or exempt from disclosure under applicable law. If you are not the intended recipient or agent responsible for delivering this communication to the intended recipient, you are hereby notified that you have received this communication in error, and that any review, disclosure, dissemination, distribution, use, or copying of this communication is STRICTLY PROHIBITED. If you have received this communication in error, please notify us immediately by telephone at 1-800-766-7751 or 1-972-643-6600 and destroy the material in its entirety, whether in electronic or hard copy format.
+\end{lstlisting}
+
+    \note[item]{We are dealing with fake values}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Case study 2: Ransomware}
     \begin{itemize}
         \item[] \textbf{Extracted values}
         \begin{itemize}
-            \item \texttt{x}
+            \item \texttt{e-mail} from previous slide
+            \item \texttt{\color{black} cryptolocker.exe}
             \begin{itemize}
-                \item x
+                \item Ransomware attached to the mail
             \end{itemize}
+            \item \texttt{\color{black} 81.177.170.166}
+            \begin{itemize}
+                \item ip-address of a C2 server used to generate the SK
+            \end{itemize}
+            \item \lstinline|HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run "CryptoLocker":CL.exe|
+            \begin{itemize}
+                \item The registry key used for persistence
+            \end{itemize}
+            \item \lstinline|HKCU\SOFTWARE\CryptoLocker VersionInfo|
+            \begin{itemize}
+                \item The registry key containing configuration data
+            \end{itemize}
+            \item \lstinline|HKCU\SOFTWARE\CryptoLocker PublicKey|
+            \begin{itemize}
+                \item The registry key containing the RSA public key received from the C2 server
+            \end{itemize}
+            \item \texttt{\color{black} 0x819C33AE}
+            \begin{itemize}
+                \item XOR key used to encode the configuration data
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+
+    \note[item]{We are dealing with fake values}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Case study 2: Ransomware}
+    \begin{itemize}
+        \item \begin{lstlisting}
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDaogllvHPytDAdUWZPk9aWXJ5G
+Lk9F+HzDaj5qGXou8XmISwChbia/NC84QmBHTiyg4B1tqVjqk5X6yh6pcZuVw+GX
+0CrH5O5o2Q0XVYzYYsEZQB36VHxwm7xTx21yOy2rSOQyOupQ6e7HMGtu7p7+RlWO
+D5UfPkv337plrEiUuwIDAQAB
+-----END PUBLIC KEY-----
+\end{lstlisting}
+        \begin{itemize}
+            \item The public key received from the C2 used to encrypt files
+        \end{itemize}
+        \item \texttt{\color{black} 1KP72fBmh3XBRfuJDMn53APaqM6iMRspCh}
+        \begin{itemize}
+            \item Bitcoin address on which to transfer the ransom
+        \end{itemize}
+        \item \texttt{\color{black} Andrew Ryan}, \texttt{\color{black} Andrew\_Ryan@rindustries.rp}
+        \begin{itemize}
+            \item Person, and his e-mail, occupation and role
+        \end{itemize}
+        \item \texttt{\color{black} Accountant}, \texttt{\color{black} Suspect \& Victim \& Originator}
+        \begin{itemize}
+            \item Person occupation and role
         \end{itemize}
     \end{itemize}
 
@@ -546,7 +644,7 @@
             \item Encode data to be shared
             \item Add relationships to recreate the events
             \item Add time component to recreate the chronology
-            \item Perform enrichments on the binary, and domain
+            \item Perform enrichments on the binary, and other attributes
             \item Add contextualization
             \item Create a small write-up as an \textit{event report}
             \item Review the distribution level and publish
