@@ -448,6 +448,15 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Case study 2: Ransomware}
+    Preventive measures
+    \begin{center}
+        TODO: Include PM
+        % \includegraphics[width=0.80\linewidth]{pictures/case2/event-clusters2.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}
     \frametitle{Case study 1: Scam call}
     Create a small write-up as an \textit{event report}
     \begin{itemize}
@@ -477,15 +486,38 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
-    Review the distribution level and publish
+    \frametitles{Case study 1: Scam call}{Review the distribution level and publish}
+    In our case, we consider the following MISP network topology
     \begin{itemize}
-        \item In our case, we consider the following MISP network topology
         \item The current instance is owned and managed by a LEA
-        \item The current instance is connected to a central MISP instance acting as a "hub"
-        \item The "hub" is connected to various other MISP instances such as other LEAs, CSIRTs, Financial and telecom institutions
+        \item The current instance is connected to a central MISP instance acting as a "Hub"
+        \item The "Hub" is connected to various other MISP instances such as other LEAs, CSIRTs, Financial and telecom institutions
     \end{itemize}
-    \textbf{include diagram}
+
+    \begin{center}
+        \begin{tikzpicture}[
+            entity/.style={rectangle, draw=black, scale=0.7},
+            simplebox/.style={
+                rectangle, rounded corners, thick,
+                draw=main,
+                minimum width=10pt,
+                minimum height=10pt,
+                inner sep=5pt, inner ysep=5pt
+            },
+        ]
+            \node [simplebox] (hub)                     {Hub};
+            \node [simplebox,fill=main] (lea) [ left= 3cm of hub ] {\textcolor{white}{LEA}};
+            \node [simplebox] (csirts) [ above right = 0.3cm and 3cm of hub ] {CSIRTs};
+            \node [simplebox] (telecom) [ right= 3cm of hub ] {Telecom};
+            \node [simplebox] (financial) [ below right= 0.3cm and 3cm of hub ] {Financial};
+
+            \draw[<->,thick] (lea) -- (hub) node [above,midway] {};
+            \draw[<->,thick] (csirts) -- (hub) node [above,midway] {};
+            \draw[<->,thick] (telecom) -- (hub) node [above,midway] {};
+            \draw[<->,thick] (financial) -- (hub) node [above,midway] {};
+
+        \end{tikzpicture}
+    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -1129,15 +1161,38 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
-    Review the distribution level and publish
+    \frametitles{Case study 2: Ransomware}{Review the distribution level and publish}
+    In our case, we consider the following MISP network topology
     \begin{itemize}
-        \item In our case, we consider the following MISP network topology
         \item The current instance is owned and managed by a LEA
-        \item The current instance is connected to a central MISP instance acting as a "hub"
-        \item The "hub" is connected to various other MISP instances such as other LEAs, CSIRTs, Financial and telecom institutions
+        \item The current instance is connected to a central MISP instance acting as a "Hub"
+        \item The "Hub" is connected to various other MISP instances such as other LEAs, CSIRTs, Financial and telecom institutions
     \end{itemize}
-    \textbf{include diagram}
+
+    \begin{center}
+        \begin{tikzpicture}[
+            entity/.style={rectangle, draw=black, scale=0.7},
+            simplebox/.style={
+                rectangle, rounded corners, thick,
+                draw=main,
+                minimum width=10pt,
+                minimum height=10pt,
+                inner sep=5pt, inner ysep=5pt
+            },
+        ]
+            \node [simplebox] (hub)                     {Hub};
+            \node [simplebox,fill=main] (lea) [ left= 3cm of hub ] {\textcolor{white}{LEA}};
+            \node [simplebox] (csirts) [ above right = 0.3cm and 3cm of hub ] {CSIRTs};
+            \node [simplebox] (telecom) [ right= 3cm of hub ] {Telecom};
+            \node [simplebox] (financial) [ below right= 0.3cm and 3cm of hub ] {Financial};
+
+            \draw[<->,thick] (lea) -- (hub) node [above,midway] {};
+            \draw[<->,thick] (csirts) -- (hub) node [above,midway] {};
+            \draw[<->,thick] (telecom) -- (hub) node [above,midway] {};
+            \draw[<->,thick] (financial) -- (hub) node [above,midway] {};
+
+        \end{tikzpicture}
+    \end{center}
 \end{frame}
 
 \begin{frame}
@@ -1145,11 +1200,12 @@ D5UfPkv337plrEiUuwIDAQAB
     Review the distribution level and publish
     \begin{itemize}
         \item \texttt{binary file}: \textbf{All communities}
-        \item \texttt{person}: \textbf{LEA Sharing group}
-        \item \texttt{geolocation}: \textbf{LEA Sharing group}
-        \item \texttt{ip}: \textbf{All communities}
+        \item \texttt{C2 ip} \& \texttt{geolocation}: \textbf{All communities}
+        \item \texttt{crypto-material} \& \texttt{registry-keys}: \textbf{All communities}
+        \item \texttt{person}: \textbf{All communities}
         \begin{itemize}
-            \item The IP is clearly used for delivering malware: It's an IoC
+            \item Even though \texttt{Andrew Ryan} could be a victim due to impersonation, it's very likely that's a fake name
+            \item The email address \texttt{andrew\_ryan@rindustries.rp} IoC outweights the risk
         \end{itemize}
     \end{itemize}
     \begin{center}

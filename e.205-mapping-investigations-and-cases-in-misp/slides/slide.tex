@@ -44,6 +44,17 @@
 \newcommand{\distributable}{\faicon{eye-slash}\hspace*{0.3em}}
 \newcommand{\synchronisable}{\faicon{exchange}\hspace*{0.3em}}
 
+% Add a frame title along with a subtitle
+% arg1 = frame title
+% arg2 = frame subtitle
+\NewDocumentCommand{\frametitles}{m m}{
+    \ifthenelse{\isempty{#1}}{}{
+        \frametitle{#1
+            \ifthenelse{\isempty{#2}}{}{\\ \small \vspace{-5pt}\hspace{5pt} $\blacktriangleright$ #2}
+        }
+    }
+}
+
 %
 % Layout
 %
