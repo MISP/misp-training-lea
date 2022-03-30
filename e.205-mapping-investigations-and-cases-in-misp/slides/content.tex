@@ -206,7 +206,7 @@
     \frametitle{Case study 1: Scam call}
     \begin{itemize}
         \item[] \textbf{Tasks}
-        \begin{itemize}
+        \begin{enumerate}
             \item Create an new \textit{event} to be shared with \textbf{all}
             \item Encode \texttt{binary} to be shared with \textbf{CSIRT}
             \item Encode \texttt{ip address} to be shared with both \textbf{ISP} and \textbf{CSIRT}
@@ -220,24 +220,20 @@
             \item Add contextualization
             \item Create a small write-up as an \textit{event report}
             \item Review the distribution level and publish
-        \end{itemize}
+        \end{enumerate}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
-    \begin{itemize}
-        \item Creating the \textit{event} in MISP
-    \end{itemize}
+    \frametitles{Case study 1: Scam call}{Creating the \textit{event} in MISP}
     \includegraphics[width=1.0\linewidth]{pictures/case1/event.png}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
+    \frametitles{Case study 1: Scam call}{Adding the binary as attachment}
     \begin{itemize}
-        \item Adding the binary as attachment
-        \item Pick the \texttt{Payload Delivery} category
-        \item Check \textit{Is a malware sample}
+        \item Pick the \texttt{\color{black} Payload Delivery} category
+        \item Check \textit{\color{black} Is a malware sample}
     \end{itemize}
     \begin{center}
         \includegraphics[width=0.80\linewidth]{pictures/case1/attribute-bin.png}
@@ -245,29 +241,28 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
+    \frametitles{Case study 1: Scam call}{Encode the IP address}
     \begin{itemize}
         \item Encode the IP address of the scammer with an \textit{attribute}
-        \item Pick the \texttt{Payload Installation} category and \texttt{ip-src}  \texttt{type}
-        \item Check the \texttt{For Intrusion Detection System}
+        \item Pick the \texttt{\color{black} Payload Installation} category and \texttt{\color{black} ip-src}  \texttt{type}
+        \item Check the \texttt{\color{black} For Intrusion Detection System}
         \item Add a contextual comment such as
         \begin{itemize}
             \item \texttt{IP address of the scammer collected from the RDP log file}
         \end{itemize}
     \end{itemize}
     \begin{center}
-        \includegraphics[width=0.63\linewidth]{pictures/case1/attribute-ip.png}
+        \includegraphics[width=0.55\linewidth]{pictures/case1/attribute-ip.png}
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
+    \frametitles{Case study 1: Scam call}{Encode the domain/URL used to download the binary}
     \begin{itemize}
-        \item Encode the domain and the URL from which the binary was downloaded
-        \item As these two attributes are contextually linked between each others, we should use an \texttt{URL} \textit{object}
+        \item As these two attributes are contextually linked between each others, we should use an \texttt{\color{black} URL} \textit{object}
         \item Add a contextual comment such as
         \begin{itemize}
-            \item \texttt{URL used by the scammer to download the binary}
+            \item \texttt{\color{black} URL used by the scammer to download the binary}
         \end{itemize}
         \item Include at least: \texttt{url}, \texttt{domain} and \texttt{ressource\_path}
     \end{itemize}
@@ -281,13 +276,12 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
+    \frametitles{Case study 1: Scam call}{Encode the bank account}
     \begin{itemize}
-        \item Encode the bank account
-        \item As these 4 attributes are contextually linked between each others, we should use an \texttt{bank-account} \textit{object}
+        \item As these 4 attributes are contextually linked between each others, we should use an \texttt{\color{black} bank-account} \textit{object}
         \item Add a contextual comment such as
         \begin{itemize}
-            \item \texttt{Bank account that received the money. Supposed to belong to the scammer}
+            \item \texttt{\color{black} Bank account that received the money. Supposed to belong to the scammer}
         \end{itemize}
         \item Include at least: \texttt{iban}, \texttt{swift}, \texttt{account} and \texttt{currency\_code}
     \end{itemize}
@@ -301,29 +295,27 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
+    \frametitles{Case study 1: Scam call}{Encode the phone number}
     \begin{itemize}
-        \item Encode the phone number
-        \item Pick the \texttt{Financial Fraud} category and \texttt{phone-number} \texttt{type}
+        \item Pick the \texttt{\color{black} Financial Fraud} category and \texttt{\color{black} phone-number} \texttt{type}
         \item Add a contextual comment such as
         \begin{itemize}
-            \item \texttt{Phone number used by the scammer to call the victim}
+            \item \texttt{\color{black} Phone number used by the scammer to call the victim}
         \end{itemize}
-        \item Check \textit{For Intrusion Detection System}
+        \item Check \textit{\color{black} For Intrusion Detection System}
     \end{itemize}
     \begin{center}
-        \includegraphics[width=0.70\linewidth]{pictures/case1/attribute-phone.png}
+        \includegraphics[width=0.55\linewidth]{pictures/case1/attribute-phone.png}
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
+    \frametitles{Case study 1: Scam call}{Encode the full name and nationality}
     \begin{itemize}
-        \item Encode the full name and nationality
-        \item As these attributes are contextually linked between each others, we should use a \texttt{person} \textit{object}
+        \item As these attributes are contextually linked between each others, we should use a \texttt{\color{black} person} \textit{object}
         \item Add a contextual comment such as
         \begin{itemize}
-            \item \texttt{Name of the scammer given to the victim}
+            \item \texttt{\color{black} Name of the scammer given to the victim}
         \end{itemize}
         \item Include at least: \texttt{full-name}, \texttt{nationality} and \texttt{role}
     \end{itemize}
@@ -332,12 +324,12 @@
 \begin{frame}
     \frametitle{Case study 1: Scam call}
     \begin{center}
-        \includegraphics[width=1.0\linewidth]{pictures/case1/object-person.png}
+        \includegraphics[width=0.95\linewidth]{pictures/case1/object-person.png}
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
+    \frametitles{Case study 1: Scam call}{Creating relationships}
     Add (at least) these relationships to recreate the story
 
     \begin{center}
@@ -345,7 +337,7 @@
             entity/.style={rectangle, draw=black, scale=1.0},
             simplebox/.style={
                 rectangle, rounded corners, thick,
-                draw=blue!30,
+                draw=main,
                 minimum width=10pt,
                 minimum height=10pt,
                 inner sep=5pt, inner ysep=5pt
@@ -354,46 +346,46 @@
 
             \node [simplebox] (person1)                     {person};
             \node [simplebox] (phone-number) [ right= 7cm of person1 ] {phone-number};
-            \draw[->,thick] (person1) -- (phone-number) node [above,midway] {\texttt{owner-of}};
+            \draw[->,thick] (person1) -- (phone-number) node [above,midway] {\texttt{\color{black} owner-of}};
 
             \node [simplebox] (person2) [ below= 0.5cm of person1]       {person};
             \node [simplebox] (bank-account) [ right= 7cm of person2 ] {bank-account};
-            \draw[->,thick] (person2) -- (bank-account) node [above,midway] {\texttt{owner-of}};
+            \draw[->,thick] (person2) -- (bank-account) node [above,midway] {\texttt{\color{black} owner-of}};
 
             \node [simplebox] (binary) [ below= 0.5cm of person2 ] {binary};
             \node [simplebox] (url)    [ right= 7cm of binary ] {URL};
-            \draw[->,thick] (binary) -- (url) node [above,midway] {\texttt{downloaded-from}};
+            \draw[->,thick] (binary) -- (url) node [above,midway] {\texttt{\color{black} downloaded-from}};
 
             \node [simplebox] (person3) [ below= 0.5cm of binary ] {person};
             \node [simplebox] (binary)  [ right= 7cm of person3 ] {binary};
-            \draw[->,thick] (person3) -- (binary) node [above,midway] {\texttt{downloaded}};
+            \draw[->,thick] (person3) -- (binary) node [above,midway] {\texttt{\color{black} downloaded}};
 
             \node [simplebox] (person4) [ below= 0.5cm of person3 ] {person};
             \node [simplebox] (binary)  [ right= 7cm of person4 ]  {binary};
-            \draw[->,thick] (person4) -- (binary) node [above,midway] {\texttt{installed}};
+            \draw[->,thick] (person4) -- (binary) node [above,midway] {\texttt{\color{black} installed}};
 
         \end{tikzpicture}
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
-    Add relationships to recreate the story
+    \frametitles{Case study 1: Scam call}{Creating relationships}
     \includegraphics[width=1.0\linewidth]{pictures/case1/event-graph.png}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
-    Add time component to recreate the chronology
+    \frametitles{Case study 1: Scam call}{Adding time component}
+    The time component is useful to recreate the chronology
     \begin{itemize}
         \item Main focus is the Cyber Threat Intelligence (CTI) aspect
     \end{itemize}
     \includegraphics[width=1.0\linewidth]{pictures/case1/timeline.png}
+    \note[item]{The time can be added by giving a value to the `first-seen` and `last-seen` on an Attribute or Object}
+    \note[item]{It can also be done by drag-and-drop using the timeline directly}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
-    Perform enrichments
+    \frametitles{Case study 1: Scam call}{Perform enrichments}
     \begin{itemize}
         \item Scammer IP address to get its location
         \item Binary to check if it's an existing (and malicious) application
@@ -402,45 +394,39 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
+    \frametitles{Case study 1: Scam call}{Contextualizing the data with \textit{Taxonomies}}
     \begin{itemize}
-        \item Contextualizing the data: Taxonomies
-        \begin{itemize}
-            \item Note: Different country / sectors might use different nomemclature
-        \end{itemize}
+        \item Note: Different country / sectors might use different nomemclature
         \item Suggestions for tagging with taxonomies:
         \begin{itemize}
-            \item \texttt{circl:incident-classification="scam"}
-            \item \texttt{\tiny social-engineering-attack-vectors:non-technical="technical-expert"}
-            \item \texttt{\tiny social-engineering-attack-vectors:technical="vishing"}
-            \item \texttt{veris:action:hacking:vector="Desktop sharing"}
-            \item \texttt{veris:action:malware:vector="Direct install"}
-            \item \texttt{veris:action:social:variety="Scam"}
-            \item \texttt{veris:action:social:vector="Phone"}
-            \item \texttt{veris:actor:external:motive="Financial"}
-            \item \texttt{veris:impact:loss:rating="Minor"}
-            \item \texttt{veris:impact:loss:variety="Asset and fraud"}
-            \item \texttt{workflow:state="complete"}
-            \item \texttt{tlp:green}
+            \item \texttt{\color{black} circl:incident-classification="scam"}
+            \item \texttt{\color{black} \tiny social-engineering-attack-vectors:non-technical="technical-expert"}
+            \item \texttt{\color{black} \tiny social-engineering-attack-vectors:technical="vishing"}
+            \item \texttt{\color{black} veris:action:hacking:vector="Desktop sharing"}
+            \item \texttt{\color{black} veris:action:malware:vector="Direct install"}
+            \item \texttt{\color{black} veris:action:social:variety="Scam"}
+            \item \texttt{\color{black} veris:action:social:vector="Phone"}
+            \item \texttt{\color{black} veris:actor:external:motive="Financial"}
+            \item \texttt{\color{black} veris:impact:loss:rating="Minor"}
+            \item \texttt{\color{black} veris:impact:loss:variety="Asset and fraud"}
+            \item \texttt{\color{black} workflow:state="complete"}
+            \item \texttt{\color{black} tlp:green}
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
+    \frametitles{Case study 1: Scam call}{Contextualizing the data with \textit{Taxonomies}}
     \includegraphics[width=1.0\linewidth]{pictures/case1/event-tags.png}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
+    \frametitles{Case study 1: Scam call}{Contextualizing the data with \textit{Galaxy Clusters}}
     \begin{itemize}
-        \item Contextualizing the data: Galaxy Clusters
+        \item Note: Different country / sectors might use different nomemclature
+        \item Suggestions for tagging with Galaxies Clusters:
         \begin{itemize}
-            \item Note: Different country / sectors might use different nomemclature
-        \end{itemize}
-        \item Suggestions for tagging with Galaxies:
-        \begin{itemize}
-            \item MITRE Attack Pattern
+            \item \texttt{\color{black} MITRE Attack Pattern}
         \end{itemize}
     \end{itemize}
     \vspace{1cm}
@@ -457,8 +443,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
-    Create a small write-up as an \textit{event report}
+    \frametitles{Case study 1: Scam call}{Write-up with an \textit{event report}}
     \begin{itemize}
         \item Create the \textit{event report} with a concise name
         \item Example: Executive summary of the case
@@ -478,10 +463,10 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
-    Create a small write-up as an \textit{event report}
+    \frametitles{Case study 1: Scam call}{Write-up with an \textit{event report}}
+    \vspace{-3pt}
     \begin{center}
-        \includegraphics[width=0.65\linewidth]{pictures/case1/event-report.png}
+        \includegraphics[width=0.64\linewidth]{pictures/case1/event-report.png}
     \end{center}
 \end{frame}
 
@@ -521,8 +506,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 1: Scam call}
-    Review the distribution level and publish
+    \frametitles{Case study 1: Scam call}{Review the distribution level and publish}
     \begin{itemize}
         \item \texttt{binary file}: \textbf{All communities}
         \item \texttt{person}: \textbf{LEA Sharing group}
@@ -703,7 +687,7 @@ D5UfPkv337plrEiUuwIDAQAB
     \frametitle{Case study 2: Ransomware}
     \begin{itemize}
         \item[] \textbf{Tasks}
-        \begin{itemize}
+        \begin{enumerate}
             \item Create an new \textit{event} to be shared with \textbf{all}
             \item Encode data to be shared
             \item Add relationships to recreate the events
@@ -712,48 +696,43 @@ D5UfPkv337plrEiUuwIDAQAB
             \item Add contextualization
             \item Create a small write-up as an \textit{event report}
             \item Review the distribution level and publish
-        \end{itemize}
+        \end{enumerate}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
-    \begin{itemize}
-        \item Creating the \textit{event} in MISP
-    \end{itemize}
+    \frametitles{Case study 2: Ransomware}{Creating the \textit{event} in MISP}
     \includegraphics[width=1.0\linewidth]{pictures/case2/event.png}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Add the original e-mail}
     \begin{itemize}
-        \item Add the original e-mail
-        \item As the email contains multiple contextually linked data points, we should use an \texttt{Email} \textit{object}
+        \item As the email contains multiple contextually linked data points, we should use an \texttt{\color{black} Email} \textit{object}
         \item Add contextual comment such as:
         \begin{itemize}
-            \item \texttt{Email received by the victim containing the ransomware}
+            \item \texttt{\color{black} Email received by the victim containing the ransomware}
         \end{itemize}
         \item Include at least: \texttt{from}, \texttt{subject} and \texttt{body}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Add the original e-mail}
     \begin{center}
-        \includegraphics[width=0.9\linewidth]{pictures/case2/object-mail.png}
+        \includegraphics[width=0.88\linewidth]{pictures/case2/object-mail.png}
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Add the ransomware binary as attachment}
     \begin{itemize}
-        \item Add the ransomware binary as attachment
-        \item Pick the \texttt{Payload Delivery} category
+        \item Pick the \texttt{\color{black} Payload Delivery} category
         \item Add contextual comment such as:
         \begin{itemize}
-            \item \texttt{CryptoLocker ransomware delivered by email}
+            \item \texttt{\color{black} CryptoLocker ransomware delivered by email}
         \end{itemize}
-        \item Check \textit{Is a malware sample}
+        \item Check \textit{\color{black} Is a malware sample}
     \end{itemize}
     \begin{center}
         \includegraphics[width=0.70\linewidth]{pictures/case2/attribute-bin.png}
@@ -761,11 +740,10 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Encode the C2's IP address}
     \begin{itemize}
-        \item Encode the IP address of the C2 server with an \textit{attribute}
-        \item Pick the \texttt{Payload Installation} category and \texttt{ip-src}  \texttt{type}
-        \item Check the \texttt{For Intrusion Detection System}
+        \item Create an \textit{attribute} and pick the \texttt{\color{black} Payload Installation} category and \texttt{\color{black} ip-src}  \texttt{type}
+        \item Check the \texttt{\color{black} For Intrusion Detection System}
         \item Add a contextual comment such as
         \begin{itemize}
             \item \texttt{IP address of the scammer collected from the RDP log file}
@@ -777,13 +755,12 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Encode the registry keys used for persistence}
     \begin{itemize}
-        \item Encode the registry keys used for persistence by the ransomware
-        \item As the registry keys contains multiple contextually linked data points, we should use an \texttt{registry-key} \textit{object}
+        \item As the registry keys contains multiple contextually linked data points, we should use an \texttt{\color{black} registry-key} \textit{object}
         \item Add a contextual comment such as
         \begin{itemize}
-            \item \texttt{The registry key used for persistence, making sure it gets run again after an OS reboot}
+            \item \texttt{\color{black} The registry key used for persistence, making sure it gets run again after an OS reboot}
         \end{itemize}
     \end{itemize}
     \begin{center}
@@ -792,13 +769,12 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Encode the registry keys used for storing the configuration}
     \begin{itemize}
-        \item Encode the registry keys used for storing the ransomware's configuration
-        \item As the registry keys contains multiple contextually linked data points, we should use an \texttt{registry-key} \textit{object}
+        \item As the registry keys contains multiple contextually linked data points, we should use an \texttt{\color{black} registry-key} \textit{object}
         \item Add a contextual comment such as
         \begin{itemize}
-            \item \texttt{Containing configuration data (C2 address, malware version and installation timestamp)}
+            \item \texttt{\color{black} Containing configuration data (C2 address, malware version and installation timestamp)}
         \end{itemize}
     \end{itemize}
     \begin{center}
@@ -807,13 +783,12 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Encode the registry keys used for storing the PK}
     \begin{itemize}
-        \item Encode the registry keys used for ransomware PK
-        \item As the registry keys contains multiple contextually linked data points, we should use an \texttt{registry-key} \textit{object}
+        \item As the registry keys contains multiple contextually linked data points, we should use an \texttt{\color{black} registry-key} \textit{object}
         \item Add a contextual comment such as
         \begin{itemize}
-            \item \texttt{Contains the RSA public key received from the C2 used for encryption}
+            \item \texttt{\color{black} Contains the RSA public key received from the C2 used for encryption}
         \end{itemize}
     \end{itemize}
     \begin{center}
@@ -822,14 +797,13 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Encode the bitcoin address used to reveive the ransom}
     \begin{itemize}
-        \item Encode the bitcoin address used to reveive the ransom
-        \item Pick the \texttt{Financial Fraud} category and \texttt{btc}  \texttt{type}
-        \item Check the \texttt{For Intrusion Detection System}
+        \item Create an \textit{attribute} and pick the \texttt{\color{black} Financial Fraud} category and \texttt{\color{black} btc}  \texttt{type}
+        \item Check the \texttt{\color{black} For Intrusion Detection System}
         \item Add a contextual comment such as
         \begin{itemize}
-            \item \texttt{Hardcoded address on which the ransom is asked to be transfered}
+            \item \texttt{\color{black} Hardcoded address on which the ransom is asked to be transfered}
         \end{itemize}
     \end{itemize}
     \begin{center}
@@ -838,13 +812,12 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Encode the name and roles of the person}
     \begin{itemize}
-        \item Encode the name and roles of the person
-        \item As these attributes are contextually linked between each others, we should use a \texttt{person} \textit{object}
+        \item As these attributes are contextually linked between each others, we should use a \texttt{\color{black} person} \textit{object}
         \item Add a contextual comment such as
         \begin{itemize}
-            \item \texttt{Person from which the mail seems to originate}
+            \item \texttt{\color{black} Person from which the mail seems to originate}
         \end{itemize}
         \item Include at least: \texttt{full-name}, \texttt{e-mail} and \texttt{roles}
     \end{itemize}
@@ -854,25 +827,22 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Encode the XOR key}
     \begin{itemize}
-        % \item Encode the XOR key
-        % \item Pick the \texttt{Artifacts dropeed} category and \texttt{hex} \texttt{type}
-        % \item Check the \texttt{For Intrusion Detection System}
-        % \item Add a contextual comment such as
-        % TODO
-        \item use crypto material
+        \item As these attributes are contextually linked between each others, we should use a \texttt{\color{black} crypto-material} \textit{object}
+        \item Add a contextual comment such as
         \begin{itemize}
-            \item \texttt{XOR key used to encode the malware's configuration in the registry}
+            \item \texttt{\color{black} XOR key used to encode the malware's configuration in the registry}
         \end{itemize}
+        \item Include at least: \texttt{type} and \texttt{generic-symmetric-key}
     \end{itemize}
     \begin{center}
-        \includegraphics[width=0.47\linewidth]{pictures/case2/attribute-key.png}
+        \includegraphics[width=0.6\linewidth]{pictures/case2/object-crypto.png}
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Creating relationships}
     Add (at least) these relationships to recreate the story
 
     \begin{center}
@@ -880,7 +850,7 @@ D5UfPkv337plrEiUuwIDAQAB
             entity/.style={rectangle, draw=black, scale=0.7},
             simplebox/.style={
                 rectangle, rounded corners, thick,
-                draw=blue!30,
+                draw=main,
                 minimum width=10pt,
                 minimum height=10pt,
                 inner sep=5pt, inner ysep=5pt
@@ -889,54 +859,54 @@ D5UfPkv337plrEiUuwIDAQAB
 
             \node [simplebox] (person1)                     {person};
             \node [simplebox] (mail1) [ right= 5cm of person1 ] {email};
-            \draw[->,thick] (person1) -- (mail1) node [above,midway] {\texttt{sends}};
+            \draw[->,thick] (person1) -- (mail1) node [above,midway] {\texttt{\color{black} sends}};
 
             \node [simplebox] (mail2) [ below= 0.25cm of person1]       {email};
             \node [simplebox] (file1) [ right= 5cm of mail2 ] {malware};
-            \draw[->,thick] (mail2) -- (file1) node [above,midway] {\texttt{contains}};
+            \draw[->,thick] (mail2) -- (file1) node [above,midway] {\texttt{\color{black} contains}};
 
             \node [simplebox] (file2) [ below= 0.25cm of mail2 ] {malware};
             \node [simplebox] (registry-persistence)    [ right= 5cm of file2 ] {registry-persistence};
-            \draw[->,thick] (file2) -- (registry-persistence) node [above,midway] {\texttt{write}};
+            \draw[->,thick] (file2) -- (registry-persistence) node [above,midway] {\texttt{\color{black} write}};
 
             \node [simplebox] (file5) [ below= 0.25cm of file2 ] {malware};
             \node [simplebox] (ip)    [ right= 5cm of file5 ] {c2 ip};
-            \draw[->,thick] (file5) -- (ip) node [above,midway] {\texttt{connects-to}};
+            \draw[->,thick] (file5) -- (ip) node [above,midway] {\texttt{\color{black} connects-to}};
 
             \node [simplebox] (file3) [ below= 0.25cm of file5 ] {malware};
             \node [simplebox] (registry-pb)    [ right= 5cm of file3 ] {registry-pb};
-            \draw[->,thick] (file3) -- (registry-pb) node [above,midway] {\texttt{write}};
+            \draw[->,thick] (file3) -- (registry-pb) node [above,midway] {\texttt{\color{black} write}};
 
             \node [simplebox] (file4) [ below= 0.25cm of file3 ] {malware};
             \node [simplebox] (registry-config)    [ right= 5cm of file4 ] {registry-config};
-            \draw[->,thick] (file4) -- (registry-config) node [above,midway] {\texttt{write}};
+            \draw[->,thick] (file4) -- (registry-config) node [above,midway] {\texttt{\color{black} write}};
 
             \node [simplebox] (registry-config2) [ below= 0.25cm of file4 ] {registry-config};
             \node [simplebox] (xor-key)    [ right= 5cm of registry-config2 ] {XOR key};
-            \draw[->,thick] (registry-config2) -- (xor-key) node [above,midway] {\texttt{uses}};
+            \draw[->,thick] (registry-config2) -- (xor-key) node [above,midway] {\texttt{\color{black} uses}};
 
         \end{tikzpicture}
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
-    Add relationships to recreate the story
+    \frametitles{Case study 2: Ransomware}{Creating relationships}
     \includegraphics[width=1.0\linewidth]{pictures/case2/event-graph.png}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
-    Add time component to recreate the chronology
+    \frametitles{Case study 2: Ransomware}{Adding time component}
+    The time component is useful to recreate the chronology
     \begin{itemize}
         \item Main focus is the Cyber Threat Intelligence (CTI) aspect
     \end{itemize}
     \includegraphics[width=1.0\linewidth]{pictures/case2/timeline.png}
+    \note[item]{The time can be added by giving a value to the `first-seen` and `last-seen` on an Attribute or Object}
+    \note[item]{It can also be done by drag-and-drop using the timeline directly}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
-    Perform enrichments
+    \frametitles{Case study 2: Ransomware}{Perform enrichments}
     \begin{itemize}
         \item IP address to get its location
     \end{itemize}
@@ -944,8 +914,7 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
-    Perform enrichments
+    \frametitles{Case study 2: Ransomware}{Perform enrichments}
     \begin{itemize}
         \item Bitcoin wallet to view the transactions
     \end{itemize}
@@ -953,12 +922,9 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Contextualizing the data with \textit{Taxonomies}}
     \begin{itemize}
-        \item Contextualizing the data
-        \begin{itemize}
-            \item Different country / sectors might use different nomemclature
-        \end{itemize}
+        \item Different country / sectors might use different nomemclature
         \item Suggestions of taxonomies for tagging:
         \begin{itemize}
             \item \texttt{adversary}: adversary infrastructure
@@ -978,70 +944,70 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Contextualizing the data with \textit{Taxonomies}}
     \begin{itemize}
         \item Incident type
         \begin{itemize}
-            \item \texttt{circl:incident-classification="ransomware"}
-            \item \texttt{enisa:nefarious-activity-abuse="ransomware"}
-            \item \texttt{europol-incident:malware="infection"}
-            \item \texttt{europol-incident:malware="c\&c"}
-            \item \texttt{ms-caro-malware:malware-type="Ransom"}
+            \item \texttt{\color{black} circl:incident-classification="ransomware"}
+            \item \texttt{\color{black} enisa:nefarious-activity-abuse="ransomware"}
+            \item \texttt{\color{black} europol-incident:malware="infection"}
+            \item \texttt{\color{black} europol-incident:malware="c\&c"}
+            \item \texttt{\color{black} ms-caro-malware:malware-type="Ransom"}
         \end{itemize}
         \item Malware type
         \begin{itemize}
-            \item \texttt{\scriptsize malware\_classification:malware-category="Ransomware"}
-            \item \texttt{ransomware:type="crypto-ransomware"}
+            \item \texttt{\color{black} \scriptsize malware\_classification:malware-category="Ransomware"}
+            \item \texttt{\color{black} ransomware:type="crypto-ransomware"}
         \end{itemize}
         \item Collaration and Sharing
         \begin{itemize}
-            \item \texttt{\tiny collaborative-intelligence:request="extracted-malware-config"}
-            \item \texttt{workflow:state="complete"}
-            \item \texttt{tlp:green}
+            \item \texttt{\color{black} \tiny collaborative-intelligence:request="extracted-malware-config"}
+            \item \texttt{\color{black} workflow:state="complete"}
+            \item \texttt{\color{black} tlp:green}
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Contextualizing the data with \textit{Taxonomies}}
     \begin{itemize}
         \item Infection vector
         \begin{itemize}
-            \item \texttt{europol-event:dissemination-malware-email}
-            \item \texttt{\tiny maec-delivery-vectors:maec-delivery-vector="email-attachment"}
-            \item \texttt{ransomware:infection="phishing-e=mails"}
+            \item \texttt{\color{black} europol-event:dissemination-malware-email}
+            \item \texttt{\color{black} \tiny maec-delivery-vectors:maec-delivery-vector="email-attachment"}
+            \item \texttt{\color{black} ransomware:infection="phishing-e=mails"}
         \end{itemize}
         \item Adversary infrastructure
         \begin{itemize}
-            \item \texttt{adversary:infrastructure-type="c2"}
-            \item \texttt{veris:action:malware:variety="C2"}
+            \item \texttt{\color{black} adversary:infrastructure-type="c2"}
+            \item \texttt{\color{black} veris:action:malware:variety="C2"}
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Contextualizing the data with \textit{Taxonomies}}
     Malware-specific information
     \begin{itemize}
-        \item \texttt{\scriptsize maec-malware-capabilities:maec-malware-capability="fraud"}
-        \item \texttt{\tiny maec-malware-capabilities:maec-malware-capability="persistence"}
-        \item \texttt{\tiny maec-malware-capabilities:maec-malware-capability="communicate-with-c2-server"}
-        \item \texttt{\tiny maec-malware-capabilities:maec-malware-capability="compromise-data-availability"}
-        \item \texttt{\scriptsize ransomware:element="ransomnote"}
-        \item \texttt{\scriptsize ransomware:element="dropper"}
-        \item \texttt{\tiny ransomware:complexity-level="file-restoration-possible-using-shadow-volume-copies"}
-        \item \texttt{\tiny ransomware:complexity-level="file-restoration-possible-using-backups"}
-        \item \texttt{\tiny ransomware:complexity-level=\\ "decryption-key-recovered-from-a-C\&C-server-or-network-communications"}
-        \item \texttt{\tiny ransomware:complexity-level="encryption-model-is-seemingly-flawless"}
-        \item \texttt{\scriptsize ransomware:purpose="deployed-as-ransomware-extortion"}
-        \item \texttt{\scriptsize ransomware:target="pc-workstation"}
-        \item \texttt{\scriptsize ransomware:communication="dga-based"}
-        \item \texttt{\scriptsize ransomware:malicious-action="asymmetric-key-encryption"}
+        \item \texttt{\color{black} \scriptsize maec-malware-capabilities:maec-malware-capability="fraud"}
+        \item \texttt{\color{black} \tiny maec-malware-capabilities:maec-malware-capability="persistence"}
+        \item \texttt{\color{black} \tiny maec-malware-capabilities:maec-malware-capability="communicate-with-c2-server"}
+        \item \texttt{\color{black} \tiny maec-malware-capabilities:maec-malware-capability="compromise-data-availability"}
+        \item \texttt{\color{black} \scriptsize ransomware:element="ransomnote"}
+        \item \texttt{\color{black} \scriptsize ransomware:element="dropper"}
+        \item \texttt{\color{black} \tiny ransomware:complexity-level="file-restoration-possible-using-shadow-volume-copies"}
+        \item \texttt{\color{black} \tiny ransomware:complexity-level="file-restoration-possible-using-backups"}
+        \item \texttt{\color{black} \tiny ransomware:complexity-level=\\ "decryption-key-recovered-from-a-C\&C-server-or-network-communications"}
+        \item \texttt{\color{black} \tiny ransomware:complexity-level="encryption-model-is-seemingly-flawless"}
+        \item \texttt{\color{black} \scriptsize ransomware:purpose="deployed-as-ransomware-extortion"}
+        \item \texttt{\color{black} \scriptsize ransomware:target="pc-workstation"}
+        \item \texttt{\color{black} \scriptsize ransomware:communication="dga-based"}
+        \item \texttt{\color{black} \scriptsize ransomware:malicious-action="asymmetric-key-encryption"}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Contextualizing the data with \textit{Taxonomies}}
     \includegraphics[width=1.0\linewidth]{pictures/case2/event-tags.png}
     \vspace{0.25cm}
     \begin{itemize}
@@ -1055,7 +1021,7 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Contextualizing the data with \textit{Taxonomies}}
     \includegraphics[width=1.0\linewidth]{pictures/case2/attribute-tags1.png}
     \vspace{0.25cm}
     \begin{itemize}
@@ -1064,7 +1030,7 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Contextualizing the data with \textit{Taxonomies}}
     \begin{itemize}
         \item Adding tags on attribute level make the role of the data clearer
         \item Make searches and exports easier
@@ -1074,12 +1040,9 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Contextualizing the data with \textit{Galaxy Clusters}}
     \begin{itemize}
-        \item Contextualizing the data: Galaxy Clusters
-        \begin{itemize}
-            \item Note: Different country / sectors might use different nomemclature
-        \end{itemize}
+        \item Note: Different country / sectors might use different nomemclature
         \item Suggestions for tagging with Galaxies:
         \begin{itemize}
             \item Malpedia
@@ -1091,14 +1054,14 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Contextualizing the data with \textit{Galaxy Clusters}}
     \begin{center}
         \includegraphics[width=0.80\linewidth]{pictures/case2/event-clusters.png}
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Contextualizing the data with \textit{Galaxy Clusters}}
     Preventive measures
     \begin{center}
         TODO: Include PM
@@ -1107,16 +1070,15 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Contextualizing the data with \textit{Galaxy Clusters}}
     MITRE ATT\&CK Matrix\\
 
-    \vspace{1cm}
+    \vspace{6pt}
     \includegraphics[width=1.0\linewidth]{pictures/case2/event-attack.png}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
-    Create a small write-up as an \textit{event report}
+    \frametitles{Case study 2: Ransomware}{Write-up with an \textit{event report}}
     \begin{itemize}
         \item Create the \textit{event report} with a concise name
         \item Example: Executive summary of the case
@@ -1136,10 +1098,9 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Write-up with an \textit{event report}}
     \begin{itemize}
-        \item Create a small write-up as an \textit{event report}
-        \item We could have a technical report and another one for the incident
+        \item We could have one technical report and another report for the incident
     \end{itemize}
     \begin{center}
         \includegraphics[width=1.0\linewidth]{pictures/case2/event-report-list.png}
@@ -1147,16 +1108,17 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Write-up with an \textit{event report} (technical)}
     \begin{center}
         \includegraphics[width=0.65\linewidth]{pictures/case2/event-report-2.png}
     \end{center}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
+    \frametitles{Case study 2: Ransomware}{Write-up with an \textit{event report} (technical)}
+    \vspace{-5pt}
     \begin{center}
-        \includegraphics[width=0.65\linewidth]{pictures/case2/event-report-3.png}
+        \includegraphics[width=0.63\linewidth]{pictures/case2/event-report-3.png}
     \end{center}
 \end{frame}
 
@@ -1196,16 +1158,15 @@ D5UfPkv337plrEiUuwIDAQAB
 \end{frame}
 
 \begin{frame}
-    \frametitle{Case study 2: Ransomware}
-    Review the distribution level and publish
+    \frametitles{Case study 2: Ransomware}{Review the distribution level and publish}
     \begin{itemize}
         \item \texttt{binary file}: \textbf{All communities}
         \item \texttt{C2 ip} \& \texttt{geolocation}: \textbf{All communities}
         \item \texttt{crypto-material} \& \texttt{registry-keys}: \textbf{All communities}
         \item \texttt{person}: \textbf{All communities}
         \begin{itemize}
-            \item Even though \texttt{Andrew Ryan} could be a victim due to impersonation, it's very likely that's a fake name
-            \item The email address \texttt{andrew\_ryan@rindustries.rp} IoC outweights the risk
+            \item Even though \texttt{Andrew Ryan} could be a victim due to impersonation, it's very likely that it's a fake name
+            \item The email address \texttt{andrew\_ryan@rindustries.rp} should be considered as an IoC
         \end{itemize}
     \end{itemize}
     \begin{center}
