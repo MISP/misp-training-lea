@@ -93,8 +93,8 @@ All the materials are dual-licensed under GNU Affero General Public License vers
 
 # Acknowledgement
 
-- <img src="https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/cyberex.jpg" width="100">
-- <img src="https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/ecteg.jpg"width="100">
-- <img src="https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/eu.png" width="100">
-- <img src="https://raw.githubusercontent.com/MISP/MISP/2.4/INSTALL/logos/misp-logo.png" width="100">
-- <img src="https://www.circl.lu/assets/images/logo.png" width="100">
+<img src="https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/cyberex.jpg" width="200">
+<img src="https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/ecteg.jpg" width="200">
+<img src="https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/eu.png" width="200">
+<img src="https://raw.githubusercontent.com/MISP/MISP/2.4/INSTALL/logos/misp-logo.png" width="200">
+<img src="https://www.circl.lu/assets/images/logo.png" width="200">
