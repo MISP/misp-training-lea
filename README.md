@@ -1,5 +1,7 @@
 # misp-training-lea - Practical Information Sharing between Law Enforcement and CSIRT communities using MISP
 
+![](https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/cyberex.jpg)
+
 Practical Information Sharing between Law Enforcement and CSIRT communities using MISP. The training is composed of theoritical and practical modules. A part of the practical modules include specific topics such as network forensic analysis, system forensic and threat analysis. The focus of the modules is show the complete chain from incident response, analysis up to the modeling and sharing with MISP.
 
 ## eLearning
@@ -88,3 +90,11 @@ All the materials are dual-licensed under GNU Affero General Public License vers
 - Andras Iklody
 - Sami Mokaddem
 - Luciano Righetti
+
+# Acknowledgement
+
+- ![](https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/cyberex.jpg | width=100)
+- ![](https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/ecteg.jpg | width=100)
+- ![](https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/eu.png | width=100)
+- ![](https://raw.githubusercontent.com/MISP/MISP/2.4/INSTALL/logos/misp-logo.png | width=100)
+- ![](https://www.circl.lu/assets/images/logo.png | width=100)
