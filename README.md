@@ -21,6 +21,8 @@ This eLearning module is a prerequisite or refreshing module to read before the 
 - [Labs - Extract an Executable from PCAP & Investigating an Attack on a Linux Host (e.303)](./e.303-lab2-encoding-information-and-sharing-it)
 - [Labs - Isolate Threat Actor(s) from Network Captures - (e.304)](./e.304-lab3-encoding-information-and-sharing-it-2)
 
+Complete detailed [syllabus](./syllabus.md).
+
 ## Infrastructure required
 
 At minimum, a dedicated MISP instance is to be made available for the students and trainers. A network of MISP instances can be also set up in order to conduct additional sharing exercises between the teams.
