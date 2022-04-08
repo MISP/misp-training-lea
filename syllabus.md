@@ -1,3 +1,4 @@
+# Syllabus overview
 
 |Module 3|Information sharing and modeling introduction|
 |:---|:---|
