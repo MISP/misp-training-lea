@@ -8,18 +8,22 @@ slidedecks=(
     "e.205-mapping-investigations-and-cases-in-misp"
     "e.206-from-evidences-to-actionable-information"
     "e.303-lab2-encoding-information-and-sharing-it"
+    "e.302-lab1-modeling-interpreting-and-sharing-hacking-evidence"
     "e.304-lab3-encoding-information-and-sharing-it-2"
 )
 
 mkdir -p output
 mkdir -p output/handout
+VERSION=`git describe --tags --abbrev=0`
 
+echo $VERSION > version.tex
 export TEXINPUTS=::`pwd`/themes/
 
 for slide in ${slidedecks[@]}; do
     if test -f "${slide}/slides/slide.tex"; then
         echo "---- Building     ${slide}"
         cd ${slide}/slides
+        cp ../../themes/misplogo.pdf .
         pdflatex slide.tex
         pdflatex slide.tex
         rm *.aux *.toc *.snm *.log *.out *.nav *.vrb *.log 2> /dev/null
@@ -40,6 +44,7 @@ done
 
 pushd e.0-mandatory-eLearning-materials
 pandoc eLearning.md --pdf-engine=xelatex -V colorlinks=true \
+-V geometry="top=1cm, bottom=1cm, left=1cm, right=1cm" \
 -V linkcolor=blue \
 -V urlcolor=red \
 -V toccolor=gray -o ../output/0_eLearning.pdf

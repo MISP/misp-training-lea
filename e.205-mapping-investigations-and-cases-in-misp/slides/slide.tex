@@ -6,16 +6,132 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{tikz}
-\usepackage{listings}
-\usetikzlibrary{positioning}
+\usetikzlibrary{positioning,fit,calc,backgrounds}
 \usetikzlibrary{shapes,arrows}
+
+\usepackage{listings}
+\usepackage[listings]{tcolorbox}
+\tcbuselibrary{listings}
+\lstdefinestyle{simple}{ %
+    backgroundcolor=\color{gray!20},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+    basicstyle=\ttfamily\tiny\color{black},        % the size of the fonts that are used for the code
+    breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+    breaklines=true,                 % sets automatic line breaking
+    escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+    extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+    frame=single	                   % adds a frame around the code
+    keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+    % language=json,                 % the language of the code
+    %   keywordstyle=\bfseries,
+    %   morekeywords={GET,POST,PUT,DELETE,... },           % if you want to add more keywords to the set
+    numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+    numbersep=5pt,                   % how far the line-numbers are from the code
+    numberstyle=\tiny\color{black}, % the style that is used for the line-numbers
+    rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+    showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+    showstringspaces=false,          % underline spaces within strings only
+    showtabs=false,                  % show tabs within strings adding particular underscores
+    stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+    tabsize=2,	  
+}
+\lstset{style=simple}
+\def\inline{\lstinline[basicstyle=\ttfamily\tiny\color{black}]}
+
+\usepackage{xparse}
+\usepackage{fontawesome}
+\usepackage{xifthen}
+\newcommand{\taggable}{\faicon{tags}\hspace*{0.3em}}
+\newcommand{\distributable}{\faicon{eye-slash}\hspace*{0.3em}}
+\newcommand{\synchronisable}{\faicon{exchange}\hspace*{0.3em}}
+
+% Add a frame title along with a subtitle
+% arg1 = frame title
+% arg2 = frame subtitle
+\NewDocumentCommand{\frametitles}{m m}{
+    \ifthenelse{\isempty{#1}}{}{
+        \frametitle{#1
+            \ifthenelse{\isempty{#2}}{}{\\ \small \vspace{-5pt}\hspace{5pt} $\blacktriangleright$ #2}
+        }
+    }
+}
+
+%
+% Layout
+%
+\tikzstyle{mybox} = [
+    draw=black,
+    fill=white,
+    very thick,
+    rectangle, rounded corners,
+    inner sep=10pt
+]
+\tikzstyle{boxtitle} = [
+    % fill=black,
+    % text=white,
+    % fill=gray!30,
+    % text=black,
+    % font=\bfseries,
+    % right=10pt
+    draw=black,
+    line width=1pt,
+    text=white,
+    fill=black!80,
+    font=\bfseries,
+    rectangle, rounded corners=2pt,
+    inner sep=4pt,
+    right=10pt
+]
+\tikzset{actionbox/.style={
+    text=white,
+    yshift=-1pt,xshift=-1pt,
+    append after command={
+    \pgfextra
+            \draw[sharp corners, fill=black]% 
+        (\tikzlastnode.west)% 
+        [rounded corners=0pt] |- (\tikzlastnode.north)% 
+        [rounded corners] -| (\tikzlastnode.east)% 
+        [rounded corners=0pt] |- (\tikzlastnode.south)% 
+        [rounded corners] -| (\tikzlastnode.west);
+    \endpgfextra
+    }
+}}
+
+% Creates a box with a label taking 1/3 of the available width
+% arg1[optional] = icon
+% arg2[optional] = purpose
+% arg3[optional] = usecase
+% arg4[optional] = actions
+% arg5[optional] = description
+% arg6 = title
+% arg7 = content
+\NewDocumentCommand{\cheatbox}{ O{} O{} O{} O{} O{} m m}{
+    \begin{tikzpicture}
+        \node [mybox] (box){%
+            \begin{minipage}{0.95\linewidth}
+            \ifthenelse{\isempty{#4}}{}{\vspace{1em}}
+            \textit{#5}
+            \vspace*{0.3em}
+            \ifthenelse{\isempty{#2}}{}{ \par{\textbf{Purpose}: #2}}
+            \ifthenelse{\isempty{#3}}{}{ \par{\textbf{Usecase}: #3\ifthenelse{\isempty{#7}}{}{\\}}}
+            #7
+            \end{minipage}
+        };
+        \node[boxtitle] at (box.north west) {#1 #6};
+        \ifthenelse{\isempty{#4}}{}{
+            \path node [actionbox, anchor=north east] at (box.north east) (actionLabel) {#4};
+        }
+    \end{tikzpicture}
+
+    \vspace*{2pt}
+}
+
 
 
 \title{Mapping investigations and cases in MISP}
 \subtitle{e.205}
 \author{\small{CIRCL Computer Incident Response Center Luxembourg}}
-\date{\today}
-\titlegraphic{\includegraphics[scale=0.85]{misplogo.pdf}}
+\date{\today \hspace{3pt}- \input{../../version.tex}}
+\titlegraphic{\includegraphics[scale=0.50]{misplogo.pdf}}
 \institute{MISP Project \\ \url{https://www.misp-project.org/}}
 
 \begin{document}

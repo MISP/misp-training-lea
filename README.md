@@ -1,5 +1,7 @@
 # misp-training-lea - Practical Information Sharing between Law Enforcement and CSIRT communities using MISP
 
+![](https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/cyberex.jpg)
+
 Practical Information Sharing between Law Enforcement and CSIRT communities using MISP. The training is composed of theoritical and practical modules. A part of the practical modules include specific topics such as network forensic analysis, system forensic and threat analysis. The focus of the modules is show the complete chain from incident response, analysis up to the modeling and sharing with MISP.
 
 ## eLearning
@@ -18,6 +20,8 @@ This eLearning module is a prerequisite or refreshing module to read before the 
 - [Labs - Modeling, Interpreting and Sharing “Hacking Evidence” (e.302)](./e.302-lab1-modeling-interpreting-and-sharing-hacking-evidence)
 - [Labs - Extract an Executable from PCAP & Investigating an Attack on a Linux Host (e.303)](./e.303-lab2-encoding-information-and-sharing-it)
 - [Labs - Isolate Threat Actor(s) from Network Captures - (e.304)](./e.304-lab3-encoding-information-and-sharing-it-2)
+
+Complete detailed [syllabus](./syllabus.md).
 
 ## Infrastructure required
 
@@ -88,3 +92,11 @@ All the materials are dual-licensed under GNU Affero General Public License vers
 - Andras Iklody
 - Sami Mokaddem
 - Luciano Righetti
+
+# Acknowledgement
+
+<img src="https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/cyberex.jpg" width="200">
+<img src="https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/ecteg.jpg" width="200">
+<img src="https://raw.githubusercontent.com/MISP/misp-training-lea/main/themes/ecteg/eu.png" width="200">
+<img src="https://raw.githubusercontent.com/MISP/MISP/2.4/INSTALL/logos/misp-logo.png" width="200">
+<img src="https://www.circl.lu/assets/images/logo.png" width="200">
