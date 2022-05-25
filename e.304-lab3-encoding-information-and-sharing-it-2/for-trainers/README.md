@@ -158,7 +158,7 @@ The goal is to show how easy is to use [PyMISP](https://github.com/MISP/PyMISP) 
     # -*- coding: utf-8 -*-
 
     """
-    pymisp-scapy-demo.py
+    populate_event.py
     This script pushes failed DNS requests from an input pcap file to a MISP instance as attributes to a given event.
 
     usage: python populate_event.py [capture.pcap] [event_id]
@@ -196,7 +196,7 @@ The goal is to show how easy is to use [PyMISP](https://github.com/MISP/PyMISP) 
 
 6. sample usage:
     ```
-    $ python pymisp-scapy-demo.py ./misp-training-lea/e.304-lab3-encoding-information-and-sharing-it-2/for-students/capture-e.304.pcap [event_id] 
+    $ python populate_event.py ./misp-training-lea/e.304-lab3-encoding-information-and-sharing-it-2/for-students/capture-e.304.pcap [event_id] 
     ```
 
 7. extended script with [Sightings](https://www.circl.lu/doc/misp/sightings/) support:
@@ -206,7 +206,7 @@ The goal is to show how easy is to use [PyMISP](https://github.com/MISP/PyMISP) 
       # -*- coding: utf-8 -*-
 
       """
-      pymisp-scapy-demo.py
+      populate_event.py
       This script pushes failed DNS requests from an input pcap file to a MISP instance as attributes to a given event.
 
       usage: python populate_event.py [capture.pcap] [event_id]
