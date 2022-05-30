@@ -86,7 +86,7 @@ Goal is to create a new Event and encode the main actors in the scenario and the
 2. create a `network/domain-ip` object to represent our Minecraft Server:
    * **Comment**: Minecraft Server 
    * **IP**: 172.31.84.208
-   * **Port**: 25565
+   * **Port**: 25565 | Standard Minecraft Server Port
    * **First seen date:** 2022-03-11
    * **First seen time:** 14:09:40.081000+00:00
    * **Last seen date:** 2022-03-11
@@ -94,20 +94,20 @@ Goal is to create a new Event and encode the main actors in the scenario and the
 3. create a network/domain-ip object for the Player:
    * **Comment**: Player
    * **IP**: 178.249.193.69
-   * **Port**: 60237
-   * **Port**: 25565
+   * **Port**: 60237 | Player Source Port
+   * **Port**: 25565 | Player Destination Port
    * **First seen date:** 2022-03-11
    * **First seen time:** 14:09:40.081000+00:00
    * **Last seen date:** 2022-03-11
    * **Last seen time:** 14:10:59.391000+00:00
 4. create a network/domain-ip object for the Attacker:
    * **Comment**: Attacker
-   * **IP**: 178.249.193.69
-   * **Port**: 58574
-   * **Port**: 58576
-   * **Port**: 389
-   * **Port**: 8000
-   * **Port**: 6666
+   * **IP**: 18.212.74.161
+   * **Port**: 58574 | Attacker Source Port
+   * **Port**: 58576 | Attacker Source Port
+   * **Port**: 389 | Attacker LDAP Server
+   * **Port**: 8000 | Attacker HTTP Server
+   * **Port**: 6666 | UDP Reverse Shell
    * **First seen date:** 2022-03-11
    * **First seen time:** 14:10:01.266000+00:00
    * **Last seen date:** 2022-03-11
@@ -116,7 +116,7 @@ Goal is to create a new Event and encode the main actors in the scenario and the
    * **Comment**: *.interact.sh
    * **Domain**: c8nfads2vtc0000srss0grk4fxryyyyyr.interact.sh
    * **IP**: 46.101.25.250
-   * **Port**: 53
+   * **Port**: 53 | DNS
    * **First seen date:** 2022-03-11
    * **First seen time:** 14:10:01.266000+00:00
    * **Last seen date:** 2022-03-11
