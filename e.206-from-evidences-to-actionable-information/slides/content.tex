@@ -25,7 +25,7 @@
     \frametitle{How evidences can be useful for defense}
     The most common recommendations to protect people and assets from cyber attacks are usually:
     \begin{enumerate}
-        \item Maintaining softwares up to date
+        \item Maintaining software up to date
         \item Staff awareness
         \item Reliable Backups
         \item Endpoints protection tools (IDS or SIEM)
@@ -77,7 +77,7 @@
         \item Being able to \textbf{consume} the data
         \item Find information is \textbf{relevant} for them and their partners
         \item Being able to \textbf{understand} the data and its classification
-        \item Assess the \textbf{credibility}, likelyhood and origin of the data
+        \item Assess the \textbf{credibility}, likelihood and origin of the data
     \end{itemize}
 
 \end{frame}
@@ -144,7 +144,7 @@ cat.jpg.exe
     \begin{itemize}
         \item To what kind of user this data is for
         \item What type of action can be performed with it 
-        \item Estimation on accuracy, reliability and likelyhood
+        \item Estimation on accuracy, reliability and likelihood
         \item What are the impacts
         \item For threat actors:
         \begin{itemize}
@@ -158,7 +158,7 @@ cat.jpg.exe
 \section{What options do we have in MISP}
 \begin{frame}
     \frametitle{What options do we have in MISP}
-    MISP offers mutliples means to contextualise
+    MISP offers multiple means to contextualise
     \begin{itemize}
         \item Taxonomies
         \item Galaxies and Galaxy Clusters
@@ -182,7 +182,7 @@ cat.jpg.exe
         \item Triple tag system: \texttt{namespace:predicate="value"}
         \item Different organisational/community cultures require different nomenclatures
         \begin{itemize}
-            \item JSON libraries that can easily be defined without the involment of the MISP-project team
+            \item JSON libraries that can easily be defined without the involvement of the MISP-project team
         \end{itemize}
     \end{itemize}
     \includegraphics[width=1.0\linewidth]{pictures/taxonomy-workflow.png}
@@ -263,7 +263,7 @@ cat.jpg.exe
 \begin{frame}
     \frametitle{Relationships}
     \begin{itemize}
-        \item Analysts want more than a table of atrtibute, they want to see how each of them \textbf{interact} with the others
+        \item Analysts want more than a table of attributes, they want to see how each of them \textbf{interact} with the others
         \item Relationships are essentials to describe scenarios or stories with the data
         \item MISP allow these relationship to be built between objects
     \end{itemize}
@@ -271,7 +271,7 @@ cat.jpg.exe
 
 \begin{frame}
     \frametitle{Relationships}
-    A relationship betwen a person and its bank account
+    A relationship between a person and its bank account
     \begin{center}
         \includegraphics[width=0.8\linewidth]{pictures/relationship.png}
     \end{center}
@@ -279,7 +279,7 @@ cat.jpg.exe
 
 \begin{frame}
     \frametitle{Timeliness with Sightings and \texttt{first\_seen} / \texttt{last\_seen}}
-    Adding \textbf{Temporality} os a good way to avoid having the data frozen in time
+    Adding \textbf{Temporality} is a good way to avoid having the data frozen in time
     \begin{itemize}
         \item Sightings
         \begin{itemize}
@@ -322,7 +322,7 @@ cat.jpg.exe
     Prefer the use of object rather than attributes for attributes intrinsically linked together.
 
     \vspace{12px}
-    Atomic data by themselve rarely exists: They are often related to something else
+    Atomic data by themselves rarely exists: They are often related to something else
     \begin{itemize}
         \item Interactions between between elements are frequent
         \begin{itemize}
@@ -362,7 +362,7 @@ cat.jpg.exe
         \item One should try to capture the answer to these question when contextualising:
         \begin{itemize}
             \item In what context was this IoC seen?
-            \item Is it related to compromision? Does it tell us anything about the adversary infrastructure?
+            \item Is it related to compromise? Does it tell us anything about the adversary infrastructure?
             \item Was it used to exfiltrate data? Did it acted as a C2?
             \item Did it perform subsequent actions?
             \item ATT\&CK can procure even more knowledge
@@ -380,14 +380,14 @@ cat.jpg.exe
 \end{frame}
 
 \begin{frame}
-    \frametitle{Contextualisation: Origin, likelyhood and reliability}
+    \frametitle{Contextualisation: Origin, likelihood and reliability}
     \begin{itemize}
         \item The source of information has an impact on how people evaluates its trust
         \begin{itemize}
             \item Data without a source / origin might be considered unreliable
             \item \textit{i.e: A research paper without citing its sources is useless}
         \end{itemize}
-        \item MISP bridges people and and communities
+        \item MISP bridges people and communities
         \begin{itemize}
             \item The more one is connected, the greater the quantity and diversity of data
             \item Not everything you read on the internet is true!
@@ -396,7 +396,7 @@ cat.jpg.exe
 \end{frame}
 
 \begin{frame}
-    \frametitle{Contextualisation: Origin, likelyhood and reliability}
+    \frametitle{Contextualisation: Origin, likelihood and reliability}
     If you can't share the source, provide the trust in the source
     \begin{itemize}
         \item Include the reliability and the credibility of the information
@@ -404,7 +404,7 @@ cat.jpg.exe
                 \item Taxonomy: \texttt{admiralty-scale}
                 \item \textit{i.e: \texttt{admiralty-scale:source-reliability="Usually reliable"}}
             \end{itemize}
-        \item Include the quality and likelyhood
+        \item Include the quality and likelihood
             \begin{itemize}
                 \item Taxonomy: \texttt{estimative-language}
                 \item \textit{i.e: \texttt{estimative-language:likelihood-probability="very likely"}}
@@ -425,20 +425,20 @@ cat.jpg.exe
         \item It allows to identity behaviors
         \begin{itemize}
             \item Might speed up the next investigation
-            \item Might boostrap the analysis procdess
+            \item Might bootstrap the analysis process
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Contextualise: Provide advices on how to protect themselves}
-    To help recipients to better protect themselve, additional information can be provided.
+    To help recipients to better protect themselves, additional information can be provided.
 
     \begin{itemize}
         \item Indicate what can be done with the data
         \begin{itemize}
             \item Use it to feed an IDS
-            \item Perform historical search with a SIEM to find a potential compromision
+            \item Perform historical search with a SIEM to find a potential compromise
             \item Inform your peers against a new type of threat
         \end{itemize}
         \item Provide additional supporting materials
@@ -476,7 +476,7 @@ cat.jpg.exe
 \begin{frame}
     \frametitle{Leveraging the context}
     \begin{itemize}
-        \item On-demande potential false positive exclusion
+        \item On-demand potential false positive exclusion
         \item Warninglist system helps to exclude known false-positives reducing alert-fatigue
     \end{itemize}
     \includegraphics[width=0.66\linewidth]{pictures/warning-list.png}
@@ -486,8 +486,8 @@ cat.jpg.exe
 \begin{frame}
     \frametitle{Leveraging the context}
     \begin{itemize}
-        \item IoC prioritization and lifecycle management
-        \item Integrate decay models to filter out expired/unrelevant data
+        \item IoC prioritization and life-cycle management
+        \item Integrate decay models to filter out expired/irrelevant data
     \end{itemize}
     \includegraphics[width=1.0\linewidth]{pictures/decaying-simulation.png}
 \end{frame}
@@ -519,9 +519,9 @@ cat.jpg.exe
     \frametitle{Objectives}
     \begin{itemize}
         \item Identify non-technical data that can be useful for an investigation,
-        \item Illustrate how non-technical and technical data can interact to produce meaninful insights,
+        \item Illustrate how non-technical and technical data can interact to produce meaningful insights,
         \item Model these interactions,
-        \item Outline what Socio-Technical intercations are useful to share.
+        \item Outline what Socio-Technical interactions are useful to share.
     \end{itemize}
 
     \note[item]{A note for the slide handout}
@@ -536,7 +536,7 @@ cat.jpg.exe
         \item Technical traces show human activities,
         \item Technical traces can convey human intent,
         \item Human interactions can explain and give context to Technical traces,
-        \item CyberCrime requires infrastructures and logistics that are discussed between humans,
+        \item Cybercrime requires infrastructures and logistics that are discussed between humans,
         \item TTPS are discussed and exchanged,
         \item Human interaction can help attributing attacks to threat actors,
         \item Human interaction can help deciphering intent and motives, and discriminate human error from sabotage.
@@ -552,7 +552,7 @@ cat.jpg.exe
         \item bring context to other ransomware cases,
         \item better understand the gang day to day operations,
         \item get insights on events' timeline,
-        \item confirm or invalidat previous hypotheses,
+        \item confirm or invalidate previous hypotheses,
         \item select relevant information to share and produce an intelligence report.
     \end{itemize}
 
@@ -649,7 +649,7 @@ cat.jpg.exe
 
 \begin{frame}
     \frametitle{Correlating with MISP's data}
-    MIPS links  one related event
+    MIPS links one related event
 
      \begin{figure}[t]
         \includegraphics[width=.75\textwidth]{pictures/contileaks-correlation.png}
@@ -730,7 +730,7 @@ cat.jpg.exe
         \item we create an Event Report that explains the context and the new intelligence produced from the additional facts we gathered with AIL.
     \end{itemize}
 
-    \note[item]{Exenting an event will allow us to reference information from one event to the other as if they were the same event.}
+    \note[item]{Extending an event will allow us to reference information from one event to the other as if they were the same event.}
 \end{frame}
 
 \begin{frame}[fragile]
